@@ -1,0 +1,55 @@
+.user-list__widget {
+  @extend %widget-box;
+}
+
+.user-item__row {
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-block;
+  color: $blue;
+
+  &.lable-icon {
+    width: 50px;
+    text-align: center;
+
+    span {
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+
+  &.lable-scheme {
+    width: 30%;
+  }
+
+  &.lable-appointment {
+    width: 30%;
+  }
+
+  &.lable-submitted {
+    @include calc("width", "40% - 50px");
+  }
+}
+
+.user-list__header {
+  padding: 20px 0 20px 0;
+  border-bottom: 3px solid $blue;
+}
+
+.user-item {
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in);
+
+  padding: 20px 0 20px 0;
+  border-bottom: 1px dotted $blue;
+  cursor: pointer;
+  display: block;
+
+  &:hover {
+    background-color: $blue-hover;
+  }
+
+  .user-item__row {
+    font-weight: 200;
+  }
+}

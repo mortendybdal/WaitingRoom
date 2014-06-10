@@ -1,0 +1,6 @@
+%widget-box {
+  @include box-shadow(0 0 5px rgba(black, 0.2));
+
+  padding: 50px;
+  background-color: white
+}

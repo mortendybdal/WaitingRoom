@@ -1,0 +1,41 @@
+.patient
+
+    /////////////////////SUMMERY WIDGET///////////////////////
+    .patient-summery__widget
+        .patient-summery__image
+            span.glyphicon.glyphicon-user
+
+        .patient-summery__info
+            .patient-summery__info-row
+                .patient-summery__lable-scheme Halssmerter - Kl 15:40
+
+            .patient-summery__info-row
+                .patient-summery__lable Age
+                .patient-summery__value 47 years
+
+            .patient-summery__info-row
+                .patient-summery__lable Gender
+                .patient-summery__value Woman
+
+
+    /////////////////////SOAP WIDGET///////////////////////
+    .patient-soap__widget
+        .patient-soap__header
+            .patient-soap__row Question
+            .patient-soap__row Answer
+
+
+        .patient-soap__content
+            .patient-soap__item(ng-repeat="soap_item in soap_item_list")
+                .patient-soap__item--question {{soap_item.question}}
+                .patient-soap__item--answer {{soap_item.answer}}
+
+    /////////////////////JOURNAL WIDGET///////////////////////
+    .patient-journal__widget
+        .patient-journal__header
+            .patient-journal__row Description
+
+        .patient-journal__content Bacon ipsum dolor sit amet bacon doner ball tip, tri-tip porchetta ground round pork chop short loin. Chuck pork chop swine hamburger sirloin meatloaf. Shankle chicken ham jowl tenderloin. Kevin doner sirloin tail tongue pork loin sausage meatball.
+
+        button.patient-journal__copypast-button
+            span Copy/Past
