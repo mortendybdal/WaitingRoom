@@ -1,0 +1,68 @@
+.patient
+
+    /////////////////////SUMMERY WIDGET///////////////////////
+    .patient-summery__widget
+        .patient-summery__image
+            span.glyphicon.glyphicon-user
+
+        .patient-summery__info
+            .patient-summery__info-row
+                .patient-summery__lable-scheme Halssmerter - Kl 15:40
+
+            .patient-summery__info-row
+                .patient-summery__lable Age
+                .patient-summery__value 47 years
+
+            .patient-summery__info-row
+                .patient-summery__lable Gender
+                .patient-summery__value Woman
+
+
+    /////////////////////SOAP WIDGET///////////////////////
+    .patient-soap__widget
+        .patient-soap__header
+            .patient-soap__row Question
+            .patient-soap__row Answer
+
+
+        .patient-soap__content
+            .patient-soap__item(ng-repeat="soap_item in soap_item_list")
+                .patient-soap__item--question {{soap_item.question}}
+
+                // ==> Single-Text
+                .patient-soap__item--answer(editable-text="soap_item.answer",
+                                            buttons="no",
+                                            blur="submit",
+                                            ng-if="soap_item.type === 'single-text'") {{soap_item.answer}}
+
+                // ==> Radio-List
+                .patient-soap__item--answer(editable-radiolist="soap_item.answer",
+                                            e-ng-options="o.value as o.value for o in soap_item.options"
+                                            buttons="no",
+                                            ng-if="soap_item.type === 'radio-list'") {{soap_item.answer}}
+
+                // ==> Multi-text
+                .patient-soap__item--answer(editable-textarea="soap_item.answer",
+                                            e-rows="7",
+                                            e-cols="40"
+                                            buttons="no",
+                                            blur="submit",
+                                            ng-if="soap_item.type === 'multi-text'")
+                    pre {{soap_item.answer}}
+
+                // ==> Select-List
+                .patient-soap__item--answer(editable-select="soap_item.answer",
+                                            e-ng-options="o.value as o.value for o in soap_item.options"
+                                            buttons="no",
+                                            ng-if="soap_item.type === 'select-list'") {{soap_item.answer}}
+
+    /////////////////////JOURNAL WIDGET///////////////////////
+    .patient-journal__widget
+        .patient-journal__header
+            .patient-journal__row Description
+
+        .patient-journal__content
+            pre {{journal_text}}
+
+        button.patient-journal__copypast-button(clip-copy="copyPast()")
+            span Copy/Past

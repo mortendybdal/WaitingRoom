@@ -1,0 +1,60 @@
+.navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 70px;
+  background-color: $nav-background;
+  @include box-shadow(3px 0 5px rgba(black, 0.2));
+}
+
+.navigation__profil {
+  padding: 40px 12px 150px 12px;
+  border-bottom: 1px solid $nav-divider-shadow;
+}
+
+.navigation__profil-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 23px;
+  background: white;
+  text-align: center;
+  overflow: hidden;
+
+  span {
+    line-height: 57px;
+    font-size: 45px;
+    color: $icon-dark-blue;
+  }
+}
+
+.navigation__menu {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+
+  .navigation__menu-item {
+    @include box-shadow(inset 0px -1px 1px $nav-divider);
+
+    cursor: pointer;
+    height: 70px;
+    text-align: center;
+    border-bottom: 1px solid $nav-divider-shadow;
+    background-color: $nav-button-background;
+    display: block;
+
+    &:hover {
+      span {
+        color: white;
+      }
+    }
+
+    span {
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease-in);
+      line-height: 70px;
+      font-size: 25px;
+      color: $icon-dark-blue;
+    }
+  }
+}

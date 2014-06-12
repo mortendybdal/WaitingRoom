@@ -1,0 +1,157 @@
+/////////////////////SUMMERY WIDGET///////////////////////
+
+.patient-summery__widget {
+  @extend %widget-box;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.patient-summery__image {
+  width: 75px;
+  height: 75px;
+  float: left;
+  border: 2px solid $blue;
+  border-radius: 3px;
+  text-align: center;
+  
+  span {
+    line-height: 70px;
+    font-size: 45px;
+    color: $blue;
+  }
+}
+
+.patient-summery__info {
+  overflow: hidden;
+  padding-left: 50px;
+}
+
+.patient-summery__info-row {
+  padding-bottom: 3px;
+  color: #191b1f;
+  font-weight: 200;
+
+  .patient-summery__lable-scheme {
+    font-size: 20px;
+  }
+
+  .patient-summery__lable {
+    display: inline-block;
+    font-size: 12px;
+    width: 100px;
+    font-weight: 200;
+  }
+
+  .patient-summery__value {
+    display: inline-block;
+    font-size: 12px;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+/////////////////////SOAP WIDGET///////////////////////
+
+.patient-soap__widget {
+  @include calc("width", "70% - 20px");
+  @extend %widget-box;
+
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top;
+}
+
+.patient-soap__header {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid $blue;
+}
+
+.patient-soap__row {
+  font-size: 12px;
+  font-weight: 200;
+  display: inline-block;
+  color: $blue;
+  width: 50%;
+}
+
+.patient-soap__item {
+  padding: 5px 0 5px 0;
+  border-bottom: 1px dotted $blue;
+  color: $icon-dark-blue;
+  font-size: 12px;
+  font-weight: 200;
+}
+
+.patient-soap__item--question {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+  padding: 10px 0 10px 0;
+}
+
+.patient-soap__item--answer {
+
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+
+}
+
+/////////////////////JOURNAL WIDGET///////////////////////
+
+
+.patient-journal__widget {
+  @extend %widget-box;
+
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.patient-journal__header {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid $blue;
+}
+
+.patient-journal__row {
+  font-size: 12px;
+  font-weight: 200;
+  display: inline-block;
+  color: $blue;
+
+}
+
+.patient-journal__content pre{
+  line-height: 25px;
+  padding: 20px 0 20px 0;
+  color: $icon-dark-blue;
+  font-size: 12px;
+  font-weight: 200;
+  border: none;
+  background-color: transparent;
+  white-space: pre-line;
+  word-break: break-word;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.patient-journal__copypast-button {
+  @include transition-duration(0.2s);
+  @include transition-timing-function(ease-in);
+
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  border: 1px solid $blue;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 200;
+  color: $blue;
+  outline: none;
+
+  &:hover {
+    border: 1px solid $green;
+    color: $green;
+  }
+}

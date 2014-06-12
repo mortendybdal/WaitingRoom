@@ -4,13 +4,21 @@ angular.module('waitingRoomApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ngAnimate',
+  'ngAnimate-animate.css',
+  'xeditable',
+  'ngClipboard'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/main',
-        controller: 'MainCtrl'
+        templateUrl: 'partials/frontpage',
+        controller: 'FrontpageCtrl'
+      })
+      .when('/patient/:step/:id', {
+          templateUrl: 'partials/patient',
+          controller: 'PatientCtrl'
       })
       .when('/login', {
         templateUrl: 'partials/login',
@@ -30,7 +38,7 @@ angular.module('waitingRoomApp', [
       });
       
     $locationProvider.html5Mode(true);
-      
+
     // Intercept 401s and redirect you to login
     $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
       return {
@@ -46,10 +54,15 @@ angular.module('waitingRoomApp', [
       };
     }]);
   })
+    .config(['ngClipProvider', function(ngClipProvider) {
+        ngClipProvider.setPath("bower_components/zeroclipboard/ZeroClipboard.swf");
+    }])
   .run(function ($rootScope, $location, Auth) {
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
+
+      $rootScope.$broadcast("event:load_start");
       
       if (next.authenticate && !Auth.isLoggedIn()) {
         $location.path('/login');
