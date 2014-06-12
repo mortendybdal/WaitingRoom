@@ -4,7 +4,7 @@ angular.module('waitingRoomApp')
    .controller('FrontpageCtrl', function ($scope, $rootScope, $timeout, $http) {
 
       $http.get('/api/patients').success(function(patients) {
-          $scope.patients = patients
+          $scope.patients = patients;
           $rootScope.$broadcast("event:load_stop");
       });
 

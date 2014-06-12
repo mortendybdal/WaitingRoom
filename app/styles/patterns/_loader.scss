@@ -1,10 +1,10 @@
 
 .content-loader{
   position: absolute;
-  height: 60px;
-  width: 60px;
-  border-radius: 30px;
-  border: 3px solid  rgba($blue, .7);
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  border: 1px solid  rgba($blue, .7);
 
   top: 28%;
   top: 200px;
@@ -23,8 +23,8 @@
   position: absolute;
   top: -5px;
   left: 20px;
-  width: 11px;
-  height: 11px;
+  width: 9px;
+  height: 9px;
   border-radius: 10px;
   background-color: $blue;
 }

@@ -3,7 +3,7 @@
 }
 
 .user-item__row {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   display: inline-block;
   color: $blue;
@@ -32,15 +32,15 @@
 }
 
 .user-list__header {
-  padding: 20px 0 20px 0;
-  border-bottom: 3px solid $blue;
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid $blue;
 }
 
 .user-item {
   @include transition-duration(0.3s);
   @include transition-timing-function(ease-in);
 
-  padding: 20px 0 20px 0;
+  padding: 15px 0 15px 0;
   border-bottom: 1px dotted $blue;
   cursor: pointer;
   display: block;

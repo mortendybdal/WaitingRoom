@@ -6,7 +6,8 @@ angular.module('waitingRoomApp', [
   'ngSanitize',
   'ngRoute',
   'ngAnimate',
-  'ngAnimate-animate.css'
+  'ngAnimate-animate.css',
+  'xeditable'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

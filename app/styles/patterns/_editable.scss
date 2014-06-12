@@ -1,0 +1,88 @@
+///////////////////RESET EDITABLE/////////////////////
+
+.editable-click {
+  border: 1px solid white;
+
+  &:hover {
+    border: 1px solid white;
+  }
+}
+
+
+///////////////////EDITABLE-TEXT/////////////////////
+div[editable-text], div[editable-radiolist], div[editable-textarea] pre {
+  cursor: pointer;
+  border: 1px solid white;
+  padding: 10px 0 10px 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  background-color: transparent;
+  color: $editable-answer-blue;
+  margin: 0;
+
+  &:hover {
+    background-color: $blue-hover;
+  }
+}
+
+.editable-text {
+  width: 50%;
+
+  input {
+    width: 100%;
+    border: 1px solid $blue;
+    outline: none;
+    padding: 10px 0 10px 0;
+    background-color: $blue-hover;
+    color: $editable-answer-blue;
+    padding-left: 5px;
+  }
+}
+
+.editable-radiolist {
+
+  label {
+    position: relative;
+    margin: 0;
+
+    input[type="radio"] {
+      position: absolute;
+      z-index: -100;
+
+      &:checked + span {
+        background-color: $blue;
+        color: white;
+      }
+    }
+
+    span {
+      margin: 0;
+      color: $blue;
+      font-weight: 200;
+      display: inline-block;
+      vertical-align: top;
+      padding: 11px;
+      border: 1px solid $blue;
+      border-radius: 3px;
+      margin-right: 5px;
+
+      &:hover {
+        background-color: $blue-hover;
+      }
+    }
+  }
+}
+
+.editable-textarea {
+  width: 50%;
+
+  textarea {
+    width: 100%;
+    border: 1px solid $blue;
+    outline: none;
+    padding: 10px 0 10px 0;
+    background-color: $blue-hover;
+    color: $editable-answer-blue;
+    padding: 5px;
+  }
+}

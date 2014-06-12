@@ -3,27 +3,27 @@
   left: 0;
   top: 0;
   height: 100%;
-  width: 90px;
+  width: 70px;
   background-color: $nav-background;
   @include box-shadow(3px 0 5px rgba(black, 0.2));
 }
 
 .navigation__profil {
-  padding: 40px 15px 150px 15px;
+  padding: 40px 12px 150px 12px;
   border-bottom: 1px solid $nav-divider-shadow;
 }
 
 .navigation__profil-circle {
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+  width: 46px;
+  height: 46px;
+  border-radius: 23px;
   background: white;
   text-align: center;
   overflow: hidden;
 
   span {
-    line-height: 73px;
-    font-size: 55px;
+    line-height: 57px;
+    font-size: 45px;
     color: $icon-dark-blue;
   }
 }
@@ -37,7 +37,7 @@
     @include box-shadow(inset 0px -1px 1px $nav-divider);
 
     cursor: pointer;
-    height: 90px;
+    height: 70px;
     text-align: center;
     border-bottom: 1px solid $nav-divider-shadow;
     background-color: $nav-button-background;
@@ -52,8 +52,8 @@
     span {
       @include transition-duration(0.2s);
       @include transition-timing-function(ease-in);
-      line-height: 90px;
-      font-size: 30px;
+      line-height: 70px;
+      font-size: 25px;
       color: $icon-dark-blue;
     }
   }
