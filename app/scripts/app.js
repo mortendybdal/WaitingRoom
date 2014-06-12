@@ -54,9 +54,6 @@ angular.module('waitingRoomApp', [
       };
     }]);
   })
-    .config(['ngClipProvider', function(ngClipProvider) {
-        ngClipProvider.setPath("bower_components/zeroclipboard/ZeroClipboard.swf");
-    }])
   .run(function ($rootScope, $location, Auth) {
 
     // Redirect to login if route requires auth and you're not logged in
