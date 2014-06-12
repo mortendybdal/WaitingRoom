@@ -7,7 +7,8 @@ angular.module('waitingRoomApp', [
   'ngRoute',
   'ngAnimate',
   'ngAnimate-animate.css',
-  'xeditable'
+  'xeditable',
+  'ngClipboard'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -53,6 +54,9 @@ angular.module('waitingRoomApp', [
       };
     }]);
   })
+    .config(['ngClipProvider', function(ngClipProvider) {
+        ngClipProvider.setPath("bower_components/zeroclipboard/ZeroClipboard.swf");
+    }])
   .run(function ($rootScope, $location, Auth) {
 
     // Redirect to login if route requires auth and you're not logged in

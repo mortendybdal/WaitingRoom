@@ -50,12 +50,19 @@
                                             ng-if="soap_item.type === 'multi-text'")
                     pre {{soap_item.answer}}
 
+                // ==> Select-List
+                .patient-soap__item--answer(editable-select="soap_item.answer",
+                                            e-ng-options="o.value as o.value for o in soap_item.options"
+                                            buttons="no",
+                                            ng-if="soap_item.type === 'select-list'") {{soap_item.answer}}
+
     /////////////////////JOURNAL WIDGET///////////////////////
     .patient-journal__widget
         .patient-journal__header
             .patient-journal__row Description
 
-        .patient-journal__content Bacon ipsum dolor sit amet bacon doner ball tip, tri-tip porchetta ground round pork chop short loin. Chuck pork chop swine hamburger sirloin meatloaf. Shankle chicken ham jowl tenderloin. Kevin doner sirloin tail tongue pork loin sausage meatball.
+        .patient-journal__content
+            pre {{journal_text}}
 
-        button.patient-journal__copypast-button(ng-click="copyPast()")
+        button.patient-journal__copypast-button(clip-copy="copyPast()")
             span Copy/Past
