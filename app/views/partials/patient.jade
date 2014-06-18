@@ -58,11 +58,12 @@
 
     /////////////////////JOURNAL WIDGET///////////////////////
     .patient-journal__widget
+        .patient-journal__copying(ng-if="is_copying_jounal") Copying..
         .patient-journal__header
             .patient-journal__row Description
 
         .patient-journal__content
             pre {{journal_text}}
 
-        button.patient-journal__copypast-button(clip-copy="copyPast()")
+        button.patient-journal__copypast-button(clip-copy="copyPast()", clip-click="copyPastEffect()", clip-blue="copyPastEffect()")
             span Copy/Past

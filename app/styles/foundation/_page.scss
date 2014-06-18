@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+}
+
 body {
   padding: 0px;
   background-color: $main-background;
@@ -6,4 +10,27 @@ body {
 .content {
   position: relative;
   margin: 20px 20px 20px 110px;
+}
+
+.tablet-design {
+  height: 100%;
+  
+  .page {
+    height: 100%;
+
+    .content {
+      margin: 0;
+      height: 100%;
+
+      .content-view {
+        height: 100%;
+
+        .tablet {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+
 }

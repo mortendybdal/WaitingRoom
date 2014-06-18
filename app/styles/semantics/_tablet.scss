@@ -1,0 +1,167 @@
+.tablet-container {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tablet-page {
+  @include transition-duration(0.5s);
+  @include transition-timing-function(liniar);
+  visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $blue;
+
+  //Animation => slide in left
+  &.slide-left_in-animation {
+    visibility: visible;
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  &.slide-left_in-animation-add {
+    @include transform(translate3d(100%, 0, 0));
+  }
+
+  &.slide-left_in-animation-add-active {
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  &.slide-left_out-animation {
+    visibility: hidden;
+    @include transform(translate3d(-100%, 0, 0));
+  }
+
+  &.slide-left_out-animation-add {
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  &.slide-left_out-animation-add-active {
+    @include transform(translate3d(-100%, 0, 0));
+  }
+
+  &.slide-right_in-animation {
+    visibility: visible;
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  &.slide-right_in-animation-add {
+    @include transform(translate3d(-100%, 0, 0));
+  }
+
+  &.slide-right_in-animation-add-active {
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  &.slide-right_out-animation {
+    visibility: hidden;
+    @include transform(translate3d(100%, 0, 0));
+  }
+
+  &.slide-right_out-animation-add {
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  &.slide-right_out-animation-add-active {
+    @include transform(translate3d(100%, 0, 0));
+  }
+}
+
+.tablet-page__question {
+  text-align: center;
+  padding: 100px 30px 100px 30px;
+  color: white;
+  font-size: 40px;
+}
+
+.tablet-page__next-button {
+  @include transition-duration(0.5s);
+  @include transition-timing-function(liniar);
+
+  padding: 10px;
+  margin: 30px;
+  width: 70px;
+  height: 70px;
+  font-size: 16px;
+  z-index: 2000;
+  font-size: 16px;
+  border: 3px solid white;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  border-radius: 35px;
+
+  span {
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 30px;
+  }
+
+  &:active {
+    background-color: $blue-hover;
+  }
+}
+
+.tablet-page__previous-button {
+  @include transition-duration(0.5s);
+  @include transition-timing-function(liniar);
+
+  padding: 10px;
+  margin: 30px;
+  width: 70px;
+  height: 70px;
+  font-size: 16px;
+  border: 3px solid white;
+  z-index: 2000;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  border-radius: 35px;
+
+  span {
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 30px;
+  }
+
+  &:active {
+    background-color: $blue-hover;
+  }
+}
+
+.tablet-page__content {
+  text-align: center;
+}
+
+.tablet-page__finish-questionary {
+  @include transition-duration(0.5s);
+  @include transition-timing-function(liniar);
+
+  color: white;
+  font-size: 26px;
+  padding: 10px 40px 10px 40px;
+  border: 2px solid white;
+  display: inline-block;
+
+  &:hover {
+     color: $blue-hover;
+     border: 2px solid $blue-hover;
+  }
+
+  &:active {
+    background-color: $blue-hover;
+  }
+}
+
+.tablet-page__finish-questionary-thankyou {
+  font-size: 36px;
+  color: white;
+  display: inline-block;
+}

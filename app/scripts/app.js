@@ -20,19 +20,10 @@ angular.module('waitingRoomApp', [
           templateUrl: 'partials/patient',
           controller: 'PatientCtrl'
       })
-      .when('/login', {
-        templateUrl: 'partials/login',
-        controller: 'LoginCtrl'
-      })
-      .when('/signup', {
-        templateUrl: 'partials/signup',
-        controller: 'SignupCtrl'
-      })
-      .when('/settings', {
-        templateUrl: 'partials/settings',
-        controller: 'SettingsCtrl',
-        authenticate: true
-      })
+      .when('/tablet', {
+         templateUrl: 'partials/tablet',
+         controller: 'TabletCtrl'
+        })
       .otherwise({
         redirectTo: '/'
       });

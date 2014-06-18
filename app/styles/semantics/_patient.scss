@@ -103,11 +103,43 @@
 
 
 .patient-journal__widget {
+
   @extend %widget-box;
 
   width: 30%;
   display: inline-block;
   vertical-align: top;
+  position: relative;
+}
+
+.patient-journal__copying {
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in);
+  background-color: $blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-align: center;
+  padding-top: 50%;
+
+  &.ng-enter {
+    opacity: 0;
+  }
+
+  &.ng-enter-active {
+    opacity: 1;
+  }
+
+  &.ng-leave {
+    opacity: 1;
+  }
+
+  &.ng-leave-active {
+    opacity: 0;
+  }
 }
 
 .patient-journal__header {

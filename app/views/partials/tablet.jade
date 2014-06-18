@@ -1,0 +1,26 @@
+.tablet
+
+
+    .tablet-container
+        .tablet-page.page-1(ng-repeat="question in questions", ng-class="{'slide-left_in-animation': index === $index && direction === 'left', 'slide-left_out-animation': index === $index + 1 && direction === 'left', 'slide-right_in-animation': index === $index && direction === 'right', 'slide-right_out-animation': index === $index - 1 && direction === 'right'}")
+            .tablet-page__question {{question.question}}
+
+            .tablet-page__next-button(ng-click="nextSlide()")
+                span.glyphicon.glyphicon-chevron-right
+            .tablet-page__previous-button(ng-click="backSlide()")
+                span.glyphicon.glyphicon-chevron-left
+
+        .tablet-page.page-1(ng-class="{'slide-left_in-animation': index === questions.length && direction === 'left', 'slide-left_out-animation': index === questions.length + 1 && direction === 'left', 'slide-right_in-animation': index === questions.length && direction === 'right', 'slide-right_out-animation': index === questions.length - 1 && direction === 'right'}")
+            .tablet-page__question Please complete the questionary.
+
+            .tablet-page__content
+                .tablet-page__finish-questionary(ng-click="finishQuestionary()") Finish
+
+            .tablet-page__previous-button(ng-click="backSlide()")
+                span.glyphicon.glyphicon-chevron-left
+
+        .tablet-page.page-1(ng-class="{'slide-left_in-animation': index === questions.length + 1 && direction === 'left', 'slide-left_out-animation': index === questions.length + 2 && direction === 'left', 'slide-right_in-animation': index === questions.length + 1 && direction === 'right', 'slide-right_out-animation': index === questions.length && direction === 'right'}")
+            .tablet-page__question Your answers har been send to you doctor.
+
+            .tablet-page__content
+                .tablet-page__finish-questionary-thankyou Thank you!

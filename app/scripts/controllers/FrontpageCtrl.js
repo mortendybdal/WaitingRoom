@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-   .controller('FrontpageCtrl', function ($scope, $rootScope, $timeout, $http) {
+   .controller('FrontpageCtrl', function ($scope, $rootScope, PatientService) {
 
-      $http.get('/api/patients').success(function(patients) {
-          $scope.patients = patients;
+      PatientService.getAllPatients().then(function () {
+          $scope.patients = PatientService.data;
           $rootScope.$broadcast("event:load_stop");
       });
 
