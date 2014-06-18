@@ -3,9 +3,10 @@
 angular.module('waitingRoomApp')
     .controller('TabletCtrl', function ($scope, $rootScope, Question, PatientService) {
         $rootScope.hide_navigation_menu = true;
-        $scope.index = 0;
+        $scope.index = -1;
         $scope.direction = "left";
         $scope.questions = Question;
+        $scope.scheme_type = "none";
 
         $rootScope.$broadcast("event:load_stop");
 
@@ -22,9 +23,15 @@ angular.module('waitingRoomApp')
         $scope.finishQuestionary = function () {
             console.log("Finish");
 
-            PatientService.createPatient({scheme: "Mavepine"}).then(function () {
+            PatientService.createPatient({scheme: $scope.scheme_type}).then(function () {
                 console.log("Patient created - client");
                 $scope.nextSlide();
             });
+        }
+
+        $scope.setSchemeType = function (type) {
+            $scope.scheme_type = type;
+
+            $scope.nextSlide();
         }
     });

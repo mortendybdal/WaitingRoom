@@ -165,3 +165,26 @@
   color: white;
   display: inline-block;
 }
+
+.tablet-page__scheme {
+  @include transition-duration(0.5s);
+  @include transition-timing-function(liniar);
+
+  color: white;
+  font-size: 26px;
+  padding: 10px 40px 10px 40px;
+  border: 2px solid white;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+
+  &:hover {
+    color: $blue-hover;
+    border: 2px solid $blue-hover;
+  }
+
+  &:active {
+    background-color: $blue-hover;
+  }
+}
