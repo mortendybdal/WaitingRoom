@@ -13,7 +13,7 @@ angular.module('waitingRoomApp')
             {
                 question: "Køn?",
                 answer: "Kvinde",
-                journalText: "{{}}",
+                journalText: "Jeg heeder 0033030{{}}",
                 type: "radio-list",
                 options: [
                     {
@@ -91,6 +91,13 @@ angular.module('waitingRoomApp')
                 answer: "Ja jeg syntes at have mavepine hver anden dag",
                 type: "multi-text",
                 journalText: "Patient tilføjer: {{}}",
+                options: []
+            },
+            {
+                question: "Lægens egen kommentar?",
+                answer: "Ja",
+                journalText: "{{}}",
+                type: "multi-text",
                 options: []
             }
         ];

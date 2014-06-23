@@ -178,6 +178,7 @@
   width: 250px;
   margin: 0 auto;
   margin-bottom: 20px;
+  cursor: pointer;
 
   &:hover {
     color: $blue-hover;
@@ -186,5 +187,123 @@
 
   &:active {
     background-color: $blue-hover;
+  }
+}
+
+//////////////QUESTIONS////////////////
+
+.tablet-page__answer {
+
+  .tablet-page__answer__inner {
+    width: 60%;
+    position: relative;
+    margin: 0 auto;
+  }
+}
+
+
+//////////////QUESTION WIDGETS////////////////
+.single-text {
+  input {
+    @include transition-duration(0.2s);
+    @include transition-timing-function(ease-in);
+
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px 0 20px;
+    background-color: transparent;
+    font-size: 40px;
+    color: white;
+    border: none;
+    outline: none;
+
+    @include placeholder {
+      color: darken($blue, 5%);
+    }
+
+    &:focus {
+      background-color: lighten($blue, 10%);
+    }
+  }
+
+  .single-text__border {
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 3px solid white;
+    border-left: 3px solid white;
+    border-right: 3px solid white;
+  }
+}
+
+.multi-text {
+  textarea {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    outline: none;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    resize: none;
+
+    @include placeholder {
+      color: darken($blue, 5%);
+    }
+
+    &:focus {
+      background-color: lighten($blue, 10%);
+    }
+  }
+
+  .multi-text__border-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 100%;
+    border-bottom: 3px solid white;
+    border-left: 3px solid white;
+    border-top: 3px solid white;
+  }
+
+  .multi-text__border-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    border-bottom: 3px solid white;
+    border-right: 3px solid white;
+    border-top: 3px solid white;
+  }
+}
+
+.radio-list {
+
+  .tablet-page__answer-option--inner {
+    box-sizing: content-box;
+    border: 3px solid white;
+    padding: 20px;
+    display: block;
+    margin: 5px;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+
+    &.active {
+      background-color: lighten($blue, 10%);
+    }
+
+    &:active {
+      background-color: lighten($blue, 25%);
+    }
+  }
+
+  li button:before {
+    color: white;
+    font-size: 10px;
   }
 }

@@ -34,4 +34,18 @@ angular.module('waitingRoomApp')
 
             $scope.nextSlide();
         }
+
+        $scope.onKeyPressed = function (event) {
+            if(event.keyCode === 13) {
+                $scope.nextSlide();
+            }
+        };
+
+        $scope.getNumberOfSlidesShown = function(options) {
+            if(options.length < 4) {
+                return options.length;
+            } else {
+                return 3;
+            }
+        }
     });

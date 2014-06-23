@@ -8,7 +8,8 @@ angular.module('waitingRoomApp', [
   'ngAnimate',
   'ngAnimate-animate.css',
   'xeditable',
-  'ngClipboard'
+  'ngClipboard',
+  'slick'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

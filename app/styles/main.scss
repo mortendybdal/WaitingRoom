@@ -5,6 +5,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import "sass-bootstrap/lib/bootstrap";
 
 //FOUNDATION
+@import "foundation/helpers";
 @import "foundation/fonts";
 @import "foundation/colors";
 @import "foundation/page";

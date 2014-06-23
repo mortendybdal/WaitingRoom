@@ -13,11 +13,29 @@
                     .tablet-page__scheme(ng-click="setSchemeType('Øjnbetændelse')") Øjnbetændelse
                     .tablet-page__scheme(ng-click="setSchemeType('Rygsmerter')") Rygsmerter
 
-            .tablet-page__next-button(ng-click="nextSlide()")
-                span.glyphicon.glyphicon-chevron-right
-
         .tablet-page(ng-repeat="question in questions", ng-class="{'slide-left_in-animation': index === $index && direction === 'left', 'slide-left_out-animation': index === $index + 1 && direction === 'left', 'slide-right_in-animation': index === $index && direction === 'right', 'slide-right_out-animation': index === $index - 1 && direction === 'right'}")
             .tablet-page__question {{question.question}}
+
+            // ==> Single-Text
+            .tablet-page__answer.single-text(ng-if="question.type === 'single-text'", ng-keypress="onKeyPressed($event)")
+                .tablet-page__answer__inner
+                    input(ng-model="question.answer", placeholder="Enter text")
+                    .single-text__border
+
+            // ==> Multi-text
+            .tablet-page__answer.multi-text(ng-if="question.type === 'multi-text'", ng-keypress="onKeyPressed($event)")
+                .tablet-page__answer__inner
+                    textarea(ng-model="question.answer", rows=4, placeholder="Enter Text")
+                    .multi-text__border-left
+                    .multi-text__border-right
+
+            // ==> Radio-List & Radio-List
+            .tablet-page__answer.radio-list(ng-if="question.type === 'radio-list' || question.type === 'select-list'")
+                .tablet-page__answer__inner
+                    slick(slides-to-show="{{getNumberOfSlidesShown(question.options)}}", dots="true", slides-to-scroll="3", arrows="false")
+                        .tablet-page__answer-option(ng-repeat="option in question.options")
+                            .tablet-page__answer-option--inner(ng-click="question.answer = option.value", ng-class="{active: question.answer === option.value}") {{option.value}}
+
 
             .tablet-page__next-button(ng-click="nextSlide()")
                 span.glyphicon.glyphicon-chevron-right
