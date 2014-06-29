@@ -7,11 +7,17 @@
 
             .tablet-page__content
                 .tablet-page__scheme-list
-                    .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Maveonde
-                    .tablet-page__scheme(ng-click="setSchemeType('Halssmerter')") Halssmerter
-                    .tablet-page__scheme(ng-click="setSchemeType('Øresmerter')") Øresmerter
-                    .tablet-page__scheme(ng-click="setSchemeType('Øjnbetændelse')") Øjnbetændelse
-                    .tablet-page__scheme(ng-click="setSchemeType('Rygsmerter')") Rygsmerter
+                    slick(slides-to-show="3", slides-to-scroll="3", vertical="true", dots="true")
+                        .tablet-page__scheme-slide
+                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Maveonde
+                        .tablet-page__scheme-slide
+                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Halssmerter
+                        .tablet-page__scheme-slide
+                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Øresmerter
+                        .tablet-page__scheme-slide
+                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Øjnbetændelse
+                        .tablet-page__scheme-slide
+                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Rygsmerter
 
         .tablet-page(ng-repeat="question in questions", ng-class="{'slide-left_in-animation': index === $index && direction === 'left', 'slide-left_out-animation': index === $index + 1 && direction === 'left', 'slide-right_in-animation': index === $index && direction === 'right', 'slide-right_out-animation': index === $index - 1 && direction === 'right'}")
             .tablet-page__question {{question.question}}
@@ -25,7 +31,7 @@
             // ==> Multi-text
             .tablet-page__answer.multi-text(ng-if="question.type === 'multi-text'", ng-keypress="onKeyPressed($event)")
                 .tablet-page__answer__inner
-                    textarea(ng-model="question.answer", rows=4, placeholder="Enter Text")
+                    textarea(ng-model="question.answer", rows=3, placeholder="Enter Text")
                     .multi-text__border-left
                     .multi-text__border-right
 

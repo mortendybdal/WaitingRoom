@@ -72,7 +72,7 @@
 
 .tablet-page__question {
   text-align: center;
-  padding: 100px 30px 100px 30px;
+  padding: 100px 30px 80px 30px;
   color: white;
   font-size: 40px;
 }
@@ -166,6 +166,21 @@
   display: inline-block;
 }
 
+.tablet-page__scheme-list {
+  width: 60%;
+  margin: 0 auto;
+  position: relative;
+
+  .slick-prev:before, .slick-next:before {
+    font-size: 40px;
+  }
+
+  li button:before {
+    color: white;
+    font-size: 10px;
+  }
+}
+
 .tablet-page__scheme {
   @include transition-duration(0.5s);
   @include transition-timing-function(liniar);
@@ -175,13 +190,11 @@
   padding: 10px 40px 10px 40px;
   border: 2px solid white;
   display: block;
-  width: 250px;
-  margin: 0 auto;
-  margin-bottom: 20px;
+  margin: 10px 60px 10px 60px;
   cursor: pointer;
 
   &:hover {
-    color: $blue-hover;
+    background-color: lighten($blue, 10%);
     border: 2px solid $blue-hover;
   }
 

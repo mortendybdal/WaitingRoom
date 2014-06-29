@@ -11,6 +11,6 @@
             a.user-item(ng-repeat="patient in patients", ng-href="/patient/subjective/{{patient._id}}")
                 .user-item__row.lable-icon
                     span.glyphicon.glyphicon-time
-                .user-item__row.lable-scheme {{patient.scheme}}
+                .user-item__row.lable-scheme {{patient.Schemes[0].Title}}
                 .user-item__row.lable-appointment Kl {{formatDateTime(patient.appointment)}}
                 .user-item__row.lable-submitted {{calcTimeSinceSubmition(patient.submitted)}}

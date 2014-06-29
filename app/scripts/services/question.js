@@ -13,7 +13,7 @@ angular.module('waitingRoomApp')
             {
                 question: "Køn?",
                 answer: "Kvinde",
-                journalText: "Jeg heeder 0033030{{}}",
+                journalText: "Jeg heeder {{}}",
                 type: "radio-list",
                 options: [
                     {
