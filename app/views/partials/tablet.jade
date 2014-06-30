@@ -3,49 +3,41 @@
 
     .tablet-container
         .tablet-page(ng-class="{'slide-left_in-animation': index === -1 && direction === 'left', 'slide-left_out-animation': index === 0 && direction === 'left', 'slide-right_in-animation': index === -1 && direction === 'right', 'slide-right_out-animation': index === -2 && direction === 'right'}")
-            .tablet-page__question Please choose scheme
+                .tablet-page__question Please choose scheme
 
-            .tablet-page__content
-                .tablet-page__scheme-list
-                    slick(slides-to-show="3", slides-to-scroll="3", vertical="true", dots="true")
-                        .tablet-page__scheme-slide
-                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Maveonde
-                        .tablet-page__scheme-slide
-                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Halssmerter
-                        .tablet-page__scheme-slide
-                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Øresmerter
-                        .tablet-page__scheme-slide
-                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Øjnbetændelse
-                        .tablet-page__scheme-slide
-                            .tablet-page__scheme(ng-click="setSchemeType('Maveonde')") Rygsmerter
+                .tablet-page__content(ng-hide="hide_scheme_list")
+                    .tablet-page__scheme-list
+                        slick(slides-to-show="3", slides-to-scroll="3", vertical="true", dots="true")
+                            .tablet-page__scheme-slide(ng-repeat="scheme in schemes")
+                                .tablet-page__scheme(ng-click="createPatientAndSaveScheme(scheme._id)") {{scheme.Title}}
 
         .tablet-page(ng-repeat="question in questions", ng-class="{'slide-left_in-animation': index === $index && direction === 'left', 'slide-left_out-animation': index === $index + 1 && direction === 'left', 'slide-right_in-animation': index === $index && direction === 'right', 'slide-right_out-animation': index === $index - 1 && direction === 'right'}")
-            .tablet-page__question {{question.question}}
+            .tablet-page__question {{question.QuestionText}}
 
             // ==> Single-Text
-            .tablet-page__answer.single-text(ng-if="question.type === 'single-text'", ng-keypress="onKeyPressed($event)")
+            .tablet-page__answer.single-text(ng-if="question.Type === 'single-text'", ng-keypress="onKeyPressed($event)")
                 .tablet-page__answer__inner
-                    input(ng-model="question.answer", placeholder="Enter text")
+                    input(ng-model="question.Answer", placeholder="Enter text")
                     .single-text__border
 
             // ==> Multi-text
-            .tablet-page__answer.multi-text(ng-if="question.type === 'multi-text'", ng-keypress="onKeyPressed($event)")
+            .tablet-page__answer.multi-text(ng-if="question.Type === 'multi-text'", ng-keypress="onKeyPressed($event)")
                 .tablet-page__answer__inner
-                    textarea(ng-model="question.answer", rows=3, placeholder="Enter Text")
+                    textarea(ng-model="question.Answer", rows=3, placeholder="Enter Text")
                     .multi-text__border-left
                     .multi-text__border-right
 
             // ==> Radio-List & Radio-List
-            .tablet-page__answer.radio-list(ng-if="question.type === 'radio-list' || question.type === 'select-list'")
+            .tablet-page__answer.radio-list(ng-if="question.Type === 'radio-list' || question.Type === 'select-list'")
                 .tablet-page__answer__inner
-                    slick(slides-to-show="{{getNumberOfSlidesShown(question.options)}}", dots="true", slides-to-scroll="3", arrows="false")
-                        .tablet-page__answer-option(ng-repeat="option in question.options")
-                            .tablet-page__answer-option--inner(ng-click="question.answer = option.value", ng-class="{active: question.answer === option.value}") {{option.value}}
+                    slick(slides-to-show="{{getNumberOfSlidesShown(question.Options)}}", dots="true", slides-to-scroll="3", arrows="false")
+                        .tablet-page__answer-option(ng-repeat="option in question.Options")
+                            .tablet-page__answer-option--inner(ng-click="question.Answer = option.Value", ng-class="{active: question.Answer === option.Value}") {{option.Value}}
 
 
-            .tablet-page__next-button(ng-click="nextSlide()")
+            .tablet-page__next-button(ng-click="nextSlide(question)")
                 span.glyphicon.glyphicon-chevron-right
-            .tablet-page__previous-button(ng-click="backSlide()")
+            .tablet-page__previous-button(ng-click="backSlide()", ng-hide="$index === 0")
                 span.glyphicon.glyphicon-chevron-left
 
         .tablet-page(ng-class="{'slide-left_in-animation': index === questions.length && direction === 'left', 'slide-left_out-animation': index === questions.length + 1 && direction === 'left', 'slide-right_in-animation': index === questions.length && direction === 'right', 'slide-right_out-animation': index === questions.length - 1 && direction === 'right'}")

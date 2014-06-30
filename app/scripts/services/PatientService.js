@@ -23,16 +23,33 @@ angular.module('waitingRoomApp')
                     }
                 );
             },
-            createPatient: function (patient) {
+            createPatientAndScheme: function (schemeid) {
                 return $http(
                     {
                         url: '/api/patients/create',
                         method: "Post",
                         cache: false,
-                        data: patient
+                        data: {scheme_id: schemeid}
                     }
-                ).success(function (data) {
-                        console.log(data);
+                ).success(
+                    function (data) {
+                        PatientService.data = data;
+                    })
+                    .error(function () {
+                        console.log("ERROR");
+                    });
+            },
+            savePatientsAnswer: function (patientid, question) {
+                return $http(
+                    {
+                        url: '/api/patients/answer',
+                        method: "Post",
+                        cache: false,
+                        data: {patient_id: patientid, question: question}
+                    }
+                ).success(
+                    function (data) {
+                        PatientService.data = data;
                     })
                     .error(function () {
                         console.log("ERROR");

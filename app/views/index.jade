@@ -40,7 +40,7 @@ html.no-js
         .content-view(ng-view)
 
         .content-loader__container.dn-fade(ng-show="is_loading_content")
-            .content-loader
+            .content-loader(ng-class="{is_white: hide_navigation_menu}")
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.
@@ -66,6 +66,7 @@ html.no-js
     <script src="bower_components/ng-clip/dest/ng-clip.min.js"></script>
     <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
     <script src="bower_components/angular-slick/dist/slick.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -75,6 +76,7 @@ html.no-js
     <script src="scripts/controllers/PatientCtrl.js"></script>
     <script src="scripts/controllers/TabletCtrl.js"></script>
     <script src="scripts/services/PatientService.js"></script>
+    <script src="scripts/services/SchemeService.js"></script>
     <script src="scripts/services/question.js"></script>
     <script src="scripts/services/auth.js"></script>
     <script src="scripts/services/session.js"></script>

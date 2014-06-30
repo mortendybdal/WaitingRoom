@@ -6,13 +6,13 @@ angular.module('waitingRoomApp')
         $scope.is_copying_jounal = false;
         $rootScope.$broadcast("event:load_stop");
 
-        $scope.soap_item_list = Question
+        $scope.soap_item_list = Question;
 
         $scope.$watch("soap_item_list", function () {
 
             var j = "";
 
-            angular.forEach($scope.soap_item_list, function(soap, key) {
+            angular.forEach($scope.soap_item_list, function(soap) {
 
                 if(soap.type === 'multi-text') {
 
