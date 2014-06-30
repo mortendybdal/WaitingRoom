@@ -1,8 +1,8 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
 //Bower components
-@import "bourbon/dist/bourbon";
-@import "sass-bootstrap/lib/bootstrap";
+@import "../bower_components/bourbon/dist/bourbon";
+@import "../bower_components/sass-bootstrap/lib/bootstrap";
 
 //FOUNDATION
 @import "foundation/helpers";

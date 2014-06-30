@@ -26,6 +26,7 @@
     width: 30%;
   }
 
+
   &.lable-submitted {
     @include calc("width", "40% - 50px");
   }
