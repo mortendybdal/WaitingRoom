@@ -64,6 +64,8 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
       padding: 10px;
       border: 1px solid $blue;
       margin-right: 5px;
+      min-width: 70px;
+      text-align: center;
 
       &:hover {
         background-color: $blue-hover;

@@ -20,41 +20,53 @@
 
     /////////////////////SOAP WIDGET///////////////////////
     .patient-soap__widget
-        .patient-soap__header
-            .patient-soap__row Question
-            .patient-soap__row Answer
+        .widget__content
+            .patient-soap__breadcrumb
+                .patient-soap__breadcrumb-step.active(ng-repeat="step in steps", ng-click="setQuestions(step)") {{step.Title}}
+
+            .patient-soap__title(ng-class="{is_loading: is_loading_soap_widget}") {{currentStep.Title}}
+
+            .patient-soap__header
+                .patient-soap__row Question
+                .patient-soap__row Answer
 
 
-        .patient-soap__content
-            .patient-soap__item(ng-repeat="soap_item in soap_item_list")
-                .patient-soap__item--question {{soap_item.question}}
+            .patient-soap__content
+                .patient-soap__item-list(ng-class="{is_loading: is_loading_soap_widget}")
+                    .patient-soap__item(ng-repeat="soap_item in soap_item_list")
+                        .patient-soap__item--question {{soap_item.QuestionText}}
 
-                // ==> Single-Text
-                .patient-soap__item--answer(editable-text="soap_item.answer",
-                                            buttons="no",
-                                            blur="submit",
-                                            ng-if="soap_item.type === 'single-text'") {{soap_item.answer}}
+                        // ==> Single-Text
+                        .patient-soap__item--answer(editable-text="soap_item.Answer",
+                                                    buttons="no",
+                                                    blur="submit",
+                                                    placeholder="Text",
+                                                    onaftersave="saveAnswer(soap_item)",
+                                                    ng-if="soap_item.Type === 'single-text'") {{soap_item.Answer || "Empty"}}
 
-                // ==> Radio-List
-                .patient-soap__item--answer(editable-radiolist="soap_item.answer",
-                                            e-ng-options="o.value as o.value for o in soap_item.options"
-                                            buttons="no",
-                                            ng-if="soap_item.type === 'radio-list'") {{soap_item.answer}}
+                        // ==> Radio-List
+                        .patient-soap__item--answer(editable-radiolist="soap_item.Answer",
+                                                    e-ng-options="o.Value as o.Value for o in soap_item.Options"
+                                                    buttons="no",
+                                                    onaftersave="saveAnswer(soap_item)",
+                                                    ng-if="soap_item.Type === 'radio-list'") {{soap_item.Answer || "Empty"}}
 
-                // ==> Multi-text
-                .patient-soap__item--answer(editable-textarea="soap_item.answer",
-                                            e-rows="7",
-                                            e-cols="40"
-                                            buttons="no",
-                                            blur="submit",
-                                            ng-if="soap_item.type === 'multi-text'")
-                    pre {{soap_item.answer}}
+                        // ==> Multi-text
+                        .patient-soap__item--answer(editable-textarea="soap_item.Answer",
+                                                    e-rows="7",
+                                                    e-cols="40"
+                                                    buttons="no",
+                                                    blur="submit",
+                                                    onaftersave="saveAnswer(soap_item)",
+                                                    ng-if="soap_item.Type === 'multi-text'")
+                            pre {{soap_item.Answer || "Empty"}}
 
-                // ==> Select-List
-                .patient-soap__item--answer(editable-select="soap_item.answer",
-                                            e-ng-options="o.value as o.value for o in soap_item.options"
-                                            buttons="no",
-                                            ng-if="soap_item.type === 'select-list'") {{soap_item.answer}}
+                        // ==> Select-List
+                        .patient-soap__item--answer(editable-select="soap_item.Answer",
+                                                    e-ng-options="o.Value as o.Value for o in soap_item.Options"
+                                                    buttons="no",
+                                                    onaftersave="saveAnswer(soap_item)",
+                                                    ng-if="soap_item.Type === 'select-list'") {{soap_item.Answer || "Empty"}}
 
     /////////////////////JOURNAL WIDGET///////////////////////
     .patient-journal__widget

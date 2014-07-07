@@ -5001,6 +5001,15 @@ body {
 .content {
   position: relative;
   margin: 20px 20px 20px 110px; }
+  .content .content-view {
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: liniar;
+    -moz-transition-timing-function: liniar;
+    transition-timing-function: liniar;
+    opacity: 1; }
+    .content .content-view.fade {
+      opacity: 0; }
 
 .tablet-design {
   height: 100%; }
@@ -5014,81 +5023,21 @@ body {
         .tablet-design .page .content .content-view .tablet {
           height: 100%; }
 
-.animated {
-  -webkit-animation-duration: 0.3s;
-  -moz-animation-duration: 0.3s;
-  -o-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  -o-animation-fill-mode: both;
-  animation-fill-mode: both; }
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-
-  100% {
-    opacity: 1; } }
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-
-  100% {
-    opacity: 1; } }
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-
-  100% {
-    opacity: 1; } }
-@keyframes fadeIn {
-  0% {
-    opacity: 0; }
-
-  100% {
-    opacity: 1; } }
-.animated.fadeIn {
-  -webkit-animation-name: fadeIn;
-  -moz-animation-name: fadeIn;
-  -o-animation-name: fadeIn;
-  animation-name: fadeIn; }
-
-@-webkit-keyframes fadeOut {
-  0% {
-    opacity: 1; }
-
-  100% {
-    opacity: 0; } }
-@-moz-keyframes fadeOut {
-  0% {
-    opacity: 1; }
-
-  100% {
-    opacity: 0; } }
-@-o-keyframes fadeOut {
-  0% {
-    opacity: 1; }
-
-  100% {
-    opacity: 0; } }
-@keyframes fadeOut {
-  0% {
-    opacity: 1; }
-
-  100% {
-    opacity: 0; } }
-.animated.fadeOut {
-  -webkit-animation-name: fadeOut;
-  -moz-animation-name: fadeOut;
-  -o-animation-name: fadeOut;
-  animation-name: fadeOut; }
-
 .user-list__widget, .patient-summery__widget, .patient-soap__widget, .patient-journal__widget {
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   padding: 30px;
   background-color: white; }
+
+.content-loader__container {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: liniar;
+  -moz-transition-timing-function: liniar;
+  transition-timing-function: liniar;
+  opacity: 0; }
+  .content-loader__container.fade {
+    opacity: 1; }
 
 .content-loader {
   position: absolute;
@@ -5176,7 +5125,9 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
     vertical-align: top;
     padding: 10px;
     border: 1px solid #00b1ee;
-    margin-right: 5px; }
+    margin-right: 5px;
+    min-width: 70px;
+    text-align: center; }
     .editable-radiolist label span:hover {
       background-color: #ecf7fb; }
 
@@ -5330,6 +5281,88 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
     font-size: 12px; }
   .patient-summery__info-row:last-child {
     padding-bottom: 0; }
+
+.patient-soap__breadcrumb {
+  display: flex;
+  margin-right: 20px; }
+
+.patient-soap__breadcrumb-step {
+  display: inline-block;
+  flex-grow: 1;
+  font-size: 10px;
+  font-weight: 200;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  background-color: #22c6ff;
+  color: white;
+  cursor: pointer; }
+  .patient-soap__breadcrumb-step:after {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    top: 4px;
+    box-shadow: 2px -2px 0px white;
+    right: -14px;
+    border-bottom: none;
+    border-left: none;
+    z-index: 100;
+    background-color: #22c6ff; }
+  .patient-soap__breadcrumb-step:first-child {
+    border-left: 1px solid #00b1ee; }
+  .patient-soap__breadcrumb-step.active {
+    background-color: #00b1ee;
+    border-top: 1px solid #00b1ee;
+    border-bottom: 1px solid #00b1ee; }
+    .patient-soap__breadcrumb-step.active:after {
+      background-color: #00b1ee; }
+
+.patient-soap__item-list.is_loading-add {
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: liniar;
+  -moz-transition-timing-function: liniar;
+  transition-timing-function: liniar;
+  top: 10px;
+  opacity: 0;
+  position: relative; }
+.patient-soap__item-list.is_loading-add-active {
+  top: 0px;
+  opacity: 1; }
+.patient-soap__item-list.is_loading-remove {
+  opacity: 1; }
+.patient-soap__item-list.is_loading-remove-active {
+  opacity: 0; }
+
+.patient-soap__title {
+  font-weight: 100;
+  font-size: 30px;
+  color: #00b1ee;
+  letter-spacing: 5px;
+  padding: 20px 0; }
+  .patient-soap__title.is_loading-add {
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+    -webkit-transition-timing-function: liniar;
+    -moz-transition-timing-function: liniar;
+    transition-timing-function: liniar;
+    top: 5px;
+    opacity: 0;
+    position: relative; }
+  .patient-soap__title.is_loading-add-active {
+    top: 0px;
+    opacity: 1; }
+  .patient-soap__title.is_loading-remove {
+    opacity: 1; }
+  .patient-soap__title.is_loading-remove-active {
+    opacity: 0; }
 
 .patient-soap__widget {
   width: -webkit-calc(70% - 20px);

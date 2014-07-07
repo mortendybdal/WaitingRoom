@@ -22,6 +22,22 @@ angular.module('waitingRoomApp')
                         throw new Error("getAllSchemes failed");
                     }
                 );
+            },
+            getSchemeByPatientId: function (patientid) {
+                return $http(
+                    {
+                        url: '/api/schemes/getschemebypatientid',
+                        method: "Post",
+                        cache: false,
+                        data: {patient_id: patientid}
+                    }
+                ).success(
+                    function (data) {
+                        SchemeService.data = data;
+                    })
+                    .error(function () {
+                        console.log("ERROR");
+                    });
             }
         };
 
