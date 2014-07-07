@@ -71,7 +71,7 @@ angular.module('waitingRoomApp')
             $timeout(function () {
                 $scope.is_loading_soap_widget = false;
             }, 600);
-        }
+        };
 
         $scope.saveAnswer = function (question) {
             if(question) {
@@ -87,7 +87,7 @@ angular.module('waitingRoomApp')
 
                 generateJournal();
             }
-        }
+        };
 
         $scope.$watch("soap_item_list", function () {
 
