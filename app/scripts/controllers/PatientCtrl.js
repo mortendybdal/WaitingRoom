@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, PatientService, QuestionService, AnswerService, _) {
+    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, PatientService, QuestionService, AnswerService) {
         $scope.is_copying_jounal = false;
         $scope.is_loading_soap_widget = false;
 
