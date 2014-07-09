@@ -104,5 +104,17 @@ angular.module('waitingRoomApp')
             }, 300);
         };
 
+        $scope.backStep = function (currentStep) {
+            var back_step = _.find($scope.steps, {SortOrder: currentStep.SortOrder - 1});
+
+            if(back_step) {
+                $scope.setQuestions();
+            }
+        };
+
+        $scope.nextStep = function (currentStep) {
+            return $scope.journal_text;
+        };
+
         init();
     });
