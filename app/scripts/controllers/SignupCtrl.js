@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location) {
+  .controller('SignupCtrl', function ($scope, $rootScope, Auth, $location) {
+    $rootScope.$broadcast("event:load_stop");
     $scope.user = {};
     $scope.errors = {};
 

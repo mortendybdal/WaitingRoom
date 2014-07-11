@@ -106,6 +106,6 @@ angular.module('waitingRoomApp')
       isLoggedIn: function() {
         var user = $rootScope.currentUser;
         return !!user;
-      },
+      }
     };
   });

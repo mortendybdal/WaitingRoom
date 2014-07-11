@@ -225,6 +225,12 @@
     background-color: white;
     font-size: 12px;
     padding: 10px;
+    outline: none;
+
+    &:hover {
+      background-color: $blue-hover;
+      color: $blue;
+    }
   }
 
   .patient-soap__navigation-next {

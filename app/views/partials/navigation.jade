@@ -1,4 +1,4 @@
-nav.navigation
+nav.navigation(ng-controller="NavigationCtrl")
     .navigation__profil
         .navigation__profil-circle
             span.glyphicon.glyphicon-user
@@ -6,5 +6,7 @@ nav.navigation
     .navigation__menu
         a.navigation__menu-item(ng-href="/", title="Home")
             span.glyphicon.glyphicon-home
-        a.navigation__menu-item
+        a.navigation__menu-item(ng-href="/settings", title="Home")
             span.glyphicon.glyphicon-cog
+        a.navigation__menu-item(ng-click="logout()", title="Logout")
+            span.glyphicon.glyphicon-off

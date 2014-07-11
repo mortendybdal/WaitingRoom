@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth) {
+  .controller('SettingsCtrl', function ($scope, $rootScope, User, Auth) {
+    $rootScope.$broadcast("event:load_stop");
     $scope.errors = {};
 
     $scope.changePassword = function(form) {

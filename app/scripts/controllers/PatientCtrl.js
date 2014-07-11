@@ -64,7 +64,7 @@ angular.module('waitingRoomApp')
 
         $scope.setQuestions = function(step) {
             $scope.is_loading_soap_widget = true;
-            $scope.currentStep = step;
+            $scope.current_step = step;
 
             $scope.soap_item_list = getQuestionsByStep(step);
 
@@ -104,16 +104,20 @@ angular.module('waitingRoomApp')
             }, 300);
         };
 
-        $scope.backStep = function (currentStep) {
-            var back_step = _.find($scope.steps, {SortOrder: currentStep.SortOrder - 1});
+        $scope.backStep = function () {
+            var back_step = _.find($scope.steps, {SortOrder: $scope.current_step.SortOrder - 1});
 
             if(back_step) {
-                $scope.setQuestions();
+                $scope.setQuestions(back_step);
             }
         };
 
-        $scope.nextStep = function (currentStep) {
-            return $scope.journal_text;
+        $scope.nextStep = function () {
+            var next_step = _.find($scope.steps, {SortOrder: $scope.current_step.SortOrder + 1});
+
+            if(next_step) {
+                $scope.setQuestions(next_step);
+            }
         };
 
         init();

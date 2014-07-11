@@ -12,19 +12,69 @@ angular.module('waitingRoomApp', [
   'slick'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
+
+    //================================================
+    // Check if the user is connected
+    //================================================
+    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
+        // Initialize a new promise
+        var deferred = $q.defer();
+
+        // Make an AJAX call to check if the user is logged in
+        $http.get('api/loggedin').success(function(user){
+            // Authenticated
+            if (user !== '0')
+                $timeout(deferred.resolve, 0);
+
+            // Not Authenticated
+            else {
+                $rootScope.message = 'You need to log in.';
+                $timeout(function(){deferred.reject();}, 0);
+                $location.url('/login');
+            }
+        });
+
+        return deferred.promise;
+    };
+
+    //================================================
+    // Define all the routes
+    //================================================
+
     $routeProvider
       .when('/', {
         templateUrl: 'partials/frontpage',
-        controller: 'FrontpageCtrl'
+        controller: 'FrontpageCtrl',
+        resolve: {
+            loggedin: checkLoggedin
+        }
       })
       .when('/patient/:step/:id', {
           templateUrl: 'partials/patient',
-          controller: 'PatientCtrl'
+          controller: 'PatientCtrl',
+          resolve: {
+            loggedin: checkLoggedin
+          }
       })
       .when('/tablet', {
          templateUrl: 'partials/tablet',
          controller: 'TabletCtrl'
-        })
+      })
+        .when('/settings', {
+         templateUrl: 'partials/settings',
+         controller: 'SettingsCtrl',
+         resolve: {
+             loggedin: checkLoggedin
+         }
+      })
+      .when('/login', {
+         templateUrl: 'partials/login',
+         controller: 'LoginCtrl'
+      })
+      .when('/signup', {
+          templateUrl: 'partials/signup',
+          controller: 'SignupCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
