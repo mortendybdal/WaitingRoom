@@ -1,16 +1,15 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, PatientService, QuestionService, AnswerService) {
+    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, Restangular, PatientService, QuestionService, AnswerService) {
         $scope.is_copying_jounal = false;
         $scope.is_loading_soap_widget = false;
-
-
         function init() {
             if($routeParams.id) {
-                PatientService.getPatient($routeParams.id).then(function () {
-                    if (PatientService.data){
-                        $scope.patient = PatientService.data;
+
+                Restangular.one('patients', $routeParams.id).get().then(function (patient) {
+                    if (patient){
+                        $scope.patient = patient;
 
                         //TODO: Handle multiple schemes - for now only take the first
                         QuestionService.getQuestionsForScheme($scope.patient.Schemes[0]._id, $scope.patient._id).then(function () {

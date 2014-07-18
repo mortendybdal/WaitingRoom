@@ -6,43 +6,11 @@ angular.module('waitingRoomApp')
 
             data: {},
 
-            getAllPatients: function(){
-                return $http(
-                    {
-                        url: '/api/patients/all',
-                        method: "GET",
-                        cache: false
-                    }
-                ).success(
-                    function (data) {
-                        PatientService.data = data;
-                    }
-                ).error(
-                    function () {
-                        throw new Error("PatientService failed");
-                    }
-                );
-            },
             createPatient: function () {
                 return $http(
                     {
                         url: '/api/patients/create',
                         method: "Post",
-                        cache: false
-                    }
-                ).success(
-                    function (data) {
-                        PatientService.data = data;
-                    })
-                    .error(function () {
-                        console.log("ERROR");
-                    });
-            },
-            getPatient: function (patient_id) {
-                return $http(
-                    {
-                        url: '/api/patients/get/' + patient_id,
-                        method: "Get",
                         cache: false
                     }
                 ).success(

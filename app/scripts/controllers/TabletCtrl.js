@@ -1,14 +1,18 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('TabletCtrl', function ($scope, $rootScope, $timeout, PatientService, SchemeService, AnswerService) {
+    .controller('TabletCtrl', function ($scope, $rootScope, $timeout, Restangular, PatientService, AnswerService) {
         $rootScope.hide_navigation_menu = true;
         $scope.index = -1;
         $scope.direction = "left";
         $scope.scheme_type = "none";
 
-        SchemeService.getAllSchemes().then(function () {
-            $scope.schemes = SchemeService.data;
+        $scope.baseSchemes = Restangular.all("schemes");
+        $scope.basePatients = Restangular.all("patients");
+
+        $scope.baseSchemes.getList().then(function(schemes) {
+            $scope.schemes = schemes;
+            $rootScope.$broadcast("event:load_stop");
             $timeout(function () {
                 $rootScope.$broadcast("event:load_stop");
             });
@@ -45,12 +49,13 @@ angular.module('waitingRoomApp')
             $rootScope.$broadcast("event:load_start");
             $scope.hide_scheme_list = true;
 
-            PatientService.createPatient().then(function () {
-                $scope.patient = PatientService.data;
+            $scope.basePatients.post().then(function(patient) {
+                $scope.patient = patient;
 
-                PatientService.appendSchemeToPatient(schemeid, $scope.patient).then(function () {
+                console.log(patient);
 
-                    $scope.questions = PatientService.data;
+                Restangular.one('patients', $scope.patient._id).one('schemes', schemeid).get().then(function (patient) {
+                    $scope.questions = patient;
 
                     $timeout(function () {
                         $scope.hide_scheme_list = false;

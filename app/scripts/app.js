@@ -9,9 +9,15 @@ angular.module('waitingRoomApp', [
   'ngAnimate-animate.css',
   'xeditable',
   'ngClipboard',
-  'slick'
+  'slick',
+  'restangular'
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
+
+    //================================================
+    // Configure restangular
+    //================================================
+    RestangularProvider.setBaseUrl('api');
 
     //================================================
     // Check if the user is connected
@@ -23,12 +29,11 @@ angular.module('waitingRoomApp', [
         // Make an AJAX call to check if the user is logged in
         $http.get('api/loggedin').success(function(user){
             // Authenticated
-            if (user !== '0')
+            if (user !== '0') {
+                $rootScope.is_logged_in = true;
                 $timeout(deferred.resolve, 0);
-
-            // Not Authenticated
-            else {
-                $rootScope.message = 'You need to log in.';
+            }else { // Not Authenticated
+                $rootScope.is_logged_in = false;
                 $timeout(function(){deferred.reject();}, 0);
                 $location.url('/login');
             }

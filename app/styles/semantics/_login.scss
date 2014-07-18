@@ -1,0 +1,59 @@
+.login {
+
+  background: -webkit-linear-gradient(281deg,$editable-answer-blue, $blue);
+  background: linear-gradient(169deg,$editable-answer-blue, $blue);
+  background-color: $editable-answer-blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 23px -5px black;
+}
+
+.login-box {
+  @include box-shadow(0 0 20px rgba(black, 0.3));
+
+  width: 320px;
+  margin: 0 auto;
+  top: 30%;
+  position: relative;
+  background-color: white;
+
+  form {
+    padding: 30px;
+
+    input {
+      border-radius: 0;
+    }
+
+  }
+
+  button {
+    @include transition-duration(0.3s);
+    @include transition-timing-function(liniar);
+
+    width: 100%;
+    background-color: $editable-answer-blue;
+    border: none;
+    margin: 0;
+    padding: 15px;
+    color: white;
+    outline: none;
+
+    &:hover {
+      background-color: darken($editable-answer-blue, 5%);
+    }
+
+    &:active {
+      background-color: lighten($editable-answer-blue, 5%);
+    }
+  }
+
+  .login-box__header {
+    padding-bottom: 30px;
+    font-size: 36px;
+    font-weight: 200;
+    text-align: center;
+  }
+}

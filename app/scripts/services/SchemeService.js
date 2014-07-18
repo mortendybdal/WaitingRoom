@@ -6,23 +6,6 @@ angular.module('waitingRoomApp')
 
             data: {},
 
-            getAllSchemes: function(){
-                return $http(
-                    {
-                        url: '/api/schemes/all',
-                        method: "GET",
-                        cache: false
-                    }
-                ).success(
-                    function (data) {
-                        SchemeService.data = data;
-                    }
-                ).error(
-                    function () {
-                        throw new Error("getAllSchemes failed");
-                    }
-                );
-            },
             getSchemeByPatientId: function (patientid) {
                 return $http(
                     {
