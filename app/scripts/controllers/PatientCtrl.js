@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, Restangular, PatientService, QuestionService, AnswerService) {
+    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, Restangular) {
         $scope.is_copying_jounal = false;
         $scope.is_loading_soap_widget = false;
+        $scope.baseAnswers = Restangular.all("answers");
+
         function init() {
             if($routeParams.id) {
 
@@ -11,9 +13,9 @@ angular.module('waitingRoomApp')
                     if (patient){
                         $scope.patient = patient;
 
-                        //TODO: Handle multiple schemes - for now only take the first
-                        QuestionService.getQuestionsForScheme($scope.patient.Schemes[0]._id, $scope.patient._id).then(function () {
-                            $scope.questions = QuestionService.data;
+                        Restangular.one('schemes', $scope.patient.Schemes[0]._id).one('patient', $scope.patient._id).get().then(function (questions) {
+                            console.log(questions);
+                            $scope.questions = questions;
 
                             $scope.steps = _.sortBy(_.uniq(_.map($scope.questions, "Step"), "Title"), "SortOrder");
 
@@ -80,17 +82,12 @@ angular.module('waitingRoomApp')
                     Patient_id: $scope.patient._id
                 };
 
-                AnswerService.saveAnswer(answer).then(function () {
-                    console.log("Answer Saved: ", AnswerService.data);
-                });
+                //Save answer
+                $scope.baseAnswers.post(answer);
 
                 generateJournal();
             }
         };
-
-        $scope.$watch("soap_item_list", function () {
-
-        }, true);
 
         $scope.copyPast = function () {
             return $scope.journal_text;

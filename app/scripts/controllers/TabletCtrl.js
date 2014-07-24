@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('TabletCtrl', function ($scope, $rootScope, $timeout, Restangular, PatientService, AnswerService) {
+    .controller('TabletCtrl', function ($scope, $rootScope, $timeout, Restangular) {
         $rootScope.hide_navigation_menu = true;
         $scope.index = -1;
         $scope.direction = "left";
@@ -9,6 +9,7 @@ angular.module('waitingRoomApp')
 
         $scope.baseSchemes = Restangular.all("schemes");
         $scope.basePatients = Restangular.all("patients");
+        $scope.baseAnswers = Restangular.all("answers");
 
         $scope.baseSchemes.getList().then(function(schemes) {
             $scope.schemes = schemes;
@@ -29,11 +30,8 @@ angular.module('waitingRoomApp')
                     Patient_id: $scope.patient._id
                 };
 
-                AnswerService.saveAnswer(answer).then(function () {
-                    console.log("Answer Saved: ", AnswerService.data);
-                });
+                $scope.baseAnswers.post(answer);
             }
-
         };
 
         $scope.backSlide = function () {
@@ -51,8 +49,6 @@ angular.module('waitingRoomApp')
 
             $scope.basePatients.post().then(function(patient) {
                 $scope.patient = patient;
-
-                console.log(patient);
 
                 Restangular.one('patients', $scope.patient._id).one('schemes', schemeid).get().then(function (patient) {
                     $scope.questions = patient;
