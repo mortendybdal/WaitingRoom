@@ -14,7 +14,28 @@ angular.module('waitingRoomApp', [
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
+    //================================================
+    // Check if the user is connected
+    //================================================
+    /*var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
+        // Initialize a new promise
+        var deferred = $q.defer();
 
+        // Make an AJAX call to check if the user is logged in
+        $http.get('api/loggedin').success(function(user){
+            // Authenticated
+            if (user !== '0') {
+                $rootScope.is_logged_in = true;
+                $timeout(deferred.resolve, 0);
+            }else { // Not Authenticated
+                $rootScope.is_logged_in = false;
+                $timeout(function(){deferred.reject();}, 0);
+                $location.url('/login');
+            }
+        });
+
+        return deferred.promise;
+    };*/
 
     //================================================
     // Define all the routes
@@ -23,11 +44,21 @@ angular.module('waitingRoomApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'partials/frontpage',
-        controller: 'FrontpageCtrl'
+        controller: 'FrontpageCtrl',
+        resolve: {
+            loggedin: function (Auth) {
+                return Auth.checkLoggedin();
+            }
+        }
       })
       .when('/patient/:step/:id', {
           templateUrl: 'partials/patient',
-          controller: 'PatientCtrl'
+          controller: 'PatientCtrl',
+          resolve: {
+              loggedin: function (Auth) {
+                  return Auth.checkLoggedin();
+              }
+          }
       })
       .when('/tablet', {
          templateUrl: 'partials/tablet',
@@ -35,7 +66,12 @@ angular.module('waitingRoomApp', [
       })
         .when('/settings', {
          templateUrl: 'partials/settings',
-         controller: 'SettingsCtrl'
+         controller: 'SettingsCtrl',
+         resolve: {
+             loggedin: function (Auth) {
+                 return Auth.checkLoggedin();
+             }
+         }
       })
       .when('/login', {
          templateUrl: 'partials/login',
@@ -72,8 +108,6 @@ angular.module('waitingRoomApp', [
     // Configure restangular
     //================================================
     Restangular.setBaseUrl('api');
-
-        $rootScope.is_logged_in = true;
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
