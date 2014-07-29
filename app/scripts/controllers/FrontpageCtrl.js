@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-   .controller('FrontpageCtrl', function ($scope, $rootScope, PatientService) {
+   .controller('FrontpageCtrl', function ($scope, $rootScope, Restangular) {
 
-      PatientService.getAllPatients().then(function () {
-          $scope.patients = PatientService.data;
+      $scope.basePatients = Restangular.all("patients");
+
+      $scope.basePatients.getList().then(function(patients) {
+          $scope.patients = patients;
           $rootScope.$broadcast("event:load_stop");
       });
 

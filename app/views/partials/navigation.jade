@@ -1,12 +1,76 @@
-nav.navigation(ng-controller="NavigationCtrl")
-    .navigation__profil
-        .navigation__profil-circle
-            span.glyphicon.glyphicon-user
+nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
+    .navigation
+        .navigation__profil
+            .navigation__profil-circle
+                span.glyphicon.glyphicon-user
 
-    .navigation__menu
-        a.navigation__menu-item(ng-href="/", title="Home")
-            span.glyphicon.glyphicon-home
-        a.navigation__menu-item(ng-href="/settings", title="Home")
-            span.glyphicon.glyphicon-cog
-        a.navigation__menu-item(ng-click="logout()", title="Logout")
-            span.glyphicon.glyphicon-off
+        .navigation__menu
+            a.navigation__menu-item(ng-href="/", title="Home")
+                span.glyphicon.glyphicon-home
+            .navigation__menu-item(ng-click="show_content_tree = !show_content_tree", title="Builder")
+                span.glyphicon.glyphicon-list-alt
+            a.navigation__menu-item(ng-href="/settings", title="Home")
+                span.glyphicon.glyphicon-cog
+            a.navigation__menu-item(ng-click="logout()", title="Logout")
+                span.glyphicon.glyphicon-off
+
+    .scheme-builder__menu(ng-class="{active: show_content_tree}")
+        button.scheme-builder__create-scheme Create Scheme
+
+        .content-tree
+            .content-tree__item-root
+                span.glyphicon(ng-click="open = !open", ng-class="{'glyphicon-chevron-right': !open, 'glyphicon-chevron-down': open}")
+                span.content-tree__item-icon.glyphicon.glyphicon-file
+                a MaveOnde
+
+
+                .content-tree__item(ng-show="open")
+                    span.glyphicon(ng-click="open1 = !open1", ng-class="{'glyphicon-chevron-right': !open1, 'glyphicon-chevron-down': open1}")
+                    span.content-tree__item-icon.glyphicon.glyphicon-file
+                    a Step 1
+
+                    .content-tree__item(ng-show="open1")
+                        span.glyphicon(ng-click="open2 = !open2", ng-class="{'glyphicon-chevron-right': !open2, 'glyphicon-chevron-down': open2}")
+                        span.content-tree__item-icon.glyphicon.glyphicon-file
+                        a Question 1
+
+                        .content-tree__item(ng-show="open2")
+                            span.glyphicon
+                            span.content-tree__item-icon.glyphicon.glyphicon-file
+                            a Subquestion 1
+
+                    .content-tree__item(ng-show="open1")
+                        span.glyphicon(ng-click="open2 = !open2", ng-class="{'glyphicon-chevron-right': !open2, 'glyphicon-chevron-down': open2}")
+                        span.content-tree__item-icon.glyphicon.glyphicon-file
+                        a Question 1
+
+                        .content-tree__item(ng-show="open2")
+                            span.glyphicon
+                            span.content-tree__item-icon.glyphicon.glyphicon-file
+                            a Subquestion 1
+
+                        .content-tree__item(ng-show="open2")
+                            span.glyphicon
+                            span.content-tree__item-icon.glyphicon.glyphicon-file
+                            a Subquestion 1
+
+                        .content-tree__item(ng-show="open2")
+                            span.glyphicon
+                            span.content-tree__item-icon.glyphicon.glyphicon-file
+                            a Subquestion 1
+
+                .content-tree__item(ng-show="open")
+                    span.glyphicon(ng-click="open1 = !open1", ng-class="{'glyphicon-chevron-right': !open1, 'glyphicon-chevron-down': open1}")
+                    span.content-tree__item-icon.glyphicon.glyphicon-file
+                    a Step 1
+
+                    .content-tree__item(ng-show="open1")
+                        span.glyphicon(ng-click="open2 = !open2", ng-class="{'glyphicon-chevron-right': !open2, 'glyphicon-chevron-down': open2}")
+                        span.content-tree__item-icon.glyphicon.glyphicon-file
+                        a Question 1
+
+                        .content-tree__item(ng-show="open2")
+                            span.glyphicon
+                            span.content-tree__item-icon.glyphicon.glyphicon-file
+                            a Subquestion 1
+

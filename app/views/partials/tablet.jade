@@ -20,6 +20,7 @@
                     input(ng-model="question.Answer", placeholder="Enter text")
                     .single-text__border
 
+
             // ==> Multi-text
             .tablet-page__answer.multi-text(ng-if="question.Type === 'multi-text'", ng-keypress="onKeyPressed($event)")
                 .tablet-page__answer__inner
@@ -27,7 +28,7 @@
                     .multi-text__border-left
                     .multi-text__border-right
 
-            // ==> Radio-List & Radio-List
+            // ==> Radio-List & Selected-List
             .tablet-page__answer.radio-list(ng-if="question.Type === 'radio-list' || question.Type === 'select-list'")
                 .tablet-page__answer__inner
                     slick(slides-to-show="{{getNumberOfSlidesShown(question.Options)}}", dots="true", slides-to-scroll="3", arrows="false")
