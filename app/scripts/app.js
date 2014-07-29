@@ -87,7 +87,7 @@ angular.module('waitingRoomApp', [
     $locationProvider.html5Mode(true);
 
     // Intercept 401s and redirect you to login
-    $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
+    /*$httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
       return {
         'responseError': function(response) {
           if(response.status === 401) {
@@ -100,6 +100,7 @@ angular.module('waitingRoomApp', [
         }
       };
     }]);
+    */
   })
   .run(function ($rootScope, $location, Auth) {
 
