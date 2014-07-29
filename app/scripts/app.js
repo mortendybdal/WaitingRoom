@@ -12,12 +12,7 @@ angular.module('waitingRoomApp', [
   'slick',
   'restangular'
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
-
-    //================================================
-    // Configure restangular
-    //================================================
-    RestangularProvider.setBaseUrl('api');
+  .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     //================================================
     // Check if the user is connected
@@ -87,7 +82,7 @@ angular.module('waitingRoomApp', [
     $locationProvider.html5Mode(true);
 
     // Intercept 401s and redirect you to login
-    /*$httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
+    $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
       return {
         'responseError': function(response) {
           if(response.status === 401) {
@@ -100,15 +95,19 @@ angular.module('waitingRoomApp', [
         }
       };
     }]);
-    */
   })
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, Auth, Restangular) {
+
+    //================================================
+    // Configure restangular
+    //================================================
+    Restangular.setBaseUrl('api');
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
 
       $rootScope.$broadcast("event:load_start");
-      
+
       if (next.authenticate && !Auth.isLoggedIn()) {
         $location.path('/login');
       }
