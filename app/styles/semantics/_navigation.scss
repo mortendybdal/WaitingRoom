@@ -1,11 +1,13 @@
 .navigation {
+  @include box-shadow(3px 0 5px rgba(black, 0.2));
+
   position: fixed;
   left: 0;
   top: 0;
   height: 100%;
   width: 70px;
   background-color: $nav-background;
-  @include box-shadow(3px 0 5px rgba(black, 0.2));
+  z-index: 300;
 }
 
 .navigation__profil {
@@ -56,5 +58,74 @@
       font-size: 25px;
       color: $icon-dark-blue;
     }
+  }
+}
+
+.scheme-builder__menu {
+  @include box-shadow(3px 0 5px rgba(black, 0.2));
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in);
+
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 300px;
+  background: white;
+  height: 100%;
+  z-index: 200;
+  padding: 20px;
+
+  &.active {
+    left: 70px;
+  }
+
+  .scheme-builder__create-scheme {
+    @include transition-duration(0.3s);
+    @include transition-timing-function(ease-in);
+
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    border: 1px solid $blue;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 200;
+    color: $blue;
+    outline: none;
+  }
+}
+
+.content-tree {
+  margin-top: 50px;
+
+  .content-tree__item-root {
+
+
+    span {
+      font-size: 8px;
+      margin-right: 5px;
+      vertical-align: top;
+      line-height: 18px;
+      color: $blue;
+      cursor: pointer;
+      font-weight: 200;
+    }
+
+    .content-tree__item-icon {
+      font-size: 12px;
+    }
+
+    a {
+      color: $blue;
+      font-size: 12px;
+      font-weight: 200;
+    }
+  }
+
+  .content-tree__item {
+    @extend .content-tree__item-root;
+
+    margin-left: 20px;
+    padding-top: 5px;
   }
 }
