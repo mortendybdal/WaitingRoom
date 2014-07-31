@@ -5000,7 +5000,10 @@ body {
 
 .content {
   position: relative;
-  margin: 20px 20px 20px 110px; }
+  padding: 20px 20px 20px 20px;
+  display: inline-block;
+  width: calc(100% - 70px);
+  left: 70px; }
   .content .content-view {
     -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
@@ -5012,12 +5015,16 @@ body {
       opacity: 0; }
 
 .tablet-design {
-  height: 100%; }
+  height: 100%;
+  background-color: #00b1ee; }
   .tablet-design .page {
     height: 100%; }
     .tablet-design .page .content {
-      margin: 0;
-      height: 100%; }
+      display: block;
+      padding: 0;
+      left: 0;
+      height: 100%;
+      width: 100%; }
       .tablet-design .page .content .content-view {
         height: 100%; }
         .tablet-design .page .content .content-view .tablet {

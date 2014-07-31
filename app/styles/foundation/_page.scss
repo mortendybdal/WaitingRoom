@@ -5,11 +5,16 @@ html {
 body {
   padding: 0px;
   background-color: $main-background;
+
+
 }
 
 .content {
   position: relative;
-  margin: 20px 20px 20px 110px;
+  padding: 20px 20px 20px 20px;
+  display: inline-block;
+  width: calc(100% - 70px);
+  left: 70px;
 
   .content-view {
     @include transition-duration(0.2s);
@@ -25,13 +30,17 @@ body {
 
 .tablet-design {
   height: 100%;
+  background-color: $blue;
   
   .page {
     height: 100%;
 
     .content {
-      margin: 0;
+      display: block;
+      padding: 0;
+      left: 0;
       height: 100%;
+      width: 100%;
 
       .content-view {
         height: 100%;

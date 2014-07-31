@@ -13,7 +13,6 @@ angular.module('waitingRoomApp')
 
         $scope.baseSchemes.getList().then(function(schemes) {
             $scope.schemes = schemes;
-            $rootScope.$broadcast("event:load_stop");
             $timeout(function () {
                 $rootScope.$broadcast("event:load_stop");
             });
@@ -23,6 +22,7 @@ angular.module('waitingRoomApp')
             $scope.index++;
             $scope.direction = "left";
 
+            console.log(question);
             if(question) {
                 var answer = {
                     AnswerText: question.Answer,
@@ -49,6 +49,9 @@ angular.module('waitingRoomApp')
 
             $scope.basePatients.post().then(function(patient) {
                 $scope.patient = patient;
+
+                console.log($scope.patient._id);
+                console.log(schemeid);
 
                 Restangular.one('patients', $scope.patient._id).one('schemes', schemeid).get().then(function (patient) {
                     $scope.questions = patient;

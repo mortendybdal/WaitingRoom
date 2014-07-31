@@ -15,29 +15,6 @@ angular.module('waitingRoomApp', [
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     //================================================
-    // Check if the user is connected
-    //================================================
-    /*var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
-        // Initialize a new promise
-        var deferred = $q.defer();
-
-        // Make an AJAX call to check if the user is logged in
-        $http.get('api/loggedin').success(function(user){
-            // Authenticated
-            if (user !== '0') {
-                $rootScope.is_logged_in = true;
-                $timeout(deferred.resolve, 0);
-            }else { // Not Authenticated
-                $rootScope.is_logged_in = false;
-                $timeout(function(){deferred.reject();}, 0);
-                $location.url('/login');
-            }
-        });
-
-        return deferred.promise;
-    };*/
-
-    //================================================
     // Define all the routes
     //================================================
 
@@ -47,7 +24,7 @@ angular.module('waitingRoomApp', [
         controller: 'FrontpageCtrl',
         resolve: {
             loggedin: function (Auth) {
-                return Auth.checkLoggedin();
+                return Auth.isLoggedIn();
             }
         }
       })
@@ -56,7 +33,7 @@ angular.module('waitingRoomApp', [
           controller: 'PatientCtrl',
           resolve: {
               loggedin: function (Auth) {
-                  return Auth.checkLoggedin();
+                  return Auth.isLoggedIn();
               }
           }
       })
@@ -69,7 +46,7 @@ angular.module('waitingRoomApp', [
          controller: 'SettingsCtrl',
          resolve: {
              loggedin: function (Auth) {
-                 return Auth.checkLoggedin();
+                 return Auth.isLoggedIn();
              }
          }
       })

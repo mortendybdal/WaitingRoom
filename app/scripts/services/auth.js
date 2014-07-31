@@ -41,6 +41,7 @@ angular.module('waitingRoomApp')
 
                 return Session.delete(function () {
                         $rootScope.currentUser = null;
+                        $rootScope.is_logged_in = false;
                         return cb();
                     },
                     function (err) {
@@ -105,31 +106,15 @@ angular.module('waitingRoomApp')
              */
             isLoggedIn: function () {
                 var user = $rootScope.currentUser;
+
+                if (user) {
+                    $rootScope.is_logged_in = true;
+                } else { // Not Authenticated
+                    $rootScope.is_logged_in = false;
+                    $location.url('/login');
+                }
+
                 return !!user;
-            },
-
-            checkLoggedin: function () {
-                // Initialize a new promise
-                var deferred = $q.defer();
-
-                // Make an AJAX call to check if the user is logged in
-                $http.get('api/loggedin').success(function (user) {
-
-                    console.log("USER", user);
-                    // Authenticated
-                    if (user !== '0') {
-                        $rootScope.is_logged_in = true;
-                        $timeout(deferred.resolve, 0);
-                    } else { // Not Authenticated
-                        $rootScope.is_logged_in = false;
-                        $timeout(function () {
-                            deferred.reject();
-                        }, 0);
-                        $location.url('/login');
-                    }
-                });
-
-                return deferred.promise;
             }
         };
     });
