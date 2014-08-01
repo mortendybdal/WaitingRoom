@@ -5,11 +5,11 @@
         .tablet-page(ng-class="{'slide-left_in-animation': index === -1 && direction === 'left', 'slide-left_out-animation': index === 0 && direction === 'left', 'slide-right_in-animation': index === -1 && direction === 'right', 'slide-right_out-animation': index === -2 && direction === 'right'}")
                 .tablet-page__question Please choose scheme
 
-                .tablet-page__content(ng-hide="hide_scheme_list")
+                .tablet-page__content
                     .tablet-page__scheme-list
                         slick(slides-to-show="3", slides-to-scroll="3", vertical="true", dots="true")
                             .tablet-page__scheme-slide(ng-repeat="scheme in schemes")
-                                .tablet-page__scheme(ng-click="createPatient(scheme._id)") {{scheme.Title}}
+                                .tablet-page__scheme(ng-click="createPatient(scheme)") {{scheme.Title}}
 
         .tablet-page(ng-repeat="question in questions", ng-class="{'slide-left_in-animation': index === $index && direction === 'left', 'slide-left_out-animation': index === $index + 1 && direction === 'left', 'slide-right_in-animation': index === $index && direction === 'right', 'slide-right_out-animation': index === $index - 1 && direction === 'right'}")
             .tablet-page__question {{question.QuestionText}}

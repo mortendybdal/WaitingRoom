@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-   .controller('FrontpageCtrl', function ($scope, $rootScope, Restangular) {
+   .controller('FrontpageCtrl', function ($scope, $rootScope, $interval, Restangular) {
 
       $scope.basePatients = Restangular.all("patients");
 

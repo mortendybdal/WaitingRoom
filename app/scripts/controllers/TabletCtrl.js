@@ -29,8 +29,13 @@ angular.module('waitingRoomApp')
                     Question_id: question._id,
                     Patient_id: $scope.patient._id
                 };
+                console.log(answer);
 
-                $scope.baseAnswers.post(answer);
+                $scope.baseAnswers.post(answer).then(function() {
+                    console.log("Object saved OK");
+                }, function() {
+                    console.log("There was an error saving");
+                });
             }
         };
 
@@ -43,25 +48,16 @@ angular.module('waitingRoomApp')
             $scope.nextSlide();
         };
 
-        $scope.createPatient = function (schemeid) {
-            $rootScope.$broadcast("event:load_start");
-            $scope.hide_scheme_list = true;
+        $scope.createPatient = function (scheme) {
+            //$rootScope.$broadcast("event:load_start");
+            $scope.questions = _.find(scheme.steps, {'Title': "Subjective"}).questions;
+            $scope.nextSlide();
 
             $scope.basePatients.post().then(function(patient) {
                 $scope.patient = patient;
 
-                console.log($scope.patient._id);
-                console.log(schemeid);
-
-                Restangular.one('patients', $scope.patient._id).one('schemes', schemeid).get().then(function (patient) {
-                    $scope.questions = patient;
-
-                    $timeout(function () {
-                        $scope.hide_scheme_list = false;
-                        $rootScope.$broadcast("event:load_stop");
-                        $scope.nextSlide();
-                    }, 1000);
-                });
+                patient.Schemes.push(scheme._id);
+                patient.save();
             });
         };
 
