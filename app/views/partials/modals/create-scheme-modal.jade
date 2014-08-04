@@ -1,0 +1,16 @@
+.modal.create-scheme-modal
+    .modal-dialog
+        .modal-content
+            .modal-body
+                .modal-title Create scheme
+                form(name='modal_form', novalidate='novalidate')
+                    .form-group(ng-class="{'has-error':modal_form.title.$error.required && submitted}")
+                        label Title
+                        input.form-control(type='text', name='title', ng-model='scheme_title', required)
+
+                        p.help-block.has-error(ng-show='modal_form.title.$error.required && submitted') Please enter a title for the scheme
+
+                    button.modal-body__create-button(ng-click="createScheme(modal_form)") Create Scheme
+                    button.modal-body__cancel-button(ng-click="hideModal()") Cancel
+
+

@@ -1,0 +1,23 @@
+//Bootstrap input override
+
+input {
+  border-radius: 0 !important;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.form-group {
+  label {
+    font-weight: 200 !important;
+  }
+}
+
+.has-error {
+  color: $red !important;
+
+  .form-control {
+    border-color: $red !important;
+  }
+}

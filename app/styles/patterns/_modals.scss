@@ -1,0 +1,69 @@
+.modal-content {
+  border-radius: 0px;
+}
+.create-scheme-modal {
+  .modal-body {
+    overflow: hidden;
+  }
+
+  .form-group {
+    margin-bottom: 40px;
+  }
+
+
+  .modal-title {
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: 200;
+  }
+
+  .modal-body__create-button {
+    @include transition-duration(0.2s);
+    @include transition-timing-function(ease-in);
+
+    border: none;
+    background-color: transparent;
+    border: 1px solid $blue;
+    padding: 10px 50px;
+    font-size: 12px;
+    font-weight: 200;
+    color: $blue;
+    outline: none;
+    float: right;
+    margin-left: 20px;
+
+    &:hover {
+      border: 1px solid darken($blue, 10%);
+      color: darken($blue, 10%);
+    }
+
+    &:active {
+      background-color: lighten($blue, 40%);
+    }
+  }
+
+  .modal-body__cancel-button {
+    @include transition-duration(0.2s);
+    @include transition-timing-function(ease-in);
+
+    border: none;
+    background-color: transparent;
+    border: 1px solid $red;
+    padding: 10px 50px;
+    font-size: 12px;
+    font-weight: 200;
+    color: $red;
+    outline: none;
+    float: right;
+    margin-left: 20px;
+
+    &:hover {
+      border: 1px solid darken($red, 10%);
+      color: darken($red, 10%);
+    }
+
+    &:active {
+      background-color: lighten($red, 40%);
+    }
+  }
+}

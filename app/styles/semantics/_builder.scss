@@ -1,0 +1,32 @@
+.builder {
+  .builder__save-button {
+    @include transition-duration(0.2s);
+    @include transition-timing-function(ease-in);
+
+    border: none;
+    background-color: transparent;
+    border: 1px solid $blue;
+    padding: 10px 80px;
+    font-size: 12px;
+    font-weight: 200;
+    color: $blue;
+    outline: none;
+    float: right;
+
+    &:hover {
+      border: 1px solid darken($blue, 10%);
+      color: darken($blue, 10%);
+    }
+  }
+
+  form {
+    margin-bottom: 30px;
+  }
+}
+
+.scheme-builder__widget {
+  @extend %widget-box;
+
+  overflow: hidden;
+}
+

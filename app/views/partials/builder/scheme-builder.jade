@@ -1,0 +1,12 @@
+.builder
+    .scheme-builder__widget
+        form.scheme-builder__builder(name='scheme_form', novalidate='novalidate')
+            .form-group(ng-class="{'has-error':scheme_form.title.$error.required && submitted}")
+                label Title
+                input.form-control(type='text', name='title', ng-model='scheme.Title', required)
+
+                p.help-block.has-error(ng-show='scheme_form.title.$error.required && submitted') Please enter a title
+
+
+
+        button.builder__save-button(ng-click='save(scheme_form)')  Save

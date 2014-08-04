@@ -5030,7 +5030,74 @@ body {
         .tablet-design .page .content .content-view .tablet {
           height: 100%; }
 
-.user-list__widget, .patient-summery__widget, .patient-soap__widget, .patient-journal__widget {
+input {
+  border-radius: 0 !important; }
+  input:focus {
+    box-shadow: none !important; }
+
+.form-group label {
+  font-weight: 200 !important; }
+
+.has-error {
+  color: #ed5a5a !important; }
+  .has-error .form-control {
+    border-color: #ed5a5a !important; }
+
+.modal-content {
+  border-radius: 0px; }
+
+.create-scheme-modal .modal-body {
+  overflow: hidden; }
+.create-scheme-modal .form-group {
+  margin-bottom: 40px; }
+.create-scheme-modal .modal-title {
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: 200; }
+.create-scheme-modal .modal-body__create-button {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  border: none;
+  background-color: transparent;
+  border: 1px solid #00b1ee;
+  padding: 10px 50px;
+  font-size: 12px;
+  font-weight: 200;
+  color: #00b1ee;
+  outline: none;
+  float: right;
+  margin-left: 20px; }
+  .create-scheme-modal .modal-body__create-button:hover {
+    border: 1px solid #008bbb;
+    color: #008bbb; }
+  .create-scheme-modal .modal-body__create-button:active {
+    background-color: #bbeeff; }
+.create-scheme-modal .modal-body__cancel-button {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  border: none;
+  background-color: transparent;
+  border: 1px solid #ed5a5a;
+  padding: 10px 50px;
+  font-size: 12px;
+  font-weight: 200;
+  color: #ed5a5a;
+  outline: none;
+  float: right;
+  margin-left: 20px; }
+  .create-scheme-modal .modal-body__cancel-button:hover {
+    border: 1px solid #e82c2c;
+    color: #e82c2c; }
+  .create-scheme-modal .modal-body__cancel-button:active {
+    background-color: white; }
+
+.user-list__widget, .patient-summery__widget, .patient-soap__widget, .patient-journal__widget, .scheme-builder__widget {
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   padding: 30px;
@@ -5251,7 +5318,8 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
       transition-timing-function: ease-in;
       line-height: 70px;
       font-size: 25px;
-      color: #5a6273; }
+      color: #5a6273;
+      pointer-events: none; }
 
 .scheme-builder__menu {
   -webkit-box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
@@ -5263,7 +5331,7 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
   transition-timing-function: ease-in;
   position: fixed;
   top: 0;
-  left: -250px;
+  left: -270px;
   width: 300px;
   background: white;
   height: 100%;
@@ -5555,8 +5623,8 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
   color: #00b1ee;
   outline: none; }
   .patient-journal__copypast-button:hover {
-    border: 1px solid #0fdd75;
-    color: #0fdd75; }
+    border: 1px solid #5fcf80;
+    color: #5fcf80; }
 
 .tablet-container {
   position: relative;
@@ -5887,6 +5955,8 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
     padding: 30px; }
     .login-box form input {
       border-radius: 0; }
+      .login-box form input:focus {
+        box-shadow: none; }
   .login-box button {
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
@@ -5909,3 +5979,27 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
     font-size: 36px;
     font-weight: 200;
     text-align: center; }
+
+.builder .builder__save-button {
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  border: none;
+  background-color: transparent;
+  border: 1px solid #00b1ee;
+  padding: 10px 80px;
+  font-size: 12px;
+  font-weight: 200;
+  color: #00b1ee;
+  outline: none;
+  float: right; }
+  .builder .builder__save-button:hover {
+    border: 1px solid #008bbb;
+    color: #008bbb; }
+.builder form {
+  margin-bottom: 30px; }
+
+.scheme-builder__widget {
+  overflow: hidden; }

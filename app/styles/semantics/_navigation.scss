@@ -57,6 +57,7 @@
       line-height: 70px;
       font-size: 25px;
       color: $icon-dark-blue;
+      pointer-events: none;
     }
   }
 }
@@ -68,7 +69,7 @@
 
   position: fixed;
   top: 0;
-  left: -250px;
+  left: -270px;
   width: 300px;
   background: white;
   height: 100%;

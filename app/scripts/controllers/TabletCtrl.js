@@ -29,7 +29,6 @@ angular.module('waitingRoomApp')
                     Question_id: question._id,
                     Patient_id: $scope.patient._id
                 };
-                console.log(answer);
 
                 $scope.baseAnswers.post(answer).then(function() {
                     console.log("Object saved OK");

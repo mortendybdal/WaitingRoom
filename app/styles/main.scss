@@ -9,11 +9,13 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import "foundation/fonts";
 @import "foundation/colors";
 @import "foundation/page";
+@import "foundation/overrides";
 
 //ANIMATE
 @import "animations/animations";
 
 //PATTERNS
+@import "patterns/modals";
 @import "patterns/widgets";
 @import "patterns/loader";
 @import "patterns/editable";
@@ -24,4 +26,5 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import "semantics/patient";
 @import "semantics/tablet";
 @import "semantics/login";
+@import "semantics/builder";
 
