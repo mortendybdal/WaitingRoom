@@ -10,7 +10,10 @@
 
                         p.help-block.has-error(ng-show='modal_form.title.$error.required && submitted') Please enter a title for the scheme
 
-                    button.modal-body__create-button(ng-click="createScheme(modal_form)") Create Scheme
-                    button.modal-body__cancel-button(ng-click="hideModal()") Cancel
+                    button.modal-body__create-button(ng-click="createScheme(modal_form)")
+                        span Create Scheme
+                        .element-loader__container(ng-class="{fade: saving_scheme}")
+                            .element-loader
 
+                    button.modal-body__cancel-button(ng-click="hideModal()") Cancel
 

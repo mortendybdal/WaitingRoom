@@ -1,0 +1,17 @@
+.modal.create-scheme-modal
+    .modal-dialog
+        .modal-content
+            .modal-body
+                .modal-title Create step
+                form(name='modal_form', novalidate='novalidate')
+                    .form-group(ng-class="{'has-error':modal_form.title.$error.required && submitted}")
+                        label Title
+                        input.form-control(type='text', name='title', ng-model='scheme_title', required)
+
+                        p.help-block.has-error(ng-show='modal_form.title.$error.required && submitted') Please enter a title for the step
+
+                    button.modal-body__create-button(ng-click="createStep(modal_form)")
+                        span Create Step
+                        .element-loader__container(ng-class="{fade: saving_step}")
+                            .element-loader
+                    button.modal-body__cancel-button(ng-click="hideModal()") Cancel

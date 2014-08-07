@@ -1,0 +1,14 @@
+.modal.delet-scheme-modal
+    .modal-dialog
+        .modal-content
+            .modal-body
+                .modal-title Delete step
+
+                .modal-body__content Are you sure you want to delete <b>"{{delete_item.item.Title}}"?</b> <br> - and <b> all </b> sub items!
+
+                .modal-bottom
+                    button.modal-body__create-button(ng-click="deleteContentItem()")
+                        span Delete
+                        .element-loader__container(ng-class="{fade: is_delete_item}")
+                            .element-loader
+                    button.modal-body__cancel-button(ng-click="hideDeleteModal()") Cancel

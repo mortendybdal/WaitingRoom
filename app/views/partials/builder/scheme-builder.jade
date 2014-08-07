@@ -1,12 +1,27 @@
 .builder
-    .scheme-builder__widget
-        form.scheme-builder__builder(name='scheme_form', novalidate='novalidate')
+    .builder__widget
+        .builder__widget-header
+            .builder__widget-actions
+                button.builder__add-sub-item(ng-click="showModal()")
+                    span.glyphicon.glyphicon-plus
+                    span Add Step
+                button.builder__sort-sub-item
+                    span.glyphicon.glyphicon-sort
+                    span Sort
+
+            .builder__widget-title {{scheme.Title}}
+
+        .builder__widget-content
+            form(name='scheme_form', novalidate='novalidate')
             .form-group(ng-class="{'has-error':scheme_form.title.$error.required && submitted}")
                 label Title
                 input.form-control(type='text', name='title', ng-model='scheme.Title', required)
 
                 p.help-block.has-error(ng-show='scheme_form.title.$error.required && submitted') Please enter a title
 
-
-
-        button.builder__save-button(ng-click='save(scheme_form)')  Save
+        .builder__widget-footer
+            button.builder__save-button(ng-click='save(scheme_form)')
+                span.glyphicon.glyphicon-cloud-upload
+                .element-loader__container(ng-class="{fade: updating_scheme}")
+                    .element-loader.is_white
+                span Create Scheme

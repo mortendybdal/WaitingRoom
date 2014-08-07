@@ -1,12 +1,20 @@
+'use strict';
+
 angular.module('waitingRoomApp')
     .directive('offClick', ['$document', function ($document) {
 
-        function targetInFilter(target,filter){
-            if(!target || !filter) return false;
-            var elms = angular.element(filter);
-            var elmsLen = elms.length;
-            for (var i = 0; i< elmsLen; ++i)
-                if(elms[i].contains(target)) return true;
+        function targetInFilter(target, filter) {
+            if (!target || !filter) {
+                return false;
+            }
+            var elms = angular.element(filter),
+                elmsLen = elms.length;
+            for (var i = 0; i < elmsLen; ++i) {
+                if (elms[i].contains(target)) {
+                    return true;
+                }
+            }
+
             return false;
         }
 
@@ -18,24 +26,24 @@ angular.module('waitingRoomApp')
             },
             link: function (scope, elm, attr) {
 
+                function handler(event) {
+                    var target = event.target || event.srcElement;
+                    if (!(elm[0].contains(target) || targetInFilter(target, attr.offClickFilter))) {
+                        scope.$apply(scope.offClick());
+                    }
+                }
+
                 if (attr.offClickIf) {
                     scope.$watch(scope.offClickIf, function (newVal, oldVal) {
                             if (newVal && !oldVal) {
                                 $document.on('click', handler);
-                            } else if(!newVal){
+                            } else if (!newVal) {
                                 $document.off('click', handler);
                             }
                         }
                     );
                 } else {
                     $document.on('click', handler);
-                }
-
-                function handler(event) {
-                    var target = event.target || event.srcElement;
-                    if (!(elm[0].contains(target) || targetInFilter(target, attr.offClickFilter))) {
-                        scope.$apply(scope.offClick());
-                    }
                 }
             }
         };

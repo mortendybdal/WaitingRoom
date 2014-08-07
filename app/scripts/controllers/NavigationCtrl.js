@@ -19,7 +19,7 @@ angular.module('waitingRoomApp')
         };
 
         $scope.showContentTree = function () {
-            $scope.show_content_tree = !$scope.show_content_tree
+            $scope.show_content_tree = !$scope.show_content_tree;
         };
 
         $scope.hideContentTree = function () {
@@ -60,8 +60,10 @@ angular.module('waitingRoomApp')
 
                 var scheme = {};
                 scheme.Title = form.title.$modelValue;
+                $scope.saving_scheme = true;
 
                 $scope.baseSchemes.post(scheme).then(function (scheme) {
+                    $scope.saving_scheme = false;
 
                     $rootScope.$broadcast("event:update_content_tree");
                     $scope.hideModal();
@@ -85,5 +87,35 @@ angular.module('waitingRoomApp')
 
         $scope.hideModal = function () {
             create_scheme_modal.$promise.then(create_scheme_modal.hide);
+        };
+
+        var delete_modal = $modal({
+            scope: $scope,
+            template: 'partials/modals/delete-modal.html',
+            show: false
+        });
+
+        $scope.showDeleteModal = function (item, item_type) {
+
+            $scope.delete_item = {}
+            $scope.delete_item.type = item_type;
+            $scope.delete_item.item = item;
+
+            delete_modal.$promise.then(delete_modal.show);
+        };
+
+        $scope.hideDeleteModal = function () {
+            delete_modal.$promise.then(delete_modal.hide);
+        };
+
+        $scope.deleteContentItem = function () {
+            $scope.is_delete_item = true;
+
+            Restangular.one($scope.delete_item.type, $scope.delete_item.item._id).remove().then(function () {
+                console.log("Delete callback");
+                $rootScope.$broadcast("event:update_content_tree");
+                $scope.is_delete_item = false;
+                $scope.hideDeleteModal();
+            });
         };
     });

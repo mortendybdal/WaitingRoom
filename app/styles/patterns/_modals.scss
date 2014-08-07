@@ -31,6 +31,8 @@
     outline: none;
     float: right;
     margin-left: 20px;
+    height: 39px;
+    position: relative;
 
     &:hover {
       border: 1px solid darken($blue, 10%);
@@ -56,6 +58,8 @@
     outline: none;
     float: right;
     margin-left: 20px;
+    height: 39px;
+
 
     &:hover {
       border: 1px solid darken($red, 10%);
@@ -65,5 +69,13 @@
     &:active {
       background-color: lighten($red, 40%);
     }
+  }
+}
+
+.delet-scheme-modal {
+  @extend .create-scheme-modal;
+
+  .modal-body__content {
+    padding-bottom: 40px;
   }
 }
