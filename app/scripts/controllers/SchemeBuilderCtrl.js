@@ -7,7 +7,6 @@ angular.module('waitingRoomApp')
         if ($routeParams.id) {
             Restangular.one('schemes', $routeParams.id).get().then(function (scheme) {
                 $scope.scheme = scheme;
-                console.log($scope.scheme);
                 $rootScope.$broadcast("event:load_stop");
             });
         }

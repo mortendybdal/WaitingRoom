@@ -18,8 +18,8 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
         button.scheme-builder__create-scheme(ng-click="showModal()") Create Scheme
 
         .content-tree(ui-tree="content_tree")
-            .content-tree--container(ui-tree-nodes="", ng-model="schemes")
-                .content-tree__item-root(ng-repeat="scheme in schemes", ui-tree-node)
+            .content-tree--container(ui-tree-nodes="", ng-model="schemes", data-type="Schemes")
+                .content-tree__item(ng-repeat="scheme in schemes", ui-tree-node)
                     span.glyphicon(ng-click="expandContentTree(scheme)",
                                    ng-class="{'glyphicon-chevron-right': !contentItemIsOpen(scheme) && scheme.steps.length > 0, 'glyphicon-chevron-down': contentItemIsOpen(scheme) && scheme.steps.length > 0}")
                     span.content-tree__item-icon.glyphicon.glyphicon-file
@@ -28,7 +28,7 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
                         span.trash.glyphicon.glyphicon-trash(ng-click="showDeleteModal(scheme, 'Schemes')")
                         span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
 
-                    .content-tree--container(ui-tree-nodes="", ng-model="scheme.steps")
+                    .content-tree--container(ui-tree-nodes="", ng-model="scheme.steps", data-type="Steps")
                         .content-tree__item(ng-repeat="step in scheme.steps", ng-show="contentItemIsOpen(scheme)", ui-tree-node)
                             span.glyphicon(ng-click="expandContentTree(step)", ng-class="{'glyphicon-chevron-right': !contentItemIsOpen(step) && step.questions.length > 0, 'glyphicon-chevron-down': contentItemIsOpen(step) && step.questions.length > 0}")
                             span.content-tree__item-icon.glyphicon.glyphicon-file
@@ -37,7 +37,7 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
                                 span.trash.glyphicon.glyphicon-trash(ng-click="showDeleteModal(step, 'Steps')")
                                 span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
 
-                            .content-tree--container(ui-tree-nodes="", ng-model="step.questions")
+                            .content-tree--container(ui-tree-nodes="", ng-model="step.questions", data-type="Questions")
                                 .content-tree__item(ng-repeat="question in step.questions", ng-show="contentItemIsOpen(step)", ui-tree-node)
                                     span.glyphicon
                                     span.content-tree__item-icon.glyphicon.glyphicon-file

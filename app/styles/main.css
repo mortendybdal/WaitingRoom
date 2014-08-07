@@ -5401,9 +5401,22 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
     color: #00b1ee;
     outline: none; }
 
+.content-tree--container.angular-ui-tree-drag .content-tree__item .content-tree__item-link:hover span {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  visibility: visible; }
+.content-tree--container.angular-ui-tree-nodes {
+  padding: 0; }
+
 .content-tree {
   margin-top: 50px; }
-  .content-tree .content-tree__item-root span, .content-tree .content-tree__item span {
+
+.content-tree__item {
+  padding: 5px 0 0 10px; }
+  .content-tree__item span {
     font-size: 8px;
     margin-right: 5px;
     vertical-align: top;
@@ -5411,21 +5424,21 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
     color: #00b1ee;
     cursor: pointer;
     font-weight: 200; }
-  .content-tree .content-tree__item-root .content-tree__item-icon, .content-tree .content-tree__item .content-tree__item-icon {
+  .content-tree__item .content-tree__item-icon {
     font-size: 12px; }
-  .content-tree .content-tree__item-root .content-tree__item-link, .content-tree .content-tree__item .content-tree__item-link {
+  .content-tree__item .content-tree__item-link {
     width: -webkit-calc(100% - 30px);
     width: calc(100% - 30px);
     display: inline-block;
     position: relative; }
-    .content-tree .content-tree__item-root .content-tree__item-link:hover span, .content-tree .content-tree__item .content-tree__item-link:hover span {
+    .content-tree__item .content-tree__item-link:hover span {
       -webkit-transform: scale(1);
       -moz-transform: scale(1);
       -ms-transform: scale(1);
       -o-transform: scale(1);
       transform: scale(1);
       visibility: visible; }
-    .content-tree .content-tree__item-root .content-tree__item-link a, .content-tree .content-tree__item .content-tree__item-link a {
+    .content-tree__item .content-tree__item-link a {
       -webkit-transition-duration: 0.3s;
       transition-duration: 0.3s;
       -webkit-transition-timing-function: ease-in;
@@ -5441,7 +5454,7 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
       text-overflow: ellipsis;
       vertical-align: bottom;
       line-height: 22px; }
-    .content-tree .content-tree__item-root .content-tree__item-link .trash, .content-tree .content-tree__item .content-tree__item-link .trash, .content-tree .content-tree__item-root .content-tree__item-link .sort, .content-tree .content-tree__item .content-tree__item-link .sort {
+    .content-tree__item .content-tree__item-link .trash, .content-tree__item .content-tree__item-link .sort {
       -webkit-transform: scale(0);
       -moz-transform: scale(0);
       -ms-transform: scale(0);
@@ -5455,20 +5468,17 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
       font-size: 12px;
       line-height: 24px;
       visibility: none; }
-      .content-tree .content-tree__item-root .content-tree__item-link .trash:hover, .content-tree .content-tree__item .content-tree__item-link .trash:hover, .content-tree .content-tree__item-root .content-tree__item-link .sort:hover, .content-tree .content-tree__item .content-tree__item-link .sort:hover {
+      .content-tree__item .content-tree__item-link .trash:hover, .content-tree__item .content-tree__item-link .sort:hover {
         color: #006588; }
-      .content-tree .content-tree__item-root .content-tree__item-link .trash:active, .content-tree .content-tree__item .content-tree__item-link .trash:active, .content-tree .content-tree__item-root .content-tree__item-link .sort:active, .content-tree .content-tree__item .content-tree__item-link .sort:active {
+      .content-tree__item .content-tree__item-link .trash:active, .content-tree__item .content-tree__item-link .sort:active {
         -webkit-transform: scale(1.7);
         -moz-transform: scale(1.7);
         -ms-transform: scale(1.7);
         -o-transform: scale(1.7);
         transform: scale(1.7);
         color: #001922; }
-    .content-tree .content-tree__item-root .content-tree__item-link .sort, .content-tree .content-tree__item .content-tree__item-link .sort {
+    .content-tree__item .content-tree__item-link .sort {
       right: 20px; }
-  .content-tree .content-tree__item {
-    margin-left: 10px;
-    padding-top: 5px; }
 
 .patient-summery__widget {
   overflow: hidden;

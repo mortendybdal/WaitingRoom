@@ -121,8 +121,22 @@ angular.module('waitingRoomApp')
 
         $scope.content_tree = {
             accept: function(sourceNodeScope, destNodesScope) {
-                //Ensures that it is only possible to drop item on same level as it came from
-                return sourceNodeScope.depth() === destNodesScope.depth() + 1;
+                //Ensures that it is only possible to drop item on same level as it came from and under same parent
+                return sourceNodeScope.depth() === destNodesScope.depth() + 1 && destNodesScope.isParent(sourceNodeScope);
+            },
+            dropped: function(event) {
+
+                var destNodes = event.dest.nodesScope,
+                    content_type = destNodes.$element.attr('data-type'),
+                    reorderd_collection = destNodes.$modelValue;
+
+                _.forEach(reorderd_collection, function (content_item, index) {
+                    Restangular.one(content_type, content_item._id).get().then(function (item) {
+                        item.SortOrder = index;
+                        item.save();
+                    });
+
+                });
             }
         };
 
