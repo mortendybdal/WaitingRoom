@@ -11,7 +11,8 @@ angular.module('waitingRoomApp', [
         'ngClipboard',
         'slick',
         'restangular',
-        'mgcrea.ngStrap.modal'
+        'mgcrea.ngStrap.modal',
+        'ui.tree'
     ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
 

@@ -5378,7 +5378,7 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
   position: fixed;
   top: 0;
   left: -270px;
-  width: 300px;
+  width: 320px;
   background: white;
   height: 100%;
   z-index: 200;
@@ -5434,14 +5434,14 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
       color: #00b1ee;
       font-size: 12px;
       font-weight: 200;
-      width: calc(100% - 20px);
+      width: calc(100% - 40px);
       display: inline-block;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       vertical-align: bottom;
       line-height: 22px; }
-    .content-tree .content-tree__item-root .content-tree__item-link span, .content-tree .content-tree__item .content-tree__item-link span {
+    .content-tree .content-tree__item-root .content-tree__item-link .trash, .content-tree .content-tree__item .content-tree__item-link .trash, .content-tree .content-tree__item-root .content-tree__item-link .sort, .content-tree .content-tree__item .content-tree__item-link .sort {
       -webkit-transform: scale(0);
       -moz-transform: scale(0);
       -ms-transform: scale(0);
@@ -5455,15 +5455,17 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
       font-size: 12px;
       line-height: 24px;
       visibility: none; }
-      .content-tree .content-tree__item-root .content-tree__item-link span:hover, .content-tree .content-tree__item .content-tree__item-link span:hover {
+      .content-tree .content-tree__item-root .content-tree__item-link .trash:hover, .content-tree .content-tree__item .content-tree__item-link .trash:hover, .content-tree .content-tree__item-root .content-tree__item-link .sort:hover, .content-tree .content-tree__item .content-tree__item-link .sort:hover {
         color: #006588; }
-      .content-tree .content-tree__item-root .content-tree__item-link span:active, .content-tree .content-tree__item .content-tree__item-link span:active {
+      .content-tree .content-tree__item-root .content-tree__item-link .trash:active, .content-tree .content-tree__item .content-tree__item-link .trash:active, .content-tree .content-tree__item-root .content-tree__item-link .sort:active, .content-tree .content-tree__item .content-tree__item-link .sort:active {
         -webkit-transform: scale(1.7);
         -moz-transform: scale(1.7);
         -ms-transform: scale(1.7);
         -o-transform: scale(1.7);
         transform: scale(1.7);
         color: #001922; }
+    .content-tree .content-tree__item-root .content-tree__item-link .sort, .content-tree .content-tree__item .content-tree__item-link .sort {
+      right: 20px; }
   .content-tree .content-tree__item {
     margin-left: 10px;
     padding-top: 5px; }

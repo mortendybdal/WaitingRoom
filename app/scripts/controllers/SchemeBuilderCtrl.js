@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('SchemeBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, $location, Restangular) {
+    .controller('SchemeBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, $location, $timeout, Restangular) {
         $scope.baseSteps = Restangular.all("steps");
 
         if ($routeParams.id) {
@@ -32,11 +32,11 @@ angular.module('waitingRoomApp')
             show: false
         });
 
-        $scope.showModal = function () {
+        $scope.showAddStepModal = function () {
             create_step_modal.$promise.then(create_step_modal.show);
         };
 
-        $scope.hideModal = function () {
+        $scope.hideAddStepModal = function () {
             create_step_modal.$promise.then(create_step_modal.hide);
         };
 
@@ -62,4 +62,6 @@ angular.module('waitingRoomApp')
 
             }
         };
+
+
     });

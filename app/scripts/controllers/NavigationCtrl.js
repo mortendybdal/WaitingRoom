@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('NavigationCtrl', function ($scope, $rootScope, $location, $modal, Auth, Restangular) {
+    .controller('NavigationCtrl', function ($scope, $rootScope, $location, $modal, $timeout, Auth, Restangular) {
         $scope.baseSchemes = Restangular.all("schemes");
         $scope.expanded_items = [];
 
@@ -97,7 +97,7 @@ angular.module('waitingRoomApp')
 
         $scope.showDeleteModal = function (item, item_type) {
 
-            $scope.delete_item = {}
+            $scope.delete_item = {};
             $scope.delete_item.type = item_type;
             $scope.delete_item.item = item;
 
@@ -118,4 +118,12 @@ angular.module('waitingRoomApp')
                 $scope.hideDeleteModal();
             });
         };
+
+        $scope.content_tree = {
+            accept: function(sourceNodeScope, destNodesScope) {
+                //Ensures that it is only possible to drop item on same level as it came from
+                return sourceNodeScope.depth() === destNodesScope.depth() + 1;
+            }
+        };
+
     });

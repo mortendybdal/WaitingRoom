@@ -70,7 +70,7 @@
   position: fixed;
   top: 0;
   left: -270px;
-  width: 300px;
+  width: 320px;
   background: white;
   height: 100%;
   z-index: 200;
@@ -138,7 +138,7 @@
         color: $blue;
         font-size: 12px;
         font-weight: 200;
-        width: calc(100% - 20px);
+        width: calc(100% - 40px);
         display: inline-block;
         white-space: nowrap;
         overflow: hidden;
@@ -147,7 +147,7 @@
         line-height: 22px;
       }
 
-      span {
+      .trash {
         @include transform(scale(0.0));
         @include transition(all 0.5s);
 
@@ -168,6 +168,11 @@
           color: darken($blue, 40%);
         }
 
+      }
+
+      .sort {
+        @extend .trash;
+        right: 20px;
       }
     }
 
