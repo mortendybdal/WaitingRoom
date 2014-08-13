@@ -11,10 +11,16 @@
         .builder__widget-content
             form(name='question_form', novalidate='novalidate')
                 .form-group(ng-class="{'has-error':question_form.question_text.$error.required && submitted}")
-                    label Title
-                    input.form-control(type='text', name='question_text', ng-model='question.QuestionText', required)
+                    label Question
+                    input.form-control(type='text', name='question_text', ng-model='question.QuestionText', placeholder="Question Text", required)
 
-                    p.help-block.has-error(ng-show='question_form.question_text.$error.required && submitted') Please enter a title
+                    p.help-block.has-error(ng-show='question_form.question_text.$error.required && submitted') Please enter a question
+
+                .form-group(ng-class="{'has-error':question_form.question_type.$error.required && submitted}")
+                    label Type
+                    select.form-control(type='text', name='question_type', ng-model='question.Type', ng-options="opt as opt.label for opt in options", placeholder="Question Type", required)
+
+                    p.help-block.has-error(ng-show='question_form.question_type.$error.required && submitted') Please enter a question type
 
         .builder__widget-footer
             button.builder__save-button(ng-click='save(question_form)')

@@ -6,9 +6,18 @@ angular.module('waitingRoomApp')
         if ($routeParams.id) {
             Restangular.one('questions', $routeParams.id).get().then(function (question) {
                 $scope.question = question;
+
                 $rootScope.$broadcast("event:load_stop");
             });
         }
+
+        $scope.options = [
+            { label: 'Single Text', value: "single-text" },
+            { label: 'Multi Text', value: "multi-text" },
+            { label: 'Radio List', value: "radio-list" },
+            { label: 'Select List', value: "select-list" }
+        ];
+
 
         $scope.save = function (form) {
             $scope.submitted = true;
