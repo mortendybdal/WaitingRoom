@@ -1,6 +1,92 @@
+
+/*Overrides*/
 .modal-content {
   border-radius: 0px;
 }
+
+/*Modal styling*/
+
+
+.create-item-modal {
+  padding: 30px;
+  overflow: hidden;
+
+  .item-modal__header {
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: 200;
+  }
+
+  .item-modal__content {
+    .item-modal__text {
+      padding: 10px 0px 40px 0px;
+    }
+
+    .item-modal__create-button {
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease-in);
+
+      border: none;
+      background-color: transparent;
+      border: 1px solid $blue;
+      padding: 10px 50px;
+      font-size: 12px;
+      font-weight: 200;
+      color: $blue;
+      outline: none;
+      float: right;
+      margin-left: 20px;
+      height: 39px;
+      position: relative;
+
+      &:hover {
+        border: 1px solid darken($blue, 20%);
+        color: darken($blue, 20%);
+      }
+
+      &:active {
+        background-color: lighten($blue, 40%);
+      }
+    }
+
+    .item-modal__cancel-button {
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease-in);
+
+      border: none;
+      background-color: transparent;
+      border: 1px solid $red;
+      padding: 10px 50px;
+      font-size: 12px;
+      font-weight: 200;
+      color: $red;
+      outline: none;
+      float: right;
+      margin-left: 20px;
+      height: 39px;
+
+
+      &:hover {
+        border: 1px solid darken($red, 20%);
+        color: darken($red, 20%);
+      }
+
+      &:active {
+        background-color: lighten($red, 40%);
+      }
+    }
+  }
+}
+
+
+.delete-item-modal {
+  @extend .create-item-modal;
+}
+
+
+
+/*
+
 .create-scheme-modal {
   .modal-body {
     overflow: hidden;
@@ -17,59 +103,7 @@
     font-weight: 200;
   }
 
-  .modal-body__create-button {
-    @include transition-duration(0.2s);
-    @include transition-timing-function(ease-in);
 
-    border: none;
-    background-color: transparent;
-    border: 1px solid $blue;
-    padding: 10px 50px;
-    font-size: 12px;
-    font-weight: 200;
-    color: $blue;
-    outline: none;
-    float: right;
-    margin-left: 20px;
-    height: 39px;
-    position: relative;
-
-    &:hover {
-      border: 1px solid darken($blue, 10%);
-      color: darken($blue, 10%);
-    }
-
-    &:active {
-      background-color: lighten($blue, 40%);
-    }
-  }
-
-  .modal-body__cancel-button {
-    @include transition-duration(0.2s);
-    @include transition-timing-function(ease-in);
-
-    border: none;
-    background-color: transparent;
-    border: 1px solid $red;
-    padding: 10px 50px;
-    font-size: 12px;
-    font-weight: 200;
-    color: $red;
-    outline: none;
-    float: right;
-    margin-left: 20px;
-    height: 39px;
-
-
-    &:hover {
-      border: 1px solid darken($red, 10%);
-      color: darken($red, 10%);
-    }
-
-    &:active {
-      background-color: lighten($red, 40%);
-    }
-  }
 }
 
 .delet-scheme-modal {
@@ -79,3 +113,4 @@
     padding-bottom: 40px;
   }
 }
+*/

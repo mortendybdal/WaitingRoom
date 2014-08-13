@@ -1,0 +1,24 @@
+.builder
+    .builder__widget
+        .builder__widget-header
+            .builder__widget-actions
+                button.builder__add-sub-item(ng-click="openModal('Question', question._id)")
+                    span.glyphicon.glyphicon-plus
+                    span Add Question
+
+            .builder__widget-title {{question.QuestionText}}
+
+        .builder__widget-content
+            form(name='question_form', novalidate='novalidate')
+                .form-group(ng-class="{'has-error':question_form.question_text.$error.required && submitted}")
+                    label Title
+                    input.form-control(type='text', name='question_text', ng-model='question.QuestionText', required)
+
+                    p.help-block.has-error(ng-show='question_form.question_text.$error.required && submitted') Please enter a title
+
+        .builder__widget-footer
+            button.builder__save-button(ng-click='save(question_form)')
+                span.glyphicon.glyphicon-cloud-upload
+                .element-loader__container(ng-class="{fade: updating_question}")
+                    .element-loader.is_white
+                span Save Question

@@ -1,14 +1,14 @@
-.modal.delet-scheme-modal
-    .modal-dialog
-        .modal-content
-            .modal-body
-                .modal-title Delete step
+.delete-item-modal
+    .item-modal__header Delete {{type}}
 
-                .modal-body__content Are you sure you want to delete <b>"{{delete_item.item.Title}}"?</b> <br> - and <b> all </b> sub items!
+    .item-modal__content
 
-                .modal-bottom
-                    button.modal-body__create-button(ng-click="deleteContentItem()")
-                        span Delete
-                        .element-loader__container(ng-class="{fade: is_delete_item}")
-                            .element-loader
-                    button.modal-body__cancel-button(ng-click="showSortStepModal()") Cancel
+        .item-modal__text Are you sure you want to delete <b>"{{name}}"</b> <br> - and <b> all </b> sub items!
+
+
+        .item-modal__buttons
+            button.item-modal__create-button(ng-click="ModalService.delete(type, item_id)")
+                span Delete {{type}}
+                .element-loader__container(ng-class="{fade: ModalService.isLoading()}")
+                    .element-loader
+            button.item-modal__cancel-button(ng-click="ModalService.close()") Cancel

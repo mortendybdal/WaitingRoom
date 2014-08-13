@@ -11,8 +11,8 @@ angular.module('waitingRoomApp', [
         'ngClipboard',
         'slick',
         'restangular',
-        'mgcrea.ngStrap.modal',
-        'ui.tree'
+        'ui.tree',
+        'ui.bootstrap'
     ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
@@ -39,9 +39,27 @@ angular.module('waitingRoomApp', [
                     }
                 }
             })
-            .when('/scheme-builder/:id', {
+            .when('/builder/scheme/:id', {
                 templateUrl: 'partials/builder/scheme-builder',
                 controller: 'SchemeBuilderCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn();
+                    }
+                }
+            })
+            .when('/builder/step/:id', {
+                templateUrl: 'partials/builder/step-builder',
+                controller: 'StepBuilderCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn();
+                    }
+                }
+            })
+            .when('/builder/question/:id', {
+                templateUrl: 'partials/builder/question-builder',
+                controller: 'QuestionBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn();
