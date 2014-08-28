@@ -13,6 +13,7 @@ angular.module('waitingRoomApp')
                     if (patient){
                         $scope.patient = patient;
 
+                        //TODO - handel multiple schemes
                         Restangular.one('schemes', $scope.patient.Schemes[0]._id).one('patient', $scope.patient._id).get().then(function (questions) {
                             console.log(questions);
                             $scope.questions = questions;
@@ -45,7 +46,6 @@ angular.module('waitingRoomApp')
 
                 var step_questions = getQuestionsByStep(step);
 
-                console.log(step_questions);
 
                 _.forEach(step_questions, function(soap) {
 
@@ -68,7 +68,6 @@ angular.module('waitingRoomApp')
             $scope.current_step = step;
 
             $scope.soap_item_list = getQuestionsByStep(step);
-
             $timeout(function () {
                 $scope.is_loading_soap_widget = false;
             }, 600);

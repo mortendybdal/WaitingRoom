@@ -33,40 +33,79 @@
 
             .patient-soap__content
                 .patient-soap__item-list(ng-class="{is_loading: is_loading_soap_widget}")
-                    .patient-soap__item(ng-repeat="soap_item in soap_item_list")
-                        .patient-soap__item--question {{soap_item.QuestionText}}
+                    .patient-soap__item--container(ng-repeat="soap_item in soap_item_list")
+                        .patient-soap__item
+                            .patient-soap__item--question {{soap_item.QuestionText}}
 
-                        // ==> Single-Text
-                        .patient-soap__item--answer(editable-text="soap_item.Answer",
-                                                    buttons="no",
-                                                    blur="submit",
-                                                    placeholder="Text",
-                                                    onaftersave="saveAnswer(soap_item)",
-                                                    ng-if="soap_item.Type === 'single-text'") {{soap_item.Answer || "Empty"}}
+                            // ==> Single-Text
+                            .patient-soap__item--answer(editable-text="soap_item.Answer",
+                                                        buttons="no",
+                                                        blur="submit",
+                                                        placeholder="Text",
+                                                        onaftersave="saveAnswer(soap_item)",
+                                                        ng-if="soap_item.Type.Value === 'single-text'") {{soap_item.Answer || "Empty"}}
 
-                        // ==> Radio-List
-                        .patient-soap__item--answer(editable-radiolist="soap_item.Answer",
-                                                    e-ng-options="o.Value as o.Value for o in soap_item.Options"
-                                                    buttons="no",
-                                                    onaftersave="saveAnswer(soap_item)",
-                                                    ng-if="soap_item.Type === 'radio-list'") {{soap_item.Answer || "Empty"}}
+                            // ==> Radio-List
+                            .patient-soap__item--answer(editable-radiolist="soap_item.Answer",
+                                                        e-ng-options="o.Value as o.Value for o in soap_item.Options"
+                                                        buttons="no",
+                                                        onaftersave="saveAnswer(soap_item)",
+                                                        ng-if="soap_item.Type.Value === 'radio-list'") {{soap_item.Answer || "Empty"}}
 
-                        // ==> Multi-text
-                        .patient-soap__item--answer(editable-textarea="soap_item.Answer",
-                                                    e-rows="7",
-                                                    e-cols="40"
-                                                    buttons="no",
-                                                    blur="submit",
-                                                    onaftersave="saveAnswer(soap_item)",
-                                                    ng-if="soap_item.Type === 'multi-text'")
-                            pre {{soap_item.Answer || "Empty"}}
+                            // ==> Multi-text
+                            .patient-soap__item--answer(editable-textarea="soap_item.Answer",
+                                                        e-rows="7",
+                                                        e-cols="40"
+                                                        buttons="no",
+                                                        blur="submit",
+                                                        onaftersave="saveAnswer(soap_item)",
+                                                        ng-if="soap_item.Type.Value === 'multi-text'")
+                                pre {{soap_item.Answer || "Empty"}}
 
-                        // ==> Select-List
-                        .patient-soap__item--answer(editable-select="soap_item.Answer",
-                                                    e-ng-options="o.Value as o.Value for o in soap_item.Options"
-                                                    buttons="no",
-                                                    onaftersave="saveAnswer(soap_item)",
-                                                    ng-if="soap_item.Type === 'select-list'") {{soap_item.Answer || "Empty"}}
+                            // ==> Select-List
+                            .patient-soap__item--answer(editable-select="soap_item.Answer",
+                                                        e-ng-options="o as o.Value for o in soap_item.Options"
+                                                        buttons="no",
+                                                        onaftersave="saveAnswer(soap_item)",
+                                                        ng-if="soap_item.Type.Value  === 'select-list'") {{soap_item.Answer || "Empty"}}
+
+                        .patient-soap__item--container.sub-item(ng-repeat="sub_soap_item in soap_item.questions", collapse="soap_item.Answer != sub_soap_item.CorrectAnswer.Value")
+                            .patient-soap__item
+                                .patient-soap__item--question {{sub_soap_item.QuestionText}}
+
+                                // ==> Single-Text
+                                .patient-soap__item--answer(editable-text="sub_soap_item.Answer",
+                                                        buttons="no",
+                                                        blur="submit",
+                                                        placeholder="Text",
+                                                        onaftersave="saveAnswer(sub_soap_item)",
+                                                        ng-if="sub_soap_item.Type.Value === 'single-text'") {{sub_soap_item.Answer || "Empty"}}
+
+                                // ==> Radio-List
+                                .patient-soap__item--answer(editable-radiolist="sub_soap_item.Answer",
+                                                        e-ng-options="o.Value as o.Value for o in sub_soap_item.Options"
+                                                        buttons="no",
+                                                        onaftersave="saveAnswer(sub_soap_item)",
+                                                        ng-if="sub_soap_item.Type.Value === 'radio-list'") {{sub_soap_item.Answer || "Empty"}}
+
+                                // ==> Multi-text
+                                .patient-soap__item--answer(editable-textarea="sub_soap_item.Answer",
+                                                        e-rows="7",
+                                                        e-cols="40"
+                                                        buttons="no",
+                                                        blur="submit",
+                                                        onaftersave="saveAnswer(sub_soap_item)",
+                                                        ng-if="sub_soap_item.Type.Value === 'multi-text'")
+                                                            pre {{sub_soap_item.Answer || "Empty"}}
+
+                                // ==> Select-List
+                                .patient-soap__item--answer(editable-select="sub_soap_item.Answer",
+                                                        e-ng-options="o as o.Value for o in sub_soap_item.Options"
+                                                        buttons="no",
+                                                        onaftersave="saveAnswer(sub_soap_item)",
+                                                        ng-if="sub_soap_item.Type.Value  === 'select-list'") {{sub_soap_item.Answer || "Empty"}}
+
+
 
                     .patient-soap__navigation
                         button.patient-soap__navigation-back(ng-click="backStep()") Back

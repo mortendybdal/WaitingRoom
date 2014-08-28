@@ -1963,8 +1963,8 @@ input[type="button"].btn-block {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/glyphicons-halflings-regular.eot");
-  src: url("/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
+  src: url("/bower_components/sass-bootstrap/fonts/glyphicons-halflings-regular.eot");
+  src: url("/bower_components/sass-bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/bower_components/sass-bootstrap/fonts/glyphicons-halflings-regular.woff") format("woff"), url("/bower_components/sass-bootstrap/fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("/bower_components/sass-bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
 .glyphicon, .editable-select select:before {
   position: relative;
   top: 1px;
@@ -5044,66 +5044,95 @@ input {
   .has-error .form-control {
     border-color: #ed5a5a !important; }
 
+/*Overrides*/
 .modal-content {
   border-radius: 0px; }
 
-.create-scheme-modal .modal-body, .delet-scheme-modal .modal-body {
+/*Modal styling*/
+.create-item-modal, .delete-item-modal {
+  padding: 30px;
   overflow: hidden; }
-.create-scheme-modal .form-group, .delet-scheme-modal .form-group {
-  margin-bottom: 40px; }
-.create-scheme-modal .modal-title, .delet-scheme-modal .modal-title {
-  margin-bottom: 20px;
-  font-size: 25px;
-  font-weight: 200; }
-.create-scheme-modal .modal-body__create-button, .delet-scheme-modal .modal-body__create-button {
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease-in;
-  -moz-transition-timing-function: ease-in;
-  transition-timing-function: ease-in;
-  border: none;
-  background-color: transparent;
-  border: 1px solid #00b1ee;
-  padding: 10px 50px;
-  font-size: 12px;
-  font-weight: 200;
-  color: #00b1ee;
-  outline: none;
-  float: right;
-  margin-left: 20px;
-  height: 39px;
-  position: relative; }
-  .create-scheme-modal .modal-body__create-button:hover, .delet-scheme-modal .modal-body__create-button:hover {
-    border: 1px solid #008bbb;
-    color: #008bbb; }
-  .create-scheme-modal .modal-body__create-button:active, .delet-scheme-modal .modal-body__create-button:active {
-    background-color: #bbeeff; }
-.create-scheme-modal .modal-body__cancel-button, .delet-scheme-modal .modal-body__cancel-button {
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease-in;
-  -moz-transition-timing-function: ease-in;
-  transition-timing-function: ease-in;
-  border: none;
-  background-color: transparent;
-  border: 1px solid #ed5a5a;
-  padding: 10px 50px;
-  font-size: 12px;
-  font-weight: 200;
-  color: #ed5a5a;
-  outline: none;
-  float: right;
-  margin-left: 20px;
-  height: 39px; }
-  .create-scheme-modal .modal-body__cancel-button:hover, .delet-scheme-modal .modal-body__cancel-button:hover {
-    border: 1px solid #e82c2c;
-    color: #e82c2c; }
-  .create-scheme-modal .modal-body__cancel-button:active, .delet-scheme-modal .modal-body__cancel-button:active {
-    background-color: white; }
+  .create-item-modal .item-modal__header, .delete-item-modal .item-modal__header {
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: 200; }
+  .create-item-modal .item-modal__content .item-modal__text, .delete-item-modal .item-modal__content .item-modal__text {
+    padding: 10px 0px 40px 0px; }
+  .create-item-modal .item-modal__content .item-modal__create-button, .delete-item-modal .item-modal__content .item-modal__create-button {
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-in;
+    -moz-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    border: none;
+    background-color: transparent;
+    border: 1px solid #00b1ee;
+    padding: 10px 50px;
+    font-size: 12px;
+    font-weight: 200;
+    color: #00b1ee;
+    outline: none;
+    float: right;
+    margin-left: 20px;
+    height: 39px;
+    position: relative; }
+    .create-item-modal .item-modal__content .item-modal__create-button:hover, .delete-item-modal .item-modal__content .item-modal__create-button:hover {
+      border: 1px solid #006588;
+      color: #006588; }
+    .create-item-modal .item-modal__content .item-modal__create-button:active, .delete-item-modal .item-modal__content .item-modal__create-button:active {
+      background-color: #bbeeff; }
+  .create-item-modal .item-modal__content .item-modal__cancel-button, .delete-item-modal .item-modal__content .item-modal__cancel-button {
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-in;
+    -moz-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    border: none;
+    background-color: transparent;
+    border: 1px solid #ed5a5a;
+    padding: 10px 50px;
+    font-size: 12px;
+    font-weight: 200;
+    color: #ed5a5a;
+    outline: none;
+    float: right;
+    margin-left: 20px;
+    height: 39px; }
+    .create-item-modal .item-modal__content .item-modal__cancel-button:hover, .delete-item-modal .item-modal__content .item-modal__cancel-button:hover {
+      border: 1px solid #cb1616;
+      color: #cb1616; }
+    .create-item-modal .item-modal__content .item-modal__cancel-button:active, .delete-item-modal .item-modal__content .item-modal__cancel-button:active {
+      background-color: white; }
 
-.delet-scheme-modal .modal-body__content {
-  padding-bottom: 40px; }
+/*
 
+.create-scheme-modal {
+  .modal-body {
+    overflow: hidden;
+  }
+
+  .form-group {
+    margin-bottom: 40px;
+  }
+
+
+  .modal-title {
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: 200;
+  }
+
+
+}
+
+.delet-scheme-modal {
+  @extend .create-scheme-modal;
+
+  .modal-body__content {
+    padding-bottom: 40px;
+  }
+}
+*/
 .user-list__widget, .patient-summery__widget, .patient-soap__widget, .patient-journal__widget, .builder__widget {
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);

@@ -192,19 +192,35 @@
   width: 50%;
 }
 
+.patient-soap__item--container {
+  &.sub-item {
+    border-left: 20px darken($subquestion-background-color, 30%) solid;
+  }
+}
+
 .patient-soap__item {
   padding: 5px 0 5px 0;
   border-bottom: 1px dotted $blue;
   color: $icon-dark-blue;
   font-size: 12px;
   font-weight: 200;
+
+  .sub-item > & {
+    padding-left: 10px;
+    background-color: $subquestion-background-color;
+  }
 }
 
 .patient-soap__item--question {
+  @include calc("width", "50%");
+
   display: inline-block;
-  width: 50%;
   vertical-align: top;
   padding: 10px 0 10px 0;
+
+  .sub-item & {
+    @include calc("width", "50% - 20px");
+  }
 }
 
 .patient-soap__item--answer {

@@ -1,6 +1,6 @@
 //Bootstrap input override
 
-input {
+input, select {
   border-radius: 0 !important;
   font-weight: 200 !important;
 
@@ -11,8 +11,10 @@ input {
 }
 
 .form-group {
+  margin-bottom: 30px !important;
+
   label {
-    font-weight: 200 !important;
+    //font-weight: 200 !important;
   }
 }
 

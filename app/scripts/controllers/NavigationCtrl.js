@@ -42,82 +42,15 @@ angular.module('waitingRoomApp')
         };
 
         $rootScope.$on("event:update_content_tree", function () {
-            console.log("update content tree");
             $scope.baseSchemes.getList().then(function (schemes) {
                 $scope.schemes = schemes;
-                console.log("content tree up to date");
+                console.log("Updating content....");
             });
         });
 
         $scope.$on('$routeChangeStart', function () {
             $scope.show_content_tree = false;
         });
-
-        $scope.createScheme = function (form) {
-            $scope.submitted = true;
-
-            if (form.$valid) {
-
-                var scheme = {};
-                scheme.Title = form.title.$modelValue;
-                $scope.saving_scheme = true;
-
-                $scope.baseSchemes.post(scheme).then(function (scheme) {
-                    $scope.saving_scheme = false;
-
-                    $rootScope.$broadcast("event:update_content_tree");
-                    $scope.hideModal();
-                    $location.path('scheme-builder/' + scheme._id);
-                }, function () {
-                    console.log("Error occured when creating new scheme");
-                });
-
-            }
-        };
-
-        var create_scheme_modal = $modal({
-            scope: $scope,
-            template: 'partials/modals/create-scheme-modal.html',
-            show: false
-        });
-
-        $scope.showModal = function () {
-            create_scheme_modal.$promise.then(create_scheme_modal.show);
-        };
-
-        $scope.hideModal = function () {
-            create_scheme_modal.$promise.then(create_scheme_modal.hide);
-        };
-
-        var delete_modal = $modal({
-            scope: $scope,
-            template: 'partials/modals/delete-modal.html',
-            show: false
-        });
-
-        $scope.showDeleteModal = function (item, item_type) {
-
-            $scope.delete_item = {};
-            $scope.delete_item.type = item_type;
-            $scope.delete_item.item = item;
-
-            delete_modal.$promise.then(delete_modal.show);
-        };
-
-        $scope.hideDeleteModal = function () {
-            delete_modal.$promise.then(delete_modal.hide);
-        };
-
-        $scope.deleteContentItem = function () {
-            $scope.is_delete_item = true;
-
-            Restangular.one($scope.delete_item.type, $scope.delete_item.item._id).remove().then(function () {
-                console.log("Delete callback");
-                $rootScope.$broadcast("event:update_content_tree");
-                $scope.is_delete_item = false;
-                $scope.hideDeleteModal();
-            });
-        };
 
         $scope.content_tree = {
             accept: function(sourceNodeScope, destNodesScope) {
@@ -140,4 +73,29 @@ angular.module('waitingRoomApp')
             }
         };
 
+        $scope.openModal = function (type, parent_id) {
+            console.log(name);
+            $modal.open({
+                templateUrl: 'partials/modals/create-modal.html',
+                controller: function ($scope, $modalInstance, ModalService) {
+                    $scope.ModalService = ModalService.init($modalInstance);
+                    $scope.type = type;
+                    $scope.parent_id = parent_id;
+                }
+            });
+        };
+
+
+        $scope.openDeleteModal = function (type, name, item_id) {
+
+            $modal.open({
+                templateUrl: 'partials/modals/delete-modal.html',
+                controller: function ($scope, $modalInstance, ModalService) {
+                    $scope.ModalService = ModalService.init($modalInstance);
+                    $scope.type = type;
+                    $scope.name = name;
+                    $scope.item_id = item_id;
+                }
+            });
+        };
     });
