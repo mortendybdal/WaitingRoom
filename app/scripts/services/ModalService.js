@@ -59,6 +59,23 @@ angular.module('waitingRoomApp')
             });
         }
 
+        function createSubquestion (title, parent_id) {
+            var question = {};
+            question.QuestionText = title;
+            question.ParentQuestion = parent_id;
+
+            Restangular.all("questions").post(question).then(function (question) {
+                console.log(question);
+                _this.is_loading = false;
+                _this.is_submitted = false;
+                _this.modal_instance.close();
+                $rootScope.$broadcast("event:update_content_tree");
+                $location.path('builder/question/' + question._id);
+            }, function () {
+                console.log("Error occured when creating new scheme");
+            });
+        }
+
         //=============DELETE=============
 
         function deleteScheme (item_id) {
@@ -120,6 +137,9 @@ angular.module('waitingRoomApp')
                                 break;
                             case "Question":
                                 createQuestion(title, parent_id);
+                                break;
+                            case "Subquestion":
+                                createSubquestion(title, parent_id);
                                 break;
                             default:
                                 throw "The content type " + type + "is not recoqnized.";

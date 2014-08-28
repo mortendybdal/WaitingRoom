@@ -2,25 +2,59 @@
     .builder__widget
         .builder__widget-header
             .builder__widget-actions
-                button.builder__add-sub-item(ng-click="openModal('Question', question._id)")
+                button.builder__add-sub-item(ng-click="openModal('Subquestion', question._id)", ng-hide="question.ParentQuestion")
                     span.glyphicon.glyphicon-plus
-                    span Add Question
+                    span Add Subquestion
 
             .builder__widget-title {{question.QuestionText}}
 
         .builder__widget-content
             form(name='question_form', novalidate='novalidate')
-                .form-group(ng-class="{'has-error':question_form.question_text.$error.required && submitted}")
+                .form-group(ng-class="{'has-error':question_form.text.$error.required && submitted}")
                     label Question
-                    input.form-control(type='text', name='question_text', ng-model='question.QuestionText', placeholder="Question Text", required)
+                    input.form-control(type='text', name='text', ng-model='question.QuestionText', placeholder="Question Text", required)
 
-                    p.help-block.has-error(ng-show='question_form.question_text.$error.required && submitted') Please enter a question
+                    p.help-block.has-error(ng-show='question_form.text.$error.required && submitted') Please enter a question
 
-                .form-group(ng-class="{'has-error':question_form.question_type.$error.required && submitted}")
+                .form-group(ng-class="{'has-error':question_form.type.$error.required && submitted}")
                     label Type
-                    select.form-control(type='text', name='question_type', ng-model='question.Type', ng-options="opt as opt.label for opt in options", placeholder="Question Type", required)
+                    select.form-control(name='type', ng-model='question.Type', ng-options="opt as opt.Label for opt in options", placeholder="Question Type", required)
 
-                    p.help-block.has-error(ng-show='question_form.question_type.$error.required && submitted') Please enter a question type
+                    p.help-block.has-error(ng-show='question_form.type.$error.required && submitted') Please enter a question type
+
+                .form-group(ng-class="{'has-error':question_form.type.$error.required && submitted}")
+                    label JounalText - <em>formating journal text</em>
+                    .builder__widget-journaltext.form-control
+                        span.journal_fix(type="text", contenteditable="true", name="journal_prefix", ng-model="journal_prefix", strip-br="true", select-non-editable="true", ng-focus="prefixFocus()", ng-blur="prefixBlur()") &#8203
+                        span.jounal_answer [ Svar ]
+                        span.journal_fix(type="text", contenteditable="true", name="journal_suffix", ng-model="journal_suffix", strip-br="true", select-non-editable="true", ng-focus="suffixFocus()", ng-blur="suffixBlur()") &#8203
+
+                .form-group.builder__widget-option(ng-show="question.Type.Value === 'radio-list' || question.Type.Value === 'select-list'")
+                    label Option
+
+                    .builder__widget-option-row.row(ng-repeat="option in question.Options")
+                        .col-xs-6
+                            input.form-control(type='text', name='key', ng-model='option.Key', placeholder="Key")
+
+                        .col-xs-6
+                            input.form-control(type='text', name='value', ng-model='option.Value', placeholder="Value")
+
+                    .builder__widget-option-row.row
+                        .col-xs-6
+                            .builder__widget-add-option-button(ng-click="addOption()")
+                                span.glyphicon.glyphicon-plus
+                                span Add option
+                        .col-xs-6
+                            .builder__widget-add-option-button(ng-click="addOption()")
+                                span.glyphicon.glyphicon-plus
+                                span Add option
+
+                .form-group(ng-class="{'has-error':question_form.correct_answer.$error.required && submitted}", ng-show="question.ParentQuestion && question.ParentQuestion.Options")
+                    label Show this question if the answer to <em>"{{question.ParentQuestion.QuestionText}}"</em> is:
+                    select.form-control(name='correct_answer', ng-model='question.CorrectAnswer', ng-options="opt as opt.Value for opt in question.ParentQuestion.Options", placeholder="Question Type")
+
+                    p.help-block.has-error(ng-show='question_form.correct_answer.$error.required && submitted') Please select an answer that should be resolved for this question to be shown.
+
 
         .builder__widget-footer
             button.builder__save-button(ng-click='save(question_form)')

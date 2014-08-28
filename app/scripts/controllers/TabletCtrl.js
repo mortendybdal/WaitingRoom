@@ -11,6 +11,48 @@ angular.module('waitingRoomApp')
         $scope.basePatients = Restangular.all("patients");
         $scope.baseAnswers = Restangular.all("answers");
 
+        function injectSubquestions() {
+            var updated_questions = [],
+                sort_order = 0;
+
+            //TODO - RENS DET HER SLAGER KODE OG FÅ DEN FØRSTE DEL DER FJERNER UØNSKET QUESTIONS TIL AT VIRKE!!
+
+            _.forEach($scope.questions, function (question) {
+                console.log("Clean out procedure", question);
+                if(question && question.ParentQuestion) {
+                    var parent = _.find($scope.questions, function (q) { return q._id === question.ParentQuestion;});
+
+                    if(parent.Answer && parent.Answer !== question.CorrectAnswer.Value) {
+                        _.remove($scope.questions, function (q) { return q._id === question._id});
+                    }
+                }
+            });
+
+
+            _.forEach(_.sortBy($scope.questions, "SortOrder"), function (question) {
+                question.SortOrder = sort_order;
+                sort_order++;
+                updated_questions.push(question);
+
+                _.forEach(_.sortBy(question.questions, "SortOrder"), function (subquestion) {
+
+                    if(subquestion.CorrectAnswer && question.Answer) {
+
+                        if(question.Answer === subquestion.CorrectAnswer.Value && question._id !== subquestion._id) {
+                            if(!_.find($scope.questions, function(q) {return q._id === subquestion._id;})) {
+                                subquestion.SortOrder = sort_order;
+                                sort_order++;
+                                updated_questions.push(subquestion);
+                            }
+                        }
+                    }
+                });
+
+            });
+
+            $scope.questions = updated_questions;
+        }
+
         $scope.baseSchemes.getList().then(function(schemes) {
             $scope.schemes = schemes;
             $timeout(function () {
@@ -19,11 +61,9 @@ angular.module('waitingRoomApp')
         });
 
         $scope.nextSlide = function (question) {
-            $scope.index++;
-            $scope.direction = "left";
-
-            console.log(question);
             if(question) {
+                injectSubquestions();
+
                 var answer = {
                     AnswerText: question.Answer,
                     Question_id: question._id,
@@ -36,6 +76,11 @@ angular.module('waitingRoomApp')
                     console.log("There was an error saving");
                 });
             }
+
+            $timeout(function () {
+                $scope.index++;
+                $scope.direction = "left";
+            }, 0);
         };
 
         $scope.backSlide = function () {
@@ -67,4 +112,6 @@ angular.module('waitingRoomApp')
                 return 3;
             }
         };
+
+
     });

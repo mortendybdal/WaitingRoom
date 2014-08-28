@@ -11,27 +11,27 @@
                             .tablet-page__scheme-slide(ng-repeat="scheme in schemes")
                                 .tablet-page__scheme(ng-click="createPatient(scheme)") {{scheme.Title}}
 
-        .tablet-page(ng-repeat="question in questions", ng-class="{'slide-left_in-animation': index === $index && direction === 'left', 'slide-left_out-animation': index === $index + 1 && direction === 'left', 'slide-right_in-animation': index === $index && direction === 'right', 'slide-right_out-animation': index === $index - 1 && direction === 'right'}")
+        .tablet-page(ng-repeat="question in questions track by $index", ng-class="{'slide-left_in-animation': index === $index && direction === 'left', 'slide-left_out-animation': index === $index + 1 && direction === 'left', 'slide-right_in-animation': index === $index && direction === 'right', 'slide-right_out-animation': index === $index - 1 && direction === 'right'}")
             .tablet-page__question {{question.QuestionText}}
 
             // ==> Single-Text
-            .tablet-page__answer.single-text(ng-if="question.Type === 'single-text'", ng-keypress="onKeyPressed($event)")
+            .tablet-page__answer.single-text(ng-if="question.Type.Value === 'single-text'", ng-keypress="onKeyPressed($event)")
                 .tablet-page__answer__inner
                     input(ng-model="question.Answer", placeholder="Enter text")
                     .single-text__border
 
 
             // ==> Multi-text
-            .tablet-page__answer.multi-text(ng-if="question.Type === 'multi-text'", ng-keypress="onKeyPressed($event)")
+            .tablet-page__answer.multi-text(ng-if="question.Type.Value === 'multi-text'", ng-keypress="onKeyPressed($event)")
                 .tablet-page__answer__inner
                     textarea(ng-model="question.Answer", rows=3, placeholder="Enter Text")
                     .multi-text__border-left
                     .multi-text__border-right
 
             // ==> Radio-List & Selected-List
-            .tablet-page__answer.radio-list(ng-if="question.Type === 'radio-list' || question.Type === 'select-list'")
+            .tablet-page__answer.radio-list(ng-if="question.Type.Value === 'radio-list' || question.Type.Value === 'select-list'")
                 .tablet-page__answer__inner
-                    slick(slides-to-show="{{getNumberOfSlidesShown(question.Options)}}", dots="true", slides-to-scroll="3", arrows="false")
+                    slick(slides-to-show="{{getNumberOfSlidesShown(question.Options)}}", dots="true", slides-to-scroll="3", arrows="false", init-onload=true, data="question")
                         .tablet-page__answer-option(ng-repeat="option in question.Options")
                             .tablet-page__answer-option--inner(ng-click="question.Answer = option.Value", ng-class="{active: question.Answer === option.Value}") {{option.Value}}
 
