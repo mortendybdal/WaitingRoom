@@ -41,7 +41,6 @@ angular.module('waitingRoomApp', [
             })
             .when('/builder/scheme/:id', {
                 templateUrl: 'partials/builder/scheme-builder',
-                controller: 'SchemeBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn();
@@ -50,7 +49,6 @@ angular.module('waitingRoomApp', [
             })
             .when('/builder/step/:id', {
                 templateUrl: 'partials/builder/step-builder',
-                controller: 'StepBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn();
@@ -59,7 +57,6 @@ angular.module('waitingRoomApp', [
             })
             .when('/builder/question/:id', {
                 templateUrl: 'partials/builder/question-builder',
-                controller: 'QuestionBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn();
