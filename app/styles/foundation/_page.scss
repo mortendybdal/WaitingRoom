@@ -15,20 +15,11 @@ body {
   left: 70px;
 
   .content-view {
-    @include transition-duration(0.2s);
-    @include transition-timing-function(liniar);
-
-    opacity: 1;
     position: absolute;
     display: block;
     left: 20px;
     right: 20px;
     top: 20px;
-
-    &.fade {
-      @include transition(none);
-      opacity: 0;
-    }
   }
 }
 
