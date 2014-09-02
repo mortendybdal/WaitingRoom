@@ -81,7 +81,7 @@
   .builder__widget-option {
 
     label {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .builder__widget-option-row {
@@ -121,6 +121,7 @@
 
   .builder__widget-journaltext {
     padding: 0;
+    border-radius: 0;
 
     .journal_fix {
       padding: 6px;
