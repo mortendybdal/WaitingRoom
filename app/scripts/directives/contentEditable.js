@@ -7,7 +7,6 @@ angular.module('waitingRoomApp')
             require: '?ngModel',
             link: function (scope, element, attrs, ngModel) {
                 // don't do anything unless this is actually bound to a model
-                console.log("WAS IS initialized");
 
                 if (!ngModel) {
                     return;

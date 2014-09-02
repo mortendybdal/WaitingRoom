@@ -15,17 +15,6 @@ body {
   display: inline-block;
   width: calc(100% - 70px);
   left: 70px;
-
-  .content-view {
-    @include transition-duration(0.2s);
-    @include transition-timing-function(liniar);
-
-    opacity: 1;
-
-    &.fade {
-      opacity: 0;
-    }
-  }
 }
 
 .tablet-design {
