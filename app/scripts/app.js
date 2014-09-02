@@ -12,7 +12,8 @@ angular.module('waitingRoomApp', [
         'slick',
         'restangular',
         'ui.tree',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'angular-loading-bar'
     ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
 

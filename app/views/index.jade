@@ -19,6 +19,7 @@ html.no-js
     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -38,10 +39,10 @@ html.no-js
       ng-include(src="'partials/navigation'", ng-show="!hide_navigation_menu")
 
       .content
-        .content-view(ng-view, ng-class="{fade: is_loading_content}")
+        .content-view(ng-view)
 
-        .content-loader__container(ng-class="{fade: !is_loading_content}")
-            .content-loader(ng-class="{is_white: hide_navigation_menu}")
+        //.content-loader__container(ng-class="{fade: !is_loading_content}")
+        //    .content-loader(ng-class="{is_white: hide_navigation_menu}")
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.
@@ -71,6 +72,7 @@ html.no-js
     <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
