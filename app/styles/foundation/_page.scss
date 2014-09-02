@@ -17,7 +17,7 @@ body {
   left: 70px;
 
   .content-view {
-    @include transition-duration(0.2s);
+    @include transition-duration(0s);
     @include transition-timing-function(liniar);
 
     opacity: 1;
@@ -28,6 +28,7 @@ body {
     top: 20px;
 
     &.fade {
+      @include transition-duration(0.5s);
       opacity: 0;
     }
   }
