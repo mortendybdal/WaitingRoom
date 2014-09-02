@@ -15,7 +15,7 @@ angular.module('waitingRoomApp', [
         'ui.bootstrap',
         'angular-loading-bar'
     ])
-    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+    .config(function ($routeProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider) {
 
         //================================================
         // Define all the routes
@@ -93,6 +93,7 @@ angular.module('waitingRoomApp', [
             });
 
         $locationProvider.html5Mode(true);
+        cfpLoadingBarProvider.includeSpinner = false;
 
         // Intercept 401s and redirect you to login
         $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
@@ -120,6 +121,7 @@ angular.module('waitingRoomApp', [
         $rootScope.$on('$routeChangeStart', function (event, next) {
 
             $rootScope.$broadcast("event:load_start");
+
 
             if (next.authenticate && !Auth.isLoggedIn()) {
                 $location.path('/login');

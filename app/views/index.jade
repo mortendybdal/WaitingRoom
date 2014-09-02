@@ -39,10 +39,10 @@ html.no-js
       ng-include(src="'partials/navigation'", ng-show="!hide_navigation_menu")
 
       .content
-        .content-view(ng-view)
+        .content-view(ng-view, ng-hide="is_loading_content")
 
-        //.content-loader__container(ng-class="{fade: !is_loading_content}")
-        //    .content-loader(ng-class="{is_white: hide_navigation_menu}")
+        .content-loader__container(ng-hide="!is_loading_content")
+            .content-loader(ng-class="{is_white: hide_navigation_menu}")
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.
