@@ -15,6 +15,22 @@ body {
   display: inline-block;
   width: calc(100% - 70px);
   left: 70px;
+
+  .content-view {
+    @include transition-duration(0.2s);
+    @include transition-timing-function(liniar);
+
+    opacity: 1;
+    position: absolute;
+    display: block;
+    left: 20px;
+    right: 20px;
+    top: 20px;
+
+    &.fade {
+      opacity: 0;
+    }
+  }
 }
 
 .tablet-design {
