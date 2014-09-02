@@ -5,8 +5,6 @@ html {
 body {
   padding: 0px;
   background-color: $main-background;
-
-
 }
 
 .content {
@@ -17,7 +15,7 @@ body {
   left: 70px;
 
   .content-view {
-    @include transition-duration(0.5s);
+    @include transition-duration(0.2s);
     @include transition-timing-function(liniar);
 
     opacity: 1;

@@ -9,6 +9,6 @@ angular.module('waitingRoomApp')
         $rootScope.$on("event:load_stop", function () {
             $timeout(function () {
                 $scope.is_loading_content = false;
-            }, 600);
+            }, 300);
         });
    });
