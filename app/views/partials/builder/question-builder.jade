@@ -1,12 +1,12 @@
 .builder
     .builder__widget
-        .builder__widget-header
-            .builder__widget-actions
+        .widget-header
+            .widget-actions
                 button.builder__add-sub-item(ng-click="openModal('Subquestion', question._id)", ng-hide="question.ParentQuestion")
                     span.glyphicon.glyphicon-plus
                     span Add Subquestion
 
-            .builder__widget-title {{question.QuestionText}}
+            .widget-title {{question.QuestionText}}
 
         .builder__widget-content
             form(name='question_form', novalidate='novalidate')

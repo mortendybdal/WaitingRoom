@@ -67,6 +67,24 @@ angular.module('waitingRoomApp', [
                     }
                 }
             })
+            .when('/customers', {
+                templateUrl: 'partials/customers/clinics',
+                controller: 'ClinicsCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn();
+                    }
+                }
+            })
+            .when('/customer/clinic/:id', {
+                templateUrl: 'partials/customers/doctors',
+                controller: 'DoctorsCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn();
+                    }
+                }
+            })
             .when('/tablet', {
                 templateUrl: 'partials/tablet',
                 controller: 'TabletCtrl'

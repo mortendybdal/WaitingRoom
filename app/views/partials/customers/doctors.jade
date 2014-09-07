@@ -1,0 +1,31 @@
+.doctors
+
+    .clinic__widget
+        .clinic__widget-name
+            span.ion-ios7-pulse-strong
+            span {{clinic.Name}}
+
+    .doctor-list__widget
+        .widget-header
+            .widget-actions
+                button.clinic__add-customer(ng-click="openModal()")
+                    span.icon.ion-person-add
+                    span Add Doctor
+
+            .widget-title Doctors Overview
+
+        .doctor-list__header
+            .doctor-item__row.lable-icon
+            .doctor-item__row.lable-name Doctor
+            .doctor-item__row.lable-role Role
+
+        .doctor-list__content
+            .doctor-item(ng-repeat="user in users")
+                .doctor-item__row.lable-icon
+                    i.ion-man
+                .doctor-item__row.lable-name {{user.name}}
+                .doctor-item__row.lable-role {{user.role}}
+                .doctor-item__row.lable-edit
+                    i.ion-chevron-down
+
+                .doctor-item__edit

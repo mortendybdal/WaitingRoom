@@ -1,0 +1,95 @@
+.clinic__widget {
+  @extend %widget-box;
+
+  .clinic__widget-name {
+    font-size: 40px;
+    font-weight: 100;
+
+    span {
+      margin-right: 10px;
+
+      &:first-child {
+        color: $blue;
+      }
+    }
+  }
+}
+
+.doctor-list__widget {
+  @extend %widget-box;
+}
+
+.doctor-list__header {
+  @extend .user-list__header;
+}
+
+.doctor-item{
+  position: relative;
+}
+
+.doctor-item__row {
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  color: $blue;
+
+
+
+  &.lable-icon {
+    width: 50px;
+    text-align: center;
+
+    i {
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+
+  &.lable-name {
+    width: 50%;
+    vertical-align: middle;
+  }
+
+  &.lable-role {
+    @include calc("width", "50% - 100px");
+
+    vertical-align: middle;
+  }
+
+  &.lable-edit {
+    vertical-align: middle;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    text-align: center;
+
+    i {
+      line-height: 53px;
+      font-size: 20px;
+    }
+
+    &:hover {
+      background-color: $blue-hover;
+    }
+
+    &:active {
+      background-color: darken($blue-hover, 10%);
+    }
+  }
+}
+
+.doctor-item {
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in);
+
+  padding: 12px 0;
+  border-bottom: 1px dotted $blue;
+  cursor: pointer;
+  display: block;
+
+  .user-item__row {
+    font-weight: 200;
+  }
+}

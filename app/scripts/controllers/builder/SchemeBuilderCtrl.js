@@ -13,8 +13,6 @@ angular.module('waitingRoomApp')
         $scope.save = function (form) {
             $scope.submitted = true;
 
-            console.log(form);
-
             if (form.$valid) {
                 $scope.updating_scheme = true;
 

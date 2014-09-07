@@ -46,7 +46,7 @@
     display: block;
 
     &:hover {
-      span {
+      span, i {
         color: white;
       }
     }
@@ -56,6 +56,15 @@
       @include transition-timing-function(ease-in);
       line-height: 70px;
       font-size: 25px;
+      color: $icon-dark-blue;
+      pointer-events: none;
+    }
+
+    i {
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease-in);
+      line-height: 70px;
+      font-size: 35px;
       color: $icon-dark-blue;
       pointer-events: none;
     }

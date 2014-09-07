@@ -1,12 +1,12 @@
 .builder
     .builder__widget
-        .builder__widget-header
-            .builder__widget-actions
+        .widget-header
+            .widget-actions
                 button.builder__add-sub-item(ng-click="openModal('Step', scheme._id)")
                     span.glyphicon.glyphicon-plus
                     span Add Step
 
-            .builder__widget-title {{scheme.Title}}
+            .widget-title {{scheme.Title}}
 
         .builder__widget-content
             form(name='scheme_form', novalidate='novalidate')

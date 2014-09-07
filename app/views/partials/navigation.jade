@@ -7,9 +7,11 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
         .navigation__menu
             a.navigation__menu-item(ng-href="/", title="Home")
                 span.glyphicon.glyphicon-home
+            a.navigation__menu-item(ng-href="/customers", title="Customers")
+                i.ion-person-stalker
             .navigation__menu-item.navigation__menu-item--builder(ng-click="showContentTree()", title="Builder")
                 span.glyphicon.glyphicon-list-alt
-            a.navigation__menu-item(ng-href="/settings", title="Home")
+            a.navigation__menu-item(ng-href="/settings", title="Settings")
                 span.glyphicon.glyphicon-cog
             a.navigation__menu-item(ng-click="logout()", title="Logout")
                 span.glyphicon.glyphicon-off

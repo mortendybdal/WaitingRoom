@@ -83,34 +83,10 @@
   @extend .create-item-modal;
 }
 
-
-
-/*
-
-.create-scheme-modal {
-  .modal-body {
-    overflow: hidden;
-  }
-
-  .form-group {
-    margin-bottom: 40px;
-  }
-
-
-  .modal-title {
-    margin-bottom: 20px;
-    font-size: 25px;
-    font-weight: 200;
-  }
-
-
+.create-clinic-modal {
+  @extend .create-item-modal;
 }
 
-.delet-scheme-modal {
-  @extend .create-scheme-modal;
-
-  .modal-body__content {
-    padding-bottom: 40px;
-  }
+.create-doctor-modal {
+  @extend .create-item-modal;
 }
-*/

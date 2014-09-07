@@ -94,7 +94,7 @@ angular.module('waitingRoomApp')
 
         $scope.createPatient = function (scheme) {
             //$rootScope.$broadcast("event:load_start");
-            $scope.questions = _.find(scheme.steps, {'Title': "Subjective"}).questions;
+            $scope.questions = _.find(scheme.steps, {'SortOrder': 0}).questions;
             $scope.nextSlide();
 
             $scope.basePatients.post().then(function(patient) {
