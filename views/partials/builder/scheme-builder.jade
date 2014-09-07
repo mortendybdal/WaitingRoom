@@ -1,0 +1,24 @@
+.builder
+    .builder__widget
+        .widget-header
+            .widget-actions
+                button.builder__add-sub-item(ng-click="openModal('Step', scheme._id)")
+                    span.glyphicon.glyphicon-plus
+                    span Add Step
+
+            .widget-title {{scheme.Title}}
+
+        .builder__widget-content
+            form(name='scheme_form', novalidate='novalidate')
+                .form-group(ng-class="{'has-error':scheme_form.title.$error.required && submitted}")
+                    label Title
+                    input.form-control(type='text', name='title', ng-model='scheme.Title', required)
+
+                    p.help-block.has-error(ng-show='scheme_form.title.$error.required && submitted') Please enter a title
+
+        .builder__widget-footer
+            button.builder__save-button(ng-click='save(scheme_form)')
+                span.glyphicon.glyphicon-cloud-upload
+                .element-loader__container(ng-class="{fade: updating_scheme}")
+                    .element-loader.is_white
+                span Save Scheme

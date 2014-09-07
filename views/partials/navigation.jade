@@ -1,0 +1,63 @@
+nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
+    .navigation
+        .navigation__profil
+            .navigation__profil-circle
+                span.glyphicon.glyphicon-user
+
+        .navigation__menu
+            a.navigation__menu-item(ng-href="/", title="Home")
+                span.glyphicon.glyphicon-home
+            a.navigation__menu-item(ng-href="/customers", title="Customers")
+                i.ion-person-stalker
+            .navigation__menu-item.navigation__menu-item--builder(ng-click="showContentTree()", title="Builder")
+                span.glyphicon.glyphicon-list-alt
+            a.navigation__menu-item(ng-href="/settings", title="Settings")
+                span.glyphicon.glyphicon-cog
+            a.navigation__menu-item(ng-click="logout()", title="Logout")
+                span.glyphicon.glyphicon-off
+
+    .scheme-builder__menu(ng-class="{active: show_content_tree}", off-click='show_content_tree = false', off-click-filter='.navigation__menu-item--builder, .modal')
+        button.scheme-builder__create-scheme(ng-click="openModal('Scheme', null)") Create Scheme
+
+        .content-tree(ui-tree="content_tree", data-empty-place-holder-enabled="false")
+            .content-tree--container(ui-tree-nodes="", ng-model="schemes", data-type="Schemes")
+                .content-tree__item(ng-repeat="scheme in schemes", ui-tree-node)
+                    span.glyphicon(ng-click="expandContentTree(scheme)",
+                                   ng-class="{'glyphicon-chevron-right': !contentItemIsOpen(scheme) && scheme.steps.length > 0, 'glyphicon-chevron-down': contentItemIsOpen(scheme) && scheme.steps.length > 0}")
+                    span.content-tree__item-icon.glyphicon.glyphicon-file
+                    .content-tree__item-link
+                        a(ng-href="builder/scheme/{{scheme._id}}") {{scheme.Title}}
+                        span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal('Scheme', scheme.Title, scheme._id)")
+                        span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
+
+                    .content-tree--container(ui-tree-nodes="", ng-model="scheme.steps", data-type="Steps")
+                        .content-tree__item(ng-repeat="step in scheme.steps", ng-show="contentItemIsOpen(scheme)", ui-tree-node)
+                            span.glyphicon(ng-click="expandContentTree(step)", ng-class="{'glyphicon-chevron-right': !contentItemIsOpen(step) && step.questions.length > 0, 'glyphicon-chevron-down': contentItemIsOpen(step) && step.questions.length > 0}")
+                            span.content-tree__item-icon.glyphicon.glyphicon-file
+                            .content-tree__item-link
+                                a(ng-href="builder/step/{{step._id}}") {{step.Title}}
+                                span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal('Step', step.Title, step._id)")
+                                span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
+
+                            .content-tree--container(ui-tree-nodes="", ng-model="step.questions", data-type="Questions")
+                                .content-tree__item(ng-repeat="question in step.questions", ng-show="contentItemIsOpen(step)", ui-tree-node)
+                                    span.glyphicon(ng-click="expandContentTree(question)", ng-class="{'glyphicon-chevron-right': !contentItemIsOpen(question) && question.questions.length > 0, 'glyphicon-chevron-down': contentItemIsOpen(question) && question.questions.length > 0}")
+                                    span.content-tree__item-icon.glyphicon.glyphicon-file
+                                    .content-tree__item-link
+                                        a(ng-href="builder/question/{{question._id}}") {{question.QuestionText}}
+                                        span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal('Question', question.QuestionText, question._id)")
+                                        span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
+
+                                    .content-tree--container(ui-tree-nodes="", ng-model="question.questions", data-type="Questions")
+                                        .content-tree__item(ng-repeat="subquestion in question.questions", ng-show="contentItemIsOpen(question)", ui-tree-node)
+                                            span.glyphicon
+                                            span.content-tree__item-icon.glyphicon.glyphicon-file
+                                            .content-tree__item-link
+                                                a(ng-href="builder/question/{{subquestion._id}}") {{subquestion.QuestionText}}
+                                                span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal('Question', subquestion.QuestionText, subquestion._id)")
+                                                span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
+
+                                    //.content-tree__item(ng-repeat="question in step.questions")
+                                    //    span.glyphicon
+                                    //    span.content-tree__item-icon.glyphicon.glyphicon-file
+                                    //    a {{question.QuestionText}}
