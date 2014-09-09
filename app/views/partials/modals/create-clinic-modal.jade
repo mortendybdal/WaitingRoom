@@ -1,19 +1,19 @@
 .create-clinic-modal
-    .item-modal__header Create Clinic
+    .item-modal__header {{d.MODAL_CreateClinic}}
 
     .item-modal__content
 
         form(name='modal_form', novalidate='novalidate')
             .form-group(ng-class="{'has-error':modal_form.name.$error.required && is_submitted}")
-                label Title
+                label {{d.GENERAL_Title}}
                 input.form-control(type='text', name='name', ng-model='clinic.Name', required)
 
-                p.help-block.has-error(ng-show='modal_form.name.$error.required && is_submitted') Please enter a clinic name
+                p.help-block.has-error(ng-show='modal_form.name.$error.required && is_submitted') {{d.MODAL_EnterClinicName}}
 
             button.item-modal__create-button(ng-click="save(modal_form, clinic)")
-                span Create Clinic
+                span {{d.MODAL_CreateClinic}}
                 .element-loader__container(ng-class="{fade: is_loading}")
                     .element-loader
 
-            button.item-modal__cancel-button(ng-click="close()") Cancel
+            button.item-modal__cancel-button(ng-click="close()") {{d.GENERAL_Cancel}}
 

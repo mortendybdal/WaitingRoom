@@ -3,9 +3,9 @@
     .user-list__widget
         .user-list__header
             .user-item__row.lable-icon
-            .user-item__row.lable-scheme Scheme
-            .user-item__row.lable-appointment Time for appointment
-            .user-item__row.lable-submitted Submitted
+            .user-item__row.lable-scheme {{d.FRONTPAGE_Scheme}}
+            .user-item__row.lable-appointment {{d.FRONTPAGE_TimeForAppointment}}
+            .user-item__row.lable-submitted {{d.FRONTPAGE_Submitted}}
 
         .user-list__content
             a.user-item(ng-repeat="patient in patients", ng-href="/patient/subjective/{{patient._id}}")

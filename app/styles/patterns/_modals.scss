@@ -22,6 +22,10 @@
       padding: 10px 0px 40px 0px;
     }
 
+    .row.doctor-item__edit-actions {
+      padding: 10px;
+    }
+
     .item-modal__create-button {
       @include transition-duration(0.2s);
       @include transition-timing-function(ease-in);

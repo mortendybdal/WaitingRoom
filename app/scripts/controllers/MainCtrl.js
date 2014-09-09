@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-   .controller('MainCtrl', function ($scope, $rootScope, $timeout) {
+   .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary) {
         $rootScope.$on("event:load_start", function () {
             $scope.is_loading_content = true;
         });
@@ -11,4 +11,6 @@ angular.module('waitingRoomApp')
                 $scope.is_loading_content = false;
             }, 300);
         });
+
+        $rootScope.d = Dictionary.init('da');
    });

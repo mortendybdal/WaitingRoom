@@ -10,14 +10,18 @@
             .widget-actions
                 button.clinic__add-customer(ng-click="openModal()")
                     span.icon.ion-person-add
-                    span Add Doctor
+                    span {{d.DOCTOR_AddDoctor}}
 
-            .widget-title Doctors Overview
+                button.clinic__add-customer(ng-click="openDeleteClinicModal(clinic)")
+                    span.trash.glyphicon.glyphicon-trash
+                    span {{d.DOCTOR_DeleteClinic}}
+
+            .widget-title {{d.DOCTOR_DoctorsOverview}}
 
         .doctor-list__header
             .doctor-item__row.lable-icon
-            .doctor-item__row.lable-name Doctor
-            .doctor-item__row.lable-role Role
+            .doctor-item__row.lable-name {{d.GENERAL_Doctor}}
+            .doctor-item__row.lable-role {{d.GENERAL_Role}}
 
         .doctor-list__content
             .doctor-item(ng-repeat="user in users")
@@ -25,7 +29,36 @@
                     i.ion-man
                 .doctor-item__row.lable-name {{user.name}}
                 .doctor-item__row.lable-role {{user.role}}
-                .doctor-item__row.lable-edit
+                .doctor-item__row.lable-edit(ng-click="collapsUser(user)")
                     i.ion-chevron-down
 
-                .doctor-item__edit
+                .doctor-item__edit--container(collapse="current_selected_doctor != user")
+                    .doctor-item__edit
+                        form(name='user_form', novalidate='novalidate')
+                            .row
+                                .col-xs-6.form-group(ng-class="{'has-error':user_form.name.$error.required && is_submitted}")
+                                    label {{d.GENERAL_Name}}
+                                    input.form-control(type='text', name='name', ng-model='user.name', required)
+
+                                    p.help-block.has-error(ng-show='user_form.name.$error.required && is_submitted') {{d.DOCTOR_EnterName}}
+
+                                .col-xs-6.form-group(ng-class="{'has-error':user_form.role.$error.required && is_submitted}")
+                                    label {{d.GENERAL_Role}}
+                                    select.form-control(type='text', name='role', ng-model='user.role', ng-options="role as role for role in roles", required)
+                                        option(value="") {{user.role}}
+
+                                    p.help-block.has-error(ng-show='user_form.role.$error.required && is_submitted') {{d.DOCTOR_EnterRole}}
+
+                            .row.doctor-item__edit-actions
+                                .col-xs-12
+                                    button.doctor-item__edit--save-button(ng-click='save(user_form, user)')
+                                        span.glyphicon.glyphicon-cloud-upload
+                                        .element-loader__container(ng-class="{fade: updating_user}")
+                                            .element-loader.is_white
+                                        span {{d.DOCTOR_SaveDoctor}}
+
+                                    button.doctor-item__edit--delete-button(ng-click='openDeleteModal(user)')
+                                        span.trash.glyphicon.glyphicon-trash
+                                        .element-loader__container(ng-class="{fade: updating_user}")
+                                            .element-loader.is_white
+                                        span {{d.DOCTOR_DeleteDoctor}}
