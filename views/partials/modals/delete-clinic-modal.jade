@@ -1,0 +1,14 @@
+.delete-item-modal
+    .item-modal__header {{d.GENERAL_Delete}} {{clinic.Name}}
+
+    .item-modal__content
+
+        .item-modal__text {{d.MODAL_AreYouSure}} <b>"{{clinic.Name}}"</b> <br> {{d.MODAL_AndAllDoctors}}
+
+
+        .item-modal__buttons
+            button.item-modal__create-button(ng-click="delete(clinic._id)")
+                span {{d.GENERAL_Delete}} {{d.CLINIC_Clinic}}
+                .element-loader__container(ng-class="{fade: is_loading}")
+                    .element-loader
+            button.item-modal__cancel-button(ng-click="close()") {{d.GENERAL_Cancel}}

@@ -27,8 +27,8 @@
             .patient-soap__title(ng-class="{is_loading: is_loading_soap_widget}") {{current_step.Title}}
 
             .patient-soap__header
-                .patient-soap__row Question
-                .patient-soap__row Answer
+                .patient-soap__row {{d.PATIENT_Question}}
+                .patient-soap__row {{d.PATIENT_Answer}}
 
 
             .patient-soap__content
@@ -43,14 +43,14 @@
                                                         blur="submit",
                                                         placeholder="Text",
                                                         onaftersave="saveAnswer(soap_item)",
-                                                        ng-if="soap_item.Type.Value === 'single-text'") {{soap_item.Answer || "Empty"}}
+                                                        ng-if="soap_item.Type.Value === 'single-text'") {{soap_item.Answer || d.PATIENT_Empty}}
 
                             // ==> Radio-List
                             .patient-soap__item--answer(editable-radiolist="soap_item.Answer",
                                                         e-ng-options="o.Value as o.Value for o in soap_item.Options"
                                                         buttons="no",
                                                         onaftersave="saveAnswer(soap_item)",
-                                                        ng-if="soap_item.Type.Value === 'radio-list'") {{soap_item.Answer || "Empty"}}
+                                                        ng-if="soap_item.Type.Value === 'radio-list'") {{soap_item.Answer || d.PATIENT_Empty}}
 
                             // ==> Multi-text
                             .patient-soap__item--answer(editable-textarea="soap_item.Answer",
@@ -60,14 +60,14 @@
                                                         blur="submit",
                                                         onaftersave="saveAnswer(soap_item)",
                                                         ng-if="soap_item.Type.Value === 'multi-text'")
-                                pre {{soap_item.Answer || "Empty"}}
+                                pre {{soap_item.Answer || d.PATIENT_Empty}}
 
                             // ==> Select-List
                             .patient-soap__item--answer(editable-select="soap_item.Answer",
                                                         e-ng-options="o as o.Value for o in soap_item.Options"
                                                         buttons="no",
                                                         onaftersave="saveAnswer(soap_item)",
-                                                        ng-if="soap_item.Type.Value  === 'select-list'") {{soap_item.Answer || "Empty"}}
+                                                        ng-if="soap_item.Type.Value  === 'select-list'") {{soap_item.Answer || d.PATIENT_Empty}}
 
                         .patient-soap__item--container.sub-item(ng-repeat="sub_soap_item in soap_item.questions", collapse="soap_item.Answer != sub_soap_item.CorrectAnswer.Value")
                             .patient-soap__item
@@ -79,14 +79,14 @@
                                                         blur="submit",
                                                         placeholder="Text",
                                                         onaftersave="saveAnswer(sub_soap_item)",
-                                                        ng-if="sub_soap_item.Type.Value === 'single-text'") {{sub_soap_item.Answer || "Empty"}}
+                                                        ng-if="sub_soap_item.Type.Value === 'single-text'") {{sub_soap_item.Answer || d.PATIENT_Empty}}
 
                                 // ==> Radio-List
                                 .patient-soap__item--answer(editable-radiolist="sub_soap_item.Answer",
                                                         e-ng-options="o.Value as o.Value for o in sub_soap_item.Options"
                                                         buttons="no",
                                                         onaftersave="saveAnswer(sub_soap_item)",
-                                                        ng-if="sub_soap_item.Type.Value === 'radio-list'") {{sub_soap_item.Answer || "Empty"}}
+                                                        ng-if="sub_soap_item.Type.Value === 'radio-list'") {{sub_soap_item.Answer || d.PATIENT_Empty}}
 
                                 // ==> Multi-text
                                 .patient-soap__item--answer(editable-textarea="sub_soap_item.Answer",
@@ -96,29 +96,29 @@
                                                         blur="submit",
                                                         onaftersave="saveAnswer(sub_soap_item)",
                                                         ng-if="sub_soap_item.Type.Value === 'multi-text'")
-                                                            pre {{sub_soap_item.Answer || "Empty"}}
+                                                            pre {{sub_soap_item.Answer || d.PATIENT_Empty}}
 
                                 // ==> Select-List
                                 .patient-soap__item--answer(editable-select="sub_soap_item.Answer",
                                                         e-ng-options="o as o.Value for o in sub_soap_item.Options"
                                                         buttons="no",
                                                         onaftersave="saveAnswer(sub_soap_item)",
-                                                        ng-if="sub_soap_item.Type.Value  === 'select-list'") {{sub_soap_item.Answer || "Empty"}}
+                                                        ng-if="sub_soap_item.Type.Value  === 'select-list'") {{sub_soap_item.Answer || d.PATIENT_Empty}}
 
 
 
                     .patient-soap__navigation
-                        button.patient-soap__navigation-back(ng-click="backStep()") Back
-                        button.patient-soap__navigation-next(ng-click="nextStep()") Next
+                        button.patient-soap__navigation-back(ng-click="backStep()") {{d.PATIENT_Back}}
+                        button.patient-soap__navigation-next(ng-click="nextStep()") {{d.PATIENT_Next}}
 
     /////////////////////JOURNAL WIDGET///////////////////////
     .patient-journal__widget
-        .patient-journal__copying(ng-if="is_copying_jounal") Copying..
+        .patient-journal__copying(ng-if="is_copying_jounal") {{d.PATIENT_Copying}}
         .patient-journal__header
-            .patient-journal__row Description
+            .patient-journal__row {{d.PATIENT_Description}}
 
         .patient-journal__content
             pre {{journal_text}}
 
         button.patient-journal__copypast-button(clip-copy="copyPast()", clip-click="copyPastEffect()", clip-blue="copyPastEffect()")
-            span Copy/Past
+            span {{d.PATIENT_CopyPast}}
