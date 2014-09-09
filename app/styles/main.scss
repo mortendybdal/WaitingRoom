@@ -1,9 +1,10 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
-$ionicons-font-path: "/bower_components/ionicons/fonts/";
+$ionicons-font-path: "/bower_components/ionicons/fonts/" !default;
 
 //Bower components
 @import "../bower_components/bourbon/dist/bourbon";
 @import "../bower_components/sass-bootstrap/lib/bootstrap";
+@import "../bower_components/ionicons/scss/ionicons";
 
 //FOUNDATION
 @import "foundation/helpers";
