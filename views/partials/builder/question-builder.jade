@@ -2,7 +2,7 @@
     .builder__widget
         .widget-header
             .widget-actions
-                button.builder__add-sub-item(ng-click="openModal(d.GENERAL_SubQuestion, question._id)", ng-hide="question.ParentQuestion")
+                button.builder__add-sub-item(ng-click="openModal('Subquestion', d.GENERAL_SubQuestion, question._id)", ng-hide="question.ParentQuestion")
                     span.glyphicon.glyphicon-plus
                     span {{d.QuestionBuilder_AddSubQuestion}}
 

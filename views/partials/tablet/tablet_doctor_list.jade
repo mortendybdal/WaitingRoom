@@ -1,0 +1,31 @@
+.tablet-doctor-list
+    .tablet__header Vælg din læge
+
+    .tablet__content
+        .doctor-list
+            slick(slides-to-show="3", slides-to-scroll="3", dots="true", arrows="false")
+                .doctor-item(ng-click="selectDoctor()")
+                    .doctor-item__profile-image
+                        span.glyphicon.glyphicon-user
+
+                    .doctor-item__profile-name Ole Mægbæk Madsen
+
+                .doctor-item(ng-click="selectDoctor()")
+                    .doctor-item__profile-image
+                        span.glyphicon.glyphicon-user
+
+                    .doctor-item__profile-name Mathias Mægbæk Madsen
+
+                .doctor-item(ng-click="selectDoctor()")
+                    .doctor-item__profile-image
+                        span.glyphicon.glyphicon-user
+
+                    .doctor-item__profile-name Funch Mægbæk Madsen
+
+                .doctor-item(ng-click="selectDoctor()")
+                    .doctor-item__profile-image
+                        span.glyphicon.glyphicon-user
+
+                    .doctor-item__profile-name Morten Mægbæk Madsen
+
+    .tablet__footer

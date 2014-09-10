@@ -17,7 +17,7 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
                 span.glyphicon.glyphicon-off
 
     .scheme-builder__menu(ng-class="{active: show_content_tree}", off-click='show_content_tree = false', off-click-filter='.navigation__menu-item--builder, .modal')
-        button.scheme-builder__create-scheme(ng-click="openModal(d.GENERAL_Scheme, null)") {{d.NAVIGATION_CreateScheme}}
+        button.scheme-builder__create-scheme(ng-click="openModal('Scheme', d.GENERAL_Scheme, null)") {{d.NAVIGATION_CreateScheme}}
 
         .content-tree(ui-tree="content_tree", data-empty-place-holder-enabled="false")
             .content-tree--container(ui-tree-nodes="", ng-model="schemes", data-type="Schemes")
@@ -27,7 +27,7 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
                     span.content-tree__item-icon.glyphicon.glyphicon-file
                     .content-tree__item-link
                         a(ng-href="builder/scheme/{{scheme._id}}") {{scheme.Title}}
-                        span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal(d.GENERAL_Scheme, scheme.Title, scheme._id)")
+                        span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal('Scheme', d.GENERAL_Scheme, scheme.Title, scheme._id)")
                         span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
 
                     .content-tree--container(ui-tree-nodes="", ng-model="scheme.steps", data-type="Steps")
@@ -36,7 +36,7 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
                             span.content-tree__item-icon.glyphicon.glyphicon-file
                             .content-tree__item-link
                                 a(ng-href="builder/step/{{step._id}}") {{step.Title}}
-                                span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal(d.GENERAL_Step, step.Title, step._id)")
+                                span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal('Step', d.GENERAL_Step, step.Title, step._id)")
                                 span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
 
                             .content-tree--container(ui-tree-nodes="", ng-model="step.questions", data-type="Questions")
@@ -45,7 +45,7 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
                                     span.content-tree__item-icon.glyphicon.glyphicon-file
                                     .content-tree__item-link
                                         a(ng-href="builder/question/{{question._id}}") {{question.QuestionText}}
-                                        span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal(d.GENERAL_Question, question.QuestionText, question._id)")
+                                        span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal('Question', d.GENERAL_Question, question.QuestionText, question._id)")
                                         span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
 
                                     .content-tree--container(ui-tree-nodes="", ng-model="question.questions", data-type="Questions")
@@ -54,7 +54,7 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
                                             span.content-tree__item-icon.glyphicon.glyphicon-file
                                             .content-tree__item-link
                                                 a(ng-href="builder/question/{{subquestion._id}}") {{subquestion.QuestionText}}
-                                                span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal(d.GENERAL_Question, subquestion.QuestionText, subquestion._id)")
+                                                span.trash.glyphicon.glyphicon-trash(ng-click="openDeleteModal('Question', d.GENERAL_SubQuestion, subquestion.QuestionText, subquestion._id)")
                                                 span.sort.glyphicon.glyphicon-sort(ui-tree-handle)
 
 

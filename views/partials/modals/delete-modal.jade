@@ -1,5 +1,5 @@
 .delete-item-modal
-    .item-modal__header {{d.GENERAL_Delete}} {{type}}
+    .item-modal__header {{d.GENERAL_Delete}} {{title}}
 
     .item-modal__content
 
@@ -8,7 +8,7 @@
 
         .item-modal__buttons
             button.item-modal__create-button(ng-click="ModalService.delete(type, item_id)")
-                span {{d.GENERAL_Delete}} {{type}}
+                span {{d.GENERAL_Delete}} {{title}}
                 .element-loader__container(ng-class="{fade: ModalService.isLoading()}")
                     .element-loader
             button.item-modal__cancel-button(ng-click="ModalService.close()") {{d.GENERAL_Cancel}}
