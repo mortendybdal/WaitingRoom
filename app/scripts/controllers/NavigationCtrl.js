@@ -73,26 +73,28 @@ angular.module('waitingRoomApp')
             }
         };
 
-        $scope.openModal = function (type, parent_id) {
+        $scope.openModal = function (type, title, parent_id) {
             console.log(name);
             $modal.open({
                 templateUrl: 'partials/modals/create-modal.html',
                 controller: function ($scope, $modalInstance, ModalService) {
                     $scope.ModalService = ModalService.init($modalInstance);
                     $scope.type = type;
+                    $scope.title = title;
                     $scope.parent_id = parent_id;
                 }
             });
         };
 
 
-        $scope.openDeleteModal = function (type, name, item_id) {
+        $scope.openDeleteModal = function (type, title, name, item_id) {
 
             $modal.open({
                 templateUrl: 'partials/modals/delete-modal.html',
                 controller: function ($scope, $modalInstance, ModalService) {
                     $scope.ModalService = ModalService.init($modalInstance);
                     $scope.type = type;
+                    $scope.title = title;
                     $scope.name = name;
                     $scope.item_id = item_id;
                 }

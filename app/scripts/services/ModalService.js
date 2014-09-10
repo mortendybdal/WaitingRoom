@@ -10,7 +10,6 @@ angular.module('waitingRoomApp')
         //=============CREATE=============
 
         function createScheme (title) {
-            console.log("SCHEME func", title);
             var scheme = {};
             scheme.Title = title;
 
@@ -31,7 +30,6 @@ angular.module('waitingRoomApp')
             step.Scheme_id = parent_id;
 
             Restangular.all("steps").post(step).then(function (step) {
-                console.log(step);
                 _this.is_loading = false;
                 _this.is_submitted = false;
                 _this.modal_instance.close();
@@ -48,7 +46,6 @@ angular.module('waitingRoomApp')
             question.Step = parent_id;
 
             Restangular.all("questions").post(question).then(function (question) {
-                console.log(question);
                 _this.is_loading = false;
                 _this.is_submitted = false;
                 _this.modal_instance.close();
@@ -65,7 +62,6 @@ angular.module('waitingRoomApp')
             question.ParentQuestion = parent_id;
 
             Restangular.all("questions").post(question).then(function (question) {
-                console.log(question);
                 _this.is_loading = false;
                 _this.is_submitted = false;
                 _this.modal_instance.close();
@@ -79,7 +75,6 @@ angular.module('waitingRoomApp')
         //=============DELETE=============
 
         function deleteScheme (item_id) {
-            console.log("deleteScheme func",item_id );
             Restangular.one("Schemes", item_id).remove().then(function () {
                 _this.is_loading = false;
                 _this.is_submitted = false;
@@ -89,7 +84,6 @@ angular.module('waitingRoomApp')
         }
 
         function deleteStep (item_id) {
-            console.log("deleteStep func",item_id );
             Restangular.one("Steps", item_id).remove().then(function () {
                 _this.is_loading = false;
                 _this.is_submitted = false;
@@ -99,7 +93,6 @@ angular.module('waitingRoomApp')
         }
 
         function deleteQuestion (item_id) {
-            console.log("deleteQuestion func - NOT IMPLEMENTED",item_id );
             Restangular.one("Questions", item_id).remove().then(function () {
                 _this.is_loading = false;
                 _this.is_submitted = false;
@@ -123,7 +116,6 @@ angular.module('waitingRoomApp')
             save: function (form, type, parent_id, title) {
                 if(_this.modal_instance) {
                     _this.is_submitted = true;
-                    console.log("The modal service -- save function was called", form, type, parent);
 
                     if(form.$valid) {
                         _this.is_loading = true;
