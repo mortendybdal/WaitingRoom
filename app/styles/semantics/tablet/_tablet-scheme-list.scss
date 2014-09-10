@@ -1,0 +1,51 @@
+.tablet-scheme-list {
+  background-color: $main-background;
+}
+
+.scheme-list {
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+
+  .slick-prev {
+    left: -50px;
+
+    &:before {
+      color: $nav-button-background;
+      font-size: 30px;
+    }
+  }
+
+  .slick-next {
+    margin-right: -20px;
+
+    &:before {
+      color: $nav-button-background;
+      font-size: 30px;
+    }
+  }
+}
+
+.scheme-item {
+  @include transition-duration(0.5s);
+  @include transition-timing-function(liniar);
+
+  color: $nav-button-background;
+  font-size: 26px;
+  padding: 10px 40px 10px 40px;
+  border: 2px solid $nav-button-background;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+
+  &:hover {
+    color: $blue;
+    border-color: $blue;
+  }
+
+  &:active {
+    background-color: lighten($blue, 20%);
+    color: white;
+  }
+}

@@ -1,0 +1,63 @@
+
+
+.page-slide {
+  .ng-leave {
+    z-index: 8888;
+    -webkit-animation:slideOutLeft 0.7s both ease-in;
+    -moz-animation:slideOutLeft 0.7s both ease-in;
+    animation:slideOutLeft 0.7s both ease-in;
+  }
+  .ng-enter {
+    z-index: 9999;
+    -webkit-animation:slideInRight 0.7s both ease-in;
+    -moz-animation:slideInRight 0.7s both ease-in;
+    animation:slideInRight 0.7s both ease-in;
+  }
+}
+
+.page-slide-up {
+  &.ng-enter {
+    z-index: 8888;
+    -webkit-animation:slideInUp 0.5s both ease-in;
+    -moz-animation:slideInUp 0.5s both ease-in;
+    animation:slideInUp 0.5s both ease-in;
+  }
+
+  &.ng-leave {
+    z-index: 9999;
+    -webkit-animation:slideOutUp 0.5s both ease-in;
+    -moz-animation:slideOutUp 0.5s both ease-in;
+    animation:slideOutUp 0.5s both ease-in;
+  }
+}
+
+
+.tablet__header {
+  font-size: 40px;
+  text-align: center;
+  margin: 60px 0px 70px 0;
+}
+
+
+
+//==================Animaions========================
+//Slide up
+@keyframes slideInUp {
+  from 	{ transform:translateY(100%); }
+  to 		{ transform: translateY(0); }
+}
+
+@keyframes slideOutUp {
+  to 		{ transform: translateY(100%); }
+}
+
+//Slide left
+
+@keyframes slideInRight {
+  from 	{ transform:translateX(100%); }
+  to 	{ transform: translateX(0); }
+}
+
+@keyframes slideOutLeft {
+  to 	{ transform: translateX(-100%); }
+}
