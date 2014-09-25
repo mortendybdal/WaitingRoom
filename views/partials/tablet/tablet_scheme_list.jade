@@ -3,14 +3,8 @@
 
     .tablet__content
         .scheme-list
-            slick(slides-to-show="3", slides-to-scroll="3", vertical="true", dots="true")
-                .scheme-item__container
-                    .scheme-item Ondt i livet
-                .scheme-item__container
-                    .scheme-item Ondt i livet
-                .scheme-item__container
-                    .scheme-item Ondt i livet
-                .scheme-item__container
-                    .scheme-item Ondt i livet
+            slick(slides-to-show="6", slides-to-scroll="3", vertical="true", dots="true", init-onload=true, data="t.schemes")
+                .scheme-item__container(ng-repeat="scheme in t.schemes", ng-click="selectScheme(scheme)")
+                    .scheme-item {{scheme.Title}}
 
     .tablet__footer

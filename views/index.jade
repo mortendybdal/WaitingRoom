@@ -14,8 +14,8 @@ html.no-js
     meta(name="viewport", content="width=device-width")
     // Place favicon.ico and apple-touch-icon.png in the root directory
     <link rel="stylesheet" href="styles/2537ca48.vendor.css"/>
-    <link rel="stylesheet" href="styles/bb56252d.main.css"/>
-  body(ng-app="waitingRoomApp", ng-class="{'tablet-design':hide_navigation_menu}")
+    <link rel="stylesheet" href="styles/b288feac.main.css"/>
+  body(ng-app="waitingRoomApp", ng-class="{'tablet-ui':tablet_ui}")
     //[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
       <![endif]
@@ -25,10 +25,11 @@ html.no-js
       <![endif]
 
     .page(ng-controller="MainCtrl")
-      ng-include(src="'partials/navigation'", ng-show="!hide_navigation_menu")
+      ng-include(src="'partials/navigation'", ng-show="!tablet_ui")
+      ng-include(src="'partials/tablet/tablet_navigation'", ng-show="tablet_ui")
 
       .content
-        .content-view(ng-view, ng-hide="is_loading_content")
+        .content-view(ng-view, ng-hide="is_loading_content", ng-class="{'tablet-ui':tablet_ui}", class="{{page_class}}")
 
         .content-loader__container(ng-show="is_loading_content")
             .content-loader(ng-class="{is_white: hide_navigation_menu}")
@@ -41,5 +42,6 @@ html.no-js
       s.parentNode.insertBefore(g,s)}(document,'script'));
 
     <script src="scripts/29de0f0c.vendor.js"></script>
-    <script src="scripts/90bff63d.scripts.js"></script>
+
+    <script src="scripts/60f8a8a0.scripts.js"></script>
     

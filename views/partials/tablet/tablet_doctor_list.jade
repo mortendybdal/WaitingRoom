@@ -3,29 +3,11 @@
 
     .tablet__content
         .doctor-list
-            slick(slides-to-show="3", slides-to-scroll="3", dots="true", arrows="false")
-                .doctor-item(ng-click="selectDoctor()")
+            slick(slides-to-show="3", slides-to-scroll="3", dots="true", init-onload=true, data="t.doctors")
+                .doctor-item(ng-repeat="doctor in t.doctors", ng-click="selectDoctor(doctor)")
                     .doctor-item__profile-image
                         span.glyphicon.glyphicon-user
 
-                    .doctor-item__profile-name Ole Mægbæk Madsen
-
-                .doctor-item(ng-click="selectDoctor()")
-                    .doctor-item__profile-image
-                        span.glyphicon.glyphicon-user
-
-                    .doctor-item__profile-name Mathias Mægbæk Madsen
-
-                .doctor-item(ng-click="selectDoctor()")
-                    .doctor-item__profile-image
-                        span.glyphicon.glyphicon-user
-
-                    .doctor-item__profile-name Funch Mægbæk Madsen
-
-                .doctor-item(ng-click="selectDoctor()")
-                    .doctor-item__profile-image
-                        span.glyphicon.glyphicon-user
-
-                    .doctor-item__profile-name Morten Mægbæk Madsen
+                    .doctor-item__profile-name {{doctor.name}}
 
     .tablet__footer
