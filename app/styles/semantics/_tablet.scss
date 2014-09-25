@@ -1,3 +1,5 @@
+/*
+
 .tablet-container {
   position: relative;
   height: 100%;
@@ -136,6 +138,7 @@
   }
 }
 
+
 .tablet-page__content {
   text-align: center;
 }
@@ -160,6 +163,7 @@
   }
 }
 
+
 .tablet-page__finish-questionary-thankyou {
   font-size: 36px;
   color: white;
@@ -181,7 +185,7 @@
   }
 }
 
-.tablet-page__scheme {
+.tablet-page__scheme-slide {
   @include transition-duration(0.5s);
   @include transition-timing-function(liniar);
 
@@ -226,16 +230,16 @@
     padding: 0 20px 0 20px;
     background-color: transparent;
     font-size: 40px;
-    color: white;
+    color: $nav-button-background;
     border: none;
     outline: none;
 
     @include placeholder {
-      color: darken($blue, 5%);
+      color: darken($nav-button-background, 5%);
     }
 
     &:focus {
-      background-color: lighten($blue, 10%);
+      background-color: lighten($nav-button-background, 10%);
     }
   }
 
@@ -245,9 +249,9 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    border-bottom: 3px solid white;
-    border-left: 3px solid white;
-    border-right: 3px solid white;
+    border-bottom: 3px solid $nav-button-background;
+    border-left: 3px solid $nav-button-background;
+    border-right: 3px solid $nav-button-background;
   }
 }
 
@@ -320,3 +324,5 @@
     font-size: 10px;
   }
 }
+
+*/

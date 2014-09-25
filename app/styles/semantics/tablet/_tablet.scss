@@ -17,25 +17,58 @@
 
 .page-slide-up {
   &.ng-enter {
-    z-index: 8888;
+    z-index: 9999;
     -webkit-animation:slideInUp 0.5s both ease-in;
     -moz-animation:slideInUp 0.5s both ease-in;
     animation:slideInUp 0.5s both ease-in;
   }
 
+  /*
   &.ng-leave {
     z-index: 9999;
     -webkit-animation:slideOutUp 0.5s both ease-in;
     -moz-animation:slideOutUp 0.5s both ease-in;
     animation:slideOutUp 0.5s both ease-in;
+  }*/
+
+  &.ng-leave {
+    z-index: 8888;
+    -webkit-animation:scaleDown 0.5s both ease-in;
+    -moz-animation:scaleDown 0.5s both ease-in;
+    animation:scaleDown 0.5s both ease-in;
+  }
+
+}
+
+.page-slide-down {
+  &.ng-enter {
+    z-index: 9999;
+    -webkit-animation:slideInDown 0.5s both ease-in;
+    -moz-animation:slideInDown 0.5s both ease-in;
+    animation:slideInDown 0.5s both ease-in;
+  }
+
+  /*&.ng-leave {
+    z-index: 9999;
+    -webkit-animation:slideOutDown 0.5s both ease-in;
+    -moz-animation:slideOutDown 0.5s both ease-in;
+    animation:slideOutDown 0.5s both ease-in;
+  }*/
+
+  &.ng-leave {
+    z-index: 8888;
+    -webkit-animation:scaleDown 0.5s both ease-in;
+    -moz-animation:scaleDown 0.5s both ease-in;
+    animation:scaleDown 0.5s both ease-in;
   }
 }
 
 
 .tablet__header {
-  font-size: 40px;
+  font-size: 50px;
   text-align: center;
   margin: 60px 0px 70px 0;
+  font-weight: 100;
 }
 
 
@@ -48,8 +81,25 @@
 }
 
 @keyframes slideOutUp {
+  to 		{ transform: translateY(-100%); }
+}
+
+//Slide down
+@keyframes slideInDown {
+  from 	{ transform:translateY(-100%); }
+  to 		{ transform: translateY(0); }
+}
+
+@keyframes slideOutDown {
   to 		{ transform: translateY(100%); }
 }
+
+//scale down
+@keyframes scaleDown {
+  from 	{ opacity: 1.0; -webkit-transform: scale(1.0); }
+  to 	{ opacity: 0.3; -webkit-transform: scale(0.7); }
+}
+
 
 //Slide left
 

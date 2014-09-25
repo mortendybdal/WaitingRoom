@@ -85,7 +85,7 @@ angular.module('waitingRoomApp', [
                     }
                 }
             })
-            .when('/tablet', {
+            .when('/tablet-deprecated', {
                 templateUrl: 'partials/tablet',
                 controller: 'TabletCtrl'
             })
@@ -105,6 +105,26 @@ angular.module('waitingRoomApp', [
             .when('/signup', {
                 templateUrl: 'partials/signup',
                 controller: 'SignupCtrl'
+            })
+            .when('/tablet/:direction/:id', {
+                templateUrl: 'partials/tablet/tablet_question',
+                controller: 'TabletQuestionCtrl'
+            })
+            .when('/tablet/schemes', {
+                templateUrl: 'partials/tablet/tablet_scheme_list',
+                controller: 'TabletSchemeListCtrl'
+            })
+            .when('/tablet', {
+                templateUrl: 'partials/tablet/tablet_doctor_list',
+                controller: 'TabletDoctorListCtrl'
+            })
+            .when('/tablet/finish', {
+                templateUrl: 'partials/tablet/tablet_finish',
+                controller: 'TabletFinishCtrl'
+            })
+            .when('/tablet/thankyou', {
+                templateUrl: 'partials/tablet/tablet_thankyou',
+                controller: 'TabletThankYouCtrl'
             })
             .otherwise({
                 redirectTo: '/'
@@ -138,7 +158,7 @@ angular.module('waitingRoomApp', [
         // Redirect to login if route requires auth and you're not logged in
         $rootScope.$on('$routeChangeStart', function (event, next) {
 
-            $rootScope.$broadcast("event:load_start");
+            //$rootScope.$broadcast("event:load_start");
 
 
             if (next.authenticate && !Auth.isLoggedIn()) {

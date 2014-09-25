@@ -1,7 +1,16 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-   .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary) {
+   .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary, Restangular) {
+        $rootScope.response = {
+            doctor: {},
+            questions: {},
+            scheme: null,
+            patient: null
+        };
+
+        $rootScope.d = Dictionary.init('da');
+
         $rootScope.$on("event:load_start", function () {
             $scope.is_loading_content = true;
         });
@@ -12,5 +21,14 @@ angular.module('waitingRoomApp')
             }, 300);
         });
 
-        $rootScope.d = Dictionary.init('da');
+
+        Restangular.one("tablets").get().then(function(tablet_response) {
+            $rootScope.t = tablet_response;
+
+            console.log(tablet_response);
+        });
+
+        $rootScope.$watch('response', function () {
+            console.log($rootScope.response);
+        }, true);
    });

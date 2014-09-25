@@ -47,11 +47,20 @@ angular.module('waitingRoomApp')
                 var step_questions = getQuestionsByStep(step);
 
 
-                _.forEach(step_questions, function(soap) {
+                _.forEach(step_questions, function(question) {
 
-                    if(soap.JournalText && soap.Answer) {
-                        j += soap.JournalText.replace("{{}}", soap.Answer) + ", ";
+                    if(question.JournalText && question.Answer) {
+                        j += question.JournalText.replace("{{}}", question.Answer) + ", ";
                     }
+
+                    _.forEach(question.questions, function(subquestion) {
+
+                        if(subquestion.CorrectAnswer && question.Answer === subquestion.CorrectAnswer.Value) {
+                            if(subquestion.JournalText && subquestion.Answer) {
+                                j += subquestion.JournalText.replace("{{}}", subquestion.Answer) + ", ";
+                            }
+                        }
+                    });
 
                 });
 
@@ -82,7 +91,7 @@ angular.module('waitingRoomApp')
                 };
 
                 //Save answer
-                $scope.baseAnswers.post(answer);
+                Restangular.one("answers").put(answer);
 
                 generateJournal();
             }

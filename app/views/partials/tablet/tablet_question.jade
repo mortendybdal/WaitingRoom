@@ -1,7 +1,30 @@
 .tablet-question
-    .tablet-question__header Header
+    .tablet__header {{question.QuestionText}}
 
-    .tablet-question__content Content
+    .tablet__content
+        // ==> Single-Text
+        .single-text(ng-if="question.Type.Value === 'single-text'", ng-keypress="onKeyPressed($event)")
+            input(ng-model="question.Answer", placeholder="Enter text")
+            .single-text__border
 
-    .tablet-footer
-        a(ng-href="test/100") Footer
+
+        // ==> Multi-text
+        .tablet-page__answer.multi-text(ng-if="question.Type.Value === 'multi-text'", ng-keypress="onKeyPressed($event)")
+            .tablet-page__answer__inner
+                textarea(ng-model="question.Answer", rows=3, placeholder="Enter Text")
+                .multi-text__border-left
+                .multi-text__border-right
+
+        // ==> Radio-List & Selected-List
+        .radio-list(ng-if="question.Type.Value === 'radio-list' || question.Type.Value === 'select-list'")
+            span.up-arrow.ion-chevron-up(ng-show="question.Options.length > 4")
+            span.down-arrow.ion-chevron-down(ng-show="question.Options.length > 4")
+            .radio-list--wrapper(ng-class="{is_scrollable: question.Options.length > 4}")
+                .tablet-page__answer-option(ng-repeat="option in question.Options")
+                    .tablet-page__answer-option--inner(ng-click="question.Answer = option.Value; nextSlide(question)", ng-class="{active: question.Answer === option.Value}") {{option.Value}}
+
+    .tablet__footer
+        .tablet-page__next-button(ng-click="nextSlide()")
+            span.ion-chevron-right
+        .tablet-page__previous-button(ng-click="backSlide()")
+            span.ion-chevron-left

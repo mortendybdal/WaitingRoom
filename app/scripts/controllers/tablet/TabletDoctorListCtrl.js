@@ -7,7 +7,8 @@ angular.module('waitingRoomApp')
 
         $scope.page_class = 'page-slide-up';
 
-        $scope.selectDoctor = function () {
+        $scope.selectDoctor = function (doctor) {
+            $rootScope.response.doctor = doctor;
             $location.path('tablet/schemes')
         }
     });
