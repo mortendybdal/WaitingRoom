@@ -24,7 +24,7 @@ body {
 }
 
 .tablet-ui {
-  height: 100%;
+  height: calc(100% - 20px);
 
   .page {
     height: 100%;

@@ -3,7 +3,9 @@
 
     .tablet__content
         .doctor-list
-            slick(slides-to-show="3", slides-to-scroll="3", dots="true", init-onload=true, data="t.doctors")
+            span.arrow.up-arrow.ion-chevron-up(ng-show="t.doctors.length > 4")
+            span.arrow.down-arrow.ion-chevron-down(ng-show="t.doctors.length > 4")
+            .doctor-list--wrapper(ng-class="{is_scrollable: t.doctors.length > 4}")
                 .doctor-item(ng-repeat="doctor in t.doctors", ng-click="selectDoctor(doctor)")
                     .doctor-item__profile-image
                         span.glyphicon.glyphicon-user

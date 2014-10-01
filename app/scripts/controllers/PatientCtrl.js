@@ -15,7 +15,6 @@ angular.module('waitingRoomApp')
 
                         //TODO - handel multiple schemes
                         Restangular.one('schemes', $scope.patient.Schemes[0]._id).one('patient', $scope.patient._id).get().then(function (questions) {
-                            console.log(questions);
                             $scope.questions = questions;
 
                             $scope.steps = _.sortBy(_.uniq(_.map($scope.questions, "Step"), "Title"), "SortOrder");

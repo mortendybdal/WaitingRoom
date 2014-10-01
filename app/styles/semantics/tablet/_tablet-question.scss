@@ -111,7 +111,7 @@
       span {
         position: absolute;
         right: -20px;
-        color: $light-grey;
+        color: darken($light-grey, 30%);
 
         &.up-arrow {
           top: 0;
@@ -120,6 +120,7 @@
         &.down-arrow {
           bottom: 0;
         }
+
       }
 
       .radio-list--wrapper {
@@ -163,7 +164,6 @@
       @include transition-timing-function(liniar);
 
       padding: 10px;
-      margin: 30px;
       width: 70px;
       height: 70px;
       font-size: 16px;
@@ -176,6 +176,7 @@
       right: 0;
       text-align: center;
       border-radius: 35px;
+      margin-bottom: 20px;
 
       span {
         vertical-align: middle;
@@ -193,7 +194,6 @@
       @include transition-timing-function(liniar);
 
       padding: 10px;
-      margin: 30px;
       width: 70px;
       height: 70px;
       font-size: 16px;
@@ -205,6 +205,7 @@
       left: 0;
       text-align: center;
       border-radius: 35px;
+      margin-bottom: 20px;
 
       span {
         vertical-align: middle;

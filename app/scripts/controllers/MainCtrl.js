@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-   .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary, Restangular) {
+   .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary, Restangular, Auth) {
+        console.log("INit main controller");
+
         $rootScope.response = {
             doctor: {},
             questions: {},
@@ -21,14 +23,10 @@ angular.module('waitingRoomApp')
             }, 300);
         });
 
+        if (Auth.roleHasAccess(['Tablet'])) {
+            Restangular.one("tablets").get().then(function(tablet_response) {
+                $rootScope.t = tablet_response;
+            });
+        }
 
-        Restangular.one("tablets").get().then(function(tablet_response) {
-            $rootScope.t = tablet_response;
-
-            console.log(tablet_response);
-        });
-
-        $rootScope.$watch('response', function () {
-            console.log($rootScope.response);
-        }, true);
    });

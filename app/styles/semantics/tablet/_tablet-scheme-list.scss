@@ -1,27 +1,34 @@
 .tablet-scheme-list {
   background-color: $main-background;
-}
 
-.scheme-list {
-  width: 600px;
-  margin: 0 auto;
-  position: relative;
+  .tablet__content {
+    width: 60%;
+    position: relative;
+    margin: 0 auto;
 
-  .slick-prev {
-    left: -50px;
+    .scheme-list {
+      position: relative;
 
-    &:before {
-      color: $nav-button-background;
-      font-size: 30px;
-    }
-  }
+      .arrow {
+        position: absolute;
+        right: -20px;
+        color: darken($light-grey, 30%);
 
-  .slick-next {
-    margin-right: -20px;
+        &.up-arrow {
+          top: 0;
+        }
 
-    &:before {
-      color: $nav-button-background;
-      font-size: 30px;
+        &.down-arrow {
+          bottom: 0;
+        }
+      }
+
+      .scheme-list--wrapper {
+        height: 289px;
+        overflow: auto;
+        padding: 10px;
+        border: 1px solid $light-grey;
+      }
     }
   }
 }

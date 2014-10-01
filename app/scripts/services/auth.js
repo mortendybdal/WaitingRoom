@@ -104,10 +104,18 @@ angular.module('waitingRoomApp')
              *
              * @return {Boolean}
              */
-            isLoggedIn: function () {
+            isLoggedIn: function (allowed_roles) {
                 var user = $rootScope.currentUser;
 
                 if (user) {
+                    if(allowed_roles && !_.contains(allowed_roles, user.role)) {
+                        if (user.role === 'Tablet') {
+                            $location.url('/tablet');
+                        }else {
+                            $location.url('/');
+                        }
+                    }
+
                     $rootScope.is_logged_in = true;
                 } else { // Not Authenticated
                     $rootScope.is_logged_in = false;
@@ -115,6 +123,11 @@ angular.module('waitingRoomApp')
                 }
 
                 return !!user;
+            },
+
+            roleHasAccess: function (roles) {
+
+                return $rootScope.currentUser && _.contains(roles, $rootScope.currentUser.role)
             }
         };
     });

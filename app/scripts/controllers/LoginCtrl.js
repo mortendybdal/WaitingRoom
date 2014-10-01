@@ -2,7 +2,6 @@
 
 angular.module('waitingRoomApp')
     .controller('LoginCtrl', function ($scope, $rootScope, Auth, $location) {
-        $rootScope.$broadcast("event:load_stop");
         $scope.user = {};
         $scope.errors = {};
 
@@ -16,7 +15,15 @@ angular.module('waitingRoomApp')
                 })
                     .then(function () {
                         // Logged in, redirect to home
-                        $location.path('/');
+                        $rootScope.$broadcast("event:update_content_tree");
+
+                        console.log($rootScope.currentUser);
+                        if ($rootScope.currentUser.role !== 'Tablet') {
+                            $location.path('/');
+                        } else {
+                            $location.path('/tablet');
+                        }
+
                     })
                     .catch(function (err) {
                         err = err.data;

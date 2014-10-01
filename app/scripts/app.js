@@ -27,7 +27,7 @@ angular.module('waitingRoomApp', [
                 controller: 'FrontpageCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['User', 'Editor', 'Admin']);
                     }
                 }
             })
@@ -36,7 +36,7 @@ angular.module('waitingRoomApp', [
                 controller: 'PatientCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['User', 'Editor', 'Admin']);
                     }
                 }
             })
@@ -45,7 +45,7 @@ angular.module('waitingRoomApp', [
                 controller: 'SchemeBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['Editor', 'Admin']);
                     }
                 }
             })
@@ -54,7 +54,7 @@ angular.module('waitingRoomApp', [
                 controller: 'StepBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['Editor', 'Admin']);
                     }
                 }
             })
@@ -63,7 +63,7 @@ angular.module('waitingRoomApp', [
                 controller: 'QuestionBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['Editor', 'Admin']);
                     }
                 }
             })
@@ -72,7 +72,7 @@ angular.module('waitingRoomApp', [
                 controller: 'ClinicsCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['Admin']);
                     }
                 }
             })
@@ -81,20 +81,16 @@ angular.module('waitingRoomApp', [
                 controller: 'DoctorsCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['Admin']);
                     }
                 }
-            })
-            .when('/tablet-deprecated', {
-                templateUrl: 'partials/tablet',
-                controller: 'TabletCtrl'
             })
             .when('/settings', {
                 templateUrl: 'partials/settings',
                 controller: 'SettingsCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['User', 'Editor', 'Admin']);
                     }
                 }
             })
@@ -102,29 +98,50 @@ angular.module('waitingRoomApp', [
                 templateUrl: 'partials/login',
                 controller: 'LoginCtrl'
             })
-            .when('/signup', {
-                templateUrl: 'partials/signup',
-                controller: 'SignupCtrl'
-            })
             .when('/tablet/:direction/:id', {
                 templateUrl: 'partials/tablet/tablet_question',
-                controller: 'TabletQuestionCtrl'
+                controller: 'TabletQuestionCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
             })
             .when('/tablet/schemes', {
                 templateUrl: 'partials/tablet/tablet_scheme_list',
-                controller: 'TabletSchemeListCtrl'
+                controller: 'TabletSchemeListCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
             })
             .when('/tablet', {
                 templateUrl: 'partials/tablet/tablet_doctor_list',
-                controller: 'TabletDoctorListCtrl'
+                controller: 'TabletDoctorListCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
             })
             .when('/tablet/finish', {
                 templateUrl: 'partials/tablet/tablet_finish',
-                controller: 'TabletFinishCtrl'
+                controller: 'TabletFinishCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
             })
             .when('/tablet/thankyou', {
                 templateUrl: 'partials/tablet/tablet_thankyou',
-                controller: 'TabletThankYouCtrl'
+                controller: 'TabletThankYouCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
             })
             .otherwise({
                 redirectTo: '/'
@@ -134,7 +151,7 @@ angular.module('waitingRoomApp', [
         cfpLoadingBarProvider.includeSpinner = false;
 
         // Intercept 401s and redirect you to login
-        $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
+        $httpProvider.interceptors.push(['$q', '$location', '$rootScope', function ($q, $location, $rootScope) {
             return {
                 'responseError': function (response) {
                     if (response.status === 401) {

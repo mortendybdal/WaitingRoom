@@ -2,7 +2,7 @@
 
 angular.module('waitingRoomApp')
   .controller('DoctorsCtrl', function ($scope, $rootScope, $routeParams, $modal, Restangular) {
-        $scope.roles = ["Admin", "Editor", "User"];
+        $scope.roles = ["Admin", "Editor", "User", "Tablet"];
 
         $scope.current_selected_doctor = null;
 
@@ -66,19 +66,25 @@ angular.module('waitingRoomApp')
         $scope.openDeleteModal = function (user) {
             $modal.open({
                 templateUrl: 'partials/modals/delete-doctor-modal.html',
-                controller: function ($scope, $modalInstance) {
+                controller: function ($scope, $modalInstance, users) {
                     $scope.user = user;
 
-                    $scope.delete = function (item_id) {
+                    $scope.delete = function (user) {
                         $scope.is_loading = true;
-                        Restangular.one("Users", item_id).remove().then(function () {
+                        Restangular.one("Users", user._id).remove().then(function () {
                             $scope.is_loading = false;
+                            _.remove(users, function(u) { return u._id === user._id; });
                             $modalInstance.close();
                         });
                     }
 
                     $scope.close = function () {
                         $modalInstance.close();
+                    }
+                },
+                resolve: {
+                    users: function () {
+                        return $scope.users;
                     }
                 }
             });

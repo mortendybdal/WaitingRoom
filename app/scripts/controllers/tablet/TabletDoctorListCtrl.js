@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('TabletDoctorListCtrl', function ($scope, $rootScope, $location) {
+    .controller('TabletDoctorListCtrl', function ($scope, $rootScope, $location, Auth) {
+        //Authenticate - Only editors and admins are allowed to build new schemes
+        if(!Auth.roleHasAccess(['Tablet'])) {
+            $location.path('/');
+            return;
+        }
+
         $rootScope.tablet_ui = true;
         $rootScope.$broadcast("event:load_stop");
 
