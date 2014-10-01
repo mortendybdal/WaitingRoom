@@ -9,7 +9,6 @@ angular.module('waitingRoomApp', [
         'ngAnimate-animate.css',
         'xeditable',
         'ngClipboard',
-        'slick',
         'restangular',
         'ui.tree',
         'ui.bootstrap',
@@ -151,7 +150,7 @@ angular.module('waitingRoomApp', [
         cfpLoadingBarProvider.includeSpinner = false;
 
         // Intercept 401s and redirect you to login
-        $httpProvider.interceptors.push(['$q', '$location', '$rootScope', function ($q, $location, $rootScope) {
+        $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
             return {
                 'responseError': function (response) {
                     if (response.status === 401) {
