@@ -3,7 +3,9 @@
 
     .tablet__content
         .scheme-list
-            slick(slides-to-show="6", slides-to-scroll="3", vertical="true", dots="true", init-onload=true, data="t.schemes")
+            span.arrow.up-arrow.ion-chevron-up(ng-show="t.schemes.length > 4")
+            span.arrow.down-arrow.ion-chevron-down(ng-show="t.schemes.length > 4")
+            .scheme-list--wrapper(ng-class="{is_scrollable: t.schemes.length > 4}")
                 .scheme-item__container(ng-repeat="scheme in t.schemes", ng-click="selectScheme(scheme)")
                     .scheme-item {{scheme.Title}}
 
