@@ -15,6 +15,21 @@
     margin-bottom: 20px;
     font-size: 25px;
     font-weight: 200;
+
+    span {
+      vertical-align: top;
+      line-height: 40px;
+
+      &:first-child {
+        font-size: 40px;
+        margin-right: 10px;
+      }
+
+      &:last-child {
+        line-height: 40px;
+      }
+    ;
+    }
   }
 
   .item-modal__content {

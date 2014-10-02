@@ -1,6 +1,11 @@
 .tablet-scheme-list {
   background-color: $main-background;
 
+  .tablet__header {
+    font-size: 40px;
+    margin: 10px 60px 30px 60px;
+  }
+
   .tablet__content {
     width: 60%;
     position: relative;

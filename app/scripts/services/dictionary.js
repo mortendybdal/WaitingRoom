@@ -133,8 +133,8 @@ angular.module('waitingRoomApp')
             {
                 key: 'TABLET_AnswerHasBeenSend',
                 values: [
-                    { value: 'Dit svar er blevet send til din læge', language: 'da'},
-                    { value: 'Your answers har been send to you doctor..', language: 'en'}
+                    { value: 'Dit svar er blevet sendt', language: 'da'},
+                    { value: 'Your answers have been send', language: 'en'}
                 ]
             },
             {
@@ -142,6 +142,41 @@ angular.module('waitingRoomApp')
                 values: [
                     { value: 'Tak for dine svar!', language: 'da'},
                     { value: 'Thank you!', language: 'en'}
+                ]
+            },
+            {
+                key: 'TABLET_SendYouAnswerTo',
+                values: [
+                    { value: 'Send svar til læge', language: 'da'},
+                    { value: 'Send your answer to', language: 'en'}
+                ]
+            },
+            {
+                key: 'TABLET_TabletReset',
+                values: [
+                    { value: 'Dine data slettes fra denne enhed om:', language: 'da'},
+                    { value: 'This tablet will be reset in:', language: 'en'}
+                ]
+            },
+            {
+                key: 'TABLET_Sec',
+                values: [
+                    { value: 'sek', language: 'da'},
+                    { value: 'sec', language: 'en'}
+                ]
+            },
+            {
+                key: 'TABLET_EnterText',
+                values: [
+                    { value: 'Indtast svar', language: 'da'},
+                    { value: 'Enter text', language: 'en'}
+                ]
+            },
+            {
+                key: 'TABLET_ChooseSchemet',
+                values: [
+                    { value: 'Hvad vil du tale med din læge om?', language: 'da'},
+                    { value: 'What would you like to talk with your doctor about?', language: 'en'}
                 ]
             },
             {
@@ -187,24 +222,59 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
-                key: 'PATIENT_Description',
+                key: 'PATIENT_ChartText',
                 values: [
-                    { value: 'Beskrivelse', language: 'da'},
-                    { value: 'Description', language: 'en'}
+                    { value: 'Journaltekst', language: 'da'},
+                    { value: 'Charttext', language: 'en'}
                 ]
             },
             {
                 key: 'PATIENT_CopyPast',
                 values: [
-                    { value: 'Beskrivelse', language: 'da'},
-                    { value: 'Description', language: 'en'}
+                    { value: 'Kopier', language: 'da'},
+                    { value: 'Copy / Past', language: 'en'}
                 ]
             },
             {
                 key: 'NAVIGATION_CreateScheme',
                 values: [
-                    { value: 'Opret sprørgeskema', language: 'da'},
+                    { value: 'Opret spørgeskema', language: 'da'},
                     { value: 'Create Scheme', language: 'en'}
+                ]
+            },
+            {
+                key: 'NAVIGATION_Home',
+                values: [
+                    { value: 'Hjem', language: 'da'},
+                    { value: 'Home', language: 'en'}
+                ]
+            },
+            {
+                key: 'NAVIGATION_Members',
+                values: [
+                    { value: 'Klinikadministration', language: 'da'},
+                    { value: 'Members', language: 'en'}
+                ]
+            },
+            {
+                key: 'NAVIGATION_Settings',
+                values: [
+                    { value: 'Indstillinger', language: 'da'},
+                    { value: 'Settings', language: 'en'}
+                ]
+            },
+            {
+                key: 'NAVIGATION_Logout',
+                values: [
+                    { value: 'Log ud', language: 'da'},
+                    { value: 'Logout', language: 'en'}
+                ]
+            },
+            {
+                key: 'NAVIGATION_SchemeaBuilder',
+                values: [
+                    { value: 'Skemaopbygning', language: 'da'},
+                    { value: 'Scheme Builder', language: 'en'}
                 ]
             },
             {

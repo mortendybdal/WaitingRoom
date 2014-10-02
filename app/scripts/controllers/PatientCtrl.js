@@ -20,7 +20,7 @@ angular.module('waitingRoomApp')
                             $scope.steps = _.sortBy(_.uniq(_.map($scope.questions, "Step"), "Title"), "SortOrder");
 
                             //Get all questions for the first step when you load page
-                            $scope.setQuestions($scope.steps[0]);
+                            $scope.setQuestions($scope.steps[1]);
 
 
                             generateJournal();

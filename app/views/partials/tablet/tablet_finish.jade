@@ -3,5 +3,5 @@
 
     .tablet__content
         .tablet-finish__send-to-doctor(ng-click="sendAnswersToDoctor()")
-            span.tablet-finish__icon(ng-class="{'ion-paper-airplane': !is_loading, 'ion-loading-c': is_loading}")
-            span Send your answer to {{response.doctor.name}}
+            span.tablet-finish__icon(ng-class="{'ion-ios7-email': !is_loading, 'ion-loading-c': is_loading}")
+            span {{d.TABLET_SendYouAnswerTo}} {{response.doctor.name}}

@@ -3,18 +3,14 @@
 angular.module('waitingRoomApp')
     .controller('NavigationBuilderCtrl', function ($scope, $rootScope, $modal, Restangular, Auth) {
         //Authenticate - Only editors and admins are allowed to build new schemes
-        if(!Auth.roleHasAccess(['Editor', 'Admin'])) {
+        /*if (!Auth.roleHasAccess(['Editor', 'Admin'])) {
+            console.log("Is returned", $rootScope.currentUser)
             return;
         }
+        */
 
         $scope.baseSchemes = Restangular.all("schemes");
         $scope.expanded_items = [];
-
-        $scope.baseSchemes.getList().then(function (schemes) {
-            $scope.schemes = schemes;
-        });
-
-
 
         $scope.expandContentTree = function (item) {
             if (_.contains($scope.expanded_items, item._id)) {
@@ -42,11 +38,11 @@ angular.module('waitingRoomApp')
         });
 
         $scope.content_tree = {
-            accept: function(sourceNodeScope, destNodesScope) {
+            accept: function (sourceNodeScope, destNodesScope) {
                 //Ensures that it is only possible to drop item on same level as it came from and under same parent
                 return sourceNodeScope.depth() === destNodesScope.depth() + 1 && destNodesScope.isParent(sourceNodeScope);
             },
-            dropped: function(event) {
+            dropped: function (event) {
 
                 var destNodes = event.dest.nodesScope,
                     content_type = destNodes.$element.attr('data-type'),
@@ -89,4 +85,16 @@ angular.module('waitingRoomApp')
                 }
             });
         };
+
+        function init() {
+            $scope.baseSchemes.getList().then(function (schemes) {
+                $scope.schemes = schemes;
+            });
+        }
+
+        $rootScope.$watch('currentUser', function (new_val) {
+            if(Auth.roleHasAccess(['Editor', 'Admin'])) {
+                init();
+            }
+        });
     });

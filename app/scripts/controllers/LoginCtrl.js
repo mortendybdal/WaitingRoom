@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('LoginCtrl', function ($scope, $rootScope, Auth, $location) {
+    .controller('LoginCtrl', function ($scope, $rootScope, $timeout, Auth, $location) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -14,10 +14,10 @@ angular.module('waitingRoomApp')
                     password: $scope.user.password
                 })
                     .then(function () {
-                        // Logged in, redirect to home
                         $rootScope.$broadcast("event:update_content_tree");
 
-                        console.log($rootScope.currentUser);
+                        // Logged in, redirect to home
+
                         if ($rootScope.currentUser.role !== 'Tablet') {
                             $location.path('/');
                         } else {

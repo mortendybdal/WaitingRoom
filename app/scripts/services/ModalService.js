@@ -45,6 +45,8 @@ angular.module('waitingRoomApp')
             question.QuestionText = title;
             question.Step = parent_id;
 
+            console.log("From service", question);
+
             Restangular.all("questions").post(question).then(function (question) {
                 _this.is_loading = false;
                 _this.is_submitted = false;

@@ -2,8 +2,7 @@
 
 angular.module('waitingRoomApp')
    .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary, Restangular, Auth) {
-        console.log("INit main controller");
-
+        $scope.baseSchemes = Restangular.all("schemes");
         $rootScope.response = {
             doctor: {},
             questions: {},
@@ -13,20 +12,13 @@ angular.module('waitingRoomApp')
 
         $rootScope.d = Dictionary.init('da');
 
-        $rootScope.$on("event:load_start", function () {
-            $scope.is_loading_content = true;
+        $rootScope.$watch('currentUser', function (new_val) {
+            if(Auth.roleHasAccess(['Tablet'])) {
+                Restangular.one("tablets").get().then(function(tablet_response) {
+                    $rootScope.t = tablet_response;
+
+                    console.log(tablet_response);
+                });
+            }
         });
-
-        $rootScope.$on("event:load_stop", function () {
-            $timeout(function () {
-                $scope.is_loading_content = false;
-            }, 300);
-        });
-
-        if (Auth.roleHasAccess(['Tablet'])) {
-            Restangular.one("tablets").get().then(function(tablet_response) {
-                $rootScope.t = tablet_response;
-            });
-        }
-
    });
