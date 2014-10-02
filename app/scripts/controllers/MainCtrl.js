@@ -12,7 +12,7 @@ angular.module('waitingRoomApp')
 
         $rootScope.d = Dictionary.init('da');
 
-        $rootScope.$watch('currentUser', function (new_val) {
+        $rootScope.$watch('currentUser', function () {
             if(Auth.roleHasAccess(['Tablet'])) {
                 Restangular.one("tablets").get().then(function(tablet_response) {
                     $rootScope.t = tablet_response;
