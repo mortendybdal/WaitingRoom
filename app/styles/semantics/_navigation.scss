@@ -121,6 +121,7 @@
       }
     }
   }
+  
 
   &.angular-ui-tree-nodes {
     padding: 0;
@@ -145,13 +146,13 @@
     cursor: pointer;
     font-weight: 200;
 
-
     &:first-child{
       &:hover {
         color: darken($blue, 30%);
       }
     }
   }
+
 
   .content-tree__item-icon {
     font-size: 15px;
