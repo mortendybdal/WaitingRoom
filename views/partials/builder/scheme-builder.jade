@@ -3,7 +3,7 @@
         .widget-header
             .widget-actions
                 button.builder__add-sub-item(ng-click="openModal('Step', d.GENERAL_Step, scheme._id)")
-                    span.glyphicon.glyphicon-plus
+                    span.ion-folder
                     span {{d.SchemeBuilder_AddStep}}
 
             .widget-title {{scheme.Title}}
@@ -17,6 +17,7 @@
                     p.help-block.has-error(ng-show='scheme_form.title.$error.required && submitted') {{d.GENERAL_EnterTitle}}
 
         .builder__widget-footer
+
             button.builder__save-button(ng-click='save(scheme_form)')
                 span.glyphicon.glyphicon-cloud-upload
                 .element-loader__container(ng-class="{fade: updating_scheme}")

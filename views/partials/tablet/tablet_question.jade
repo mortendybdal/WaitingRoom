@@ -4,14 +4,14 @@
     .tablet__content
         // ==> Single-Text
         .single-text(ng-if="question.Type.Value === 'single-text'", ng-keypress="onKeyPressed($event)")
-            input(ng-model="question.Answer", placeholder="Enter text")
+            input(ng-model="question.Answer", placeholder="{{d.TABLET_EnterText}}")
             .single-text__border
 
 
         // ==> Multi-text
         .tablet-page__answer.multi-text(ng-if="question.Type.Value === 'multi-text'", ng-keypress="onKeyPressed($event)")
             .tablet-page__answer__inner
-                textarea(ng-model="question.Answer", rows=3, placeholder="Enter Text")
+                textarea(ng-model="question.Answer", rows=3, placeholder="{{d.TABLET_EnterText}}")
                 .multi-text__border-left
                 .multi-text__border-right
 

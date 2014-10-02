@@ -3,8 +3,12 @@
         .widget-header
             .widget-actions
                 button.builder__add-sub-item(ng-click="openModal('Subquestion', d.GENERAL_SubQuestion, question._id)", ng-hide="question.ParentQuestion")
-                    span.glyphicon.glyphicon-plus
+                    span.ion-help-circled
                     span {{d.QuestionBuilder_AddSubQuestion}}
+
+                button.builder__add-sub-item(ng-click="openModal('Question', d.GENERAL_Question, question.Step)")
+                    span.ion-help-circled
+                    span {{d.StepBuilder_AddQuestion}}
 
             .widget-title {{question.QuestionText}}
 

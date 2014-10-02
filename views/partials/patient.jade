@@ -108,8 +108,8 @@
 
 
                     .patient-soap__navigation
-                        button.patient-soap__navigation-back(ng-click="backStep()") {{d.PATIENT_Back}}
-                        button.patient-soap__navigation-next(ng-click="nextStep()") {{d.PATIENT_Next}}
+                        button.patient-soap__navigation-back(ng-click="backStep()", ng-hide="current_step.SortOrder === 0") {{d.PATIENT_Back}}
+                        button.patient-soap__navigation-next(ng-click="nextStep()", ng-hide="current_step.SortOrder === steps.length - 1") {{d.PATIENT_Next}}
 
     /////////////////////JOURNAL WIDGET///////////////////////
     .patient-journal__widget
