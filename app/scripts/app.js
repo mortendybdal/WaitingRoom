@@ -9,7 +9,6 @@ angular.module('waitingRoomApp', [
         'ngAnimate-animate.css',
         'xeditable',
         'ngClipboard',
-        'slick',
         'restangular',
         'ui.tree',
         'ui.bootstrap'
