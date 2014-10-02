@@ -5,7 +5,7 @@ angular.module('waitingRoomApp')
         var _this = this;
         _this.is_loading = false,
         _this.is_submitted = false,
-        _this.modal_instance = {};
+        _this.modal_instance = [];
 
         //=============CREATE=============
 
@@ -23,6 +23,7 @@ angular.module('waitingRoomApp')
                 console.log("Error occured when creating new scheme");
             });
         }
+
 
         function createStep (title, parent_id) {
             var step = {};

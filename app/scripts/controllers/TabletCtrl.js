@@ -23,7 +23,7 @@ angular.module('waitingRoomApp')
                     var parent = _.find($scope.questions, function (q) { return q._id === question.ParentQuestion;});
 
                     if(parent.Answer && parent.Answer !== question.CorrectAnswer.Value) {
-                        _.remove($scope.questions, function (q) { return q._id === question._id});
+                        _.remove($scope.questions, function (q) { return q._id === question._id;});
                     }
                 }
             });

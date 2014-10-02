@@ -127,7 +127,7 @@ angular.module('waitingRoomApp')
 
             roleHasAccess: function (roles) {
 
-                return $rootScope.currentUser && _.contains(roles, $rootScope.currentUser.role)
+                return $rootScope.currentUser && _.contains(roles, $rootScope.currentUser.role);
             }
         };
     });
