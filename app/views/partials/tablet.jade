@@ -3,7 +3,7 @@
 
     .tablet-container
         .tablet-page(ng-class="{'slide-left_in-animation': index === -1 && direction === 'left', 'slide-left_out-animation': index === 0 && direction === 'left', 'slide-right_in-animation': index === -1 && direction === 'right', 'slide-right_out-animation': index === -2 && direction === 'right'}")
-                .tablet-page__question Please choose scheme
+                .tablet-page__question {{d.TABLET_PleaseChooseScheme}}
 
                 .tablet-page__content
                     .tablet-page__scheme-list
@@ -42,16 +42,16 @@
                 span.glyphicon.glyphicon-chevron-left
 
         .tablet-page(ng-class="{'slide-left_in-animation': index === questions.length && direction === 'left', 'slide-left_out-animation': index === questions.length + 1 && direction === 'left', 'slide-right_in-animation': index === questions.length && direction === 'right', 'slide-right_out-animation': index === questions.length - 1 && direction === 'right'}")
-            .tablet-page__question Please complete the questionary.
+            .tablet-page__question {{d.TABLET_PleaseComplete}}
 
             .tablet-page__content
-                .tablet-page__finish-questionary(ng-click="finishQuestionary()") Finish
+                .tablet-page__finish-questionary(ng-click="finishQuestionary()") {{d.TABLET_Finish}}
 
             .tablet-page__previous-button(ng-click="backSlide()")
                 span.glyphicon.glyphicon-chevron-left
 
         .tablet-page(ng-class="{'slide-left_in-animation': index === questions.length + 1 && direction === 'left', 'slide-left_out-animation': index === questions.length + 2 && direction === 'left', 'slide-right_in-animation': index === questions.length + 1 && direction === 'right', 'slide-right_out-animation': index === questions.length && direction === 'right'}")
-            .tablet-page__question Your answers har been send to you doctor.
+            .tablet-page__question {{d.TABLET_AnswerHasBeenSend}}
 
             .tablet-page__content
-                .tablet-page__finish-questionary-thankyou Thank you!
+                .tablet-page__finish-questionary-thankyou {{d.TABLET_ThankYou}}

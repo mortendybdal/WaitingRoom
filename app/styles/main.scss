@@ -1,8 +1,10 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+$ionicons-font-path: "/bower_components/ionicons/fonts/" !default;
 
 //Bower components
 @import "../bower_components/bourbon/dist/bourbon";
 @import "../bower_components/sass-bootstrap/lib/bootstrap";
+@import "../bower_components/ionicons/scss/ionicons";
 
 //FOUNDATION
 @import "foundation/helpers";
@@ -27,4 +29,11 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import "semantics/tablet";
 @import "semantics/login";
 @import "semantics/builder";
-
+@import "semantics/clinics";
+@import "semantics/doctors";
+@import "semantics/tablet/tablet";
+@import "semantics/tablet/tablet-question";
+@import "semantics/tablet/tablet-scheme-list";
+@import "semantics/tablet-doctor-list";
+@import "semantics/tablet/tablet-finish";
+@import "semantics/tablet/tablet-navigation";

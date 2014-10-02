@@ -1,14 +1,14 @@
 .delete-item-modal
-    .item-modal__header Delete {{type}}
+    .item-modal__header {{d.GENERAL_Delete}} {{title}}
 
     .item-modal__content
 
-        .item-modal__text Are you sure you want to delete <b>"{{name}}"</b> <br> - and <b> all </b> sub items!
+        .item-modal__text {{d.MODAL_AreYouSure}} <b>"{{name}}"</b> <br> {{d.MODAL_AndAllSubitems}}
 
 
         .item-modal__buttons
             button.item-modal__create-button(ng-click="ModalService.delete(type, item_id)")
-                span Delete {{type}}
+                span {{d.GENERAL_Delete}} {{title}}
                 .element-loader__container(ng-class="{fade: ModalService.isLoading()}")
                     .element-loader
-            button.item-modal__cancel-button(ng-click="ModalService.close()") Cancel
+            button.item-modal__cancel-button(ng-click="ModalService.close()") {{d.GENERAL_Cancel}}

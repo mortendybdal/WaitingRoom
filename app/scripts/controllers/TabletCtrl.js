@@ -23,7 +23,7 @@ angular.module('waitingRoomApp')
                     var parent = _.find($scope.questions, function (q) { return q._id === question.ParentQuestion;});
 
                     if(parent.Answer && parent.Answer !== question.CorrectAnswer.Value) {
-                        _.remove($scope.questions, function (q) { return q._id === question._id});
+                        _.remove($scope.questions, function (q) { return q._id === question._id;});
                     }
                 }
             });
@@ -93,8 +93,7 @@ angular.module('waitingRoomApp')
         };
 
         $scope.createPatient = function (scheme) {
-            //$rootScope.$broadcast("event:load_start");
-            $scope.questions = _.find(scheme.steps, {'Title': "Subjective"}).questions;
+            $scope.questions = _.find(scheme.steps, {'SortOrder': 0}).questions;
             $scope.nextSlide();
 
             $scope.basePatients.post().then(function(patient) {

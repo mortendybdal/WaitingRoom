@@ -1,12 +1,24 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-   .controller('MainCtrl', function ($scope, $rootScope) {
-        $rootScope.$on("event:load_start", function () {
-            $scope.is_loading_content = true;
-        });
+   .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary, Restangular, Auth) {
+        $scope.baseSchemes = Restangular.all("schemes");
+        $rootScope.response = {
+            doctor: {},
+            questions: {},
+            scheme: null,
+            patient: null
+        };
 
-        $rootScope.$on("event:load_stop", function () {
-            $scope.is_loading_content = false;
+        $rootScope.d = Dictionary.init('da');
+
+        $rootScope.$watch('currentUser', function () {
+            if(Auth.roleHasAccess(['Tablet'])) {
+                Restangular.one("tablets").get().then(function(tablet_response) {
+                    $rootScope.t = tablet_response;
+
+                    console.log(tablet_response);
+                });
+            }
         });
    });

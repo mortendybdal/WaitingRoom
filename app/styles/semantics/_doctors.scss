@@ -1,0 +1,166 @@
+.clinic__widget {
+  @extend %widget-box;
+
+  .clinic__widget-name {
+    font-size: 40px;
+    font-weight: 100;
+
+    span {
+      margin-right: 10px;
+
+      &:first-child {
+        color: $blue;
+      }
+    }
+  }
+}
+
+.doctor-list__widget {
+  @extend %widget-box;
+}
+
+.doctor-list__header {
+  @extend .user-list__header;
+
+  border-color: $black-font-color;
+}
+
+.doctor-item {
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in);
+
+  padding: 12px 0;
+  border-bottom: 1px dotted $black-font-color;
+  display: block;
+  position: relative;
+
+  .user-item__row {
+    font-weight: 200;
+  }
+}
+
+.doctor-item__row {
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  color: $black-font-color;
+
+
+
+  &.lable-icon {
+    width: 50px;
+    text-align: center;
+
+    i {
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+
+  &.lable-name {
+    @include calc("width", "50% - 10px");
+
+    vertical-align: middle;
+  }
+
+  &.lable-role {
+    @include calc("width", "50% - 100px");
+
+    vertical-align: middle;
+  }
+
+  &.lable-edit {
+    vertical-align: middle;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 52px;
+    text-align: center;
+
+    i {
+      line-height: 53px;
+      font-size: 20px;
+    }
+
+    &:hover {
+      background-color: $blue-hover;
+    }
+
+    &:active {
+      background-color: darken($blue-hover, 10%);
+    }
+  }
+}
+
+.doctor-item__edit {
+  margin-left: 50px;
+  padding: 10px 0;
+
+
+  .form-group {
+    margin-bottom: 10px !important;
+
+    label {
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      font-size: 12px;
+    }
+  }
+
+  .doctor-item__edit-actions {
+    padding-top: 10px;
+
+    .doctor-item__edit--save-button {
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease-in);
+
+      border: none;
+      background-color: transparent;
+      border: 1px solid $blue;
+      padding: 10px 50px;
+      font-size: 12px;
+      font-weight: 200;
+      color: $blue;
+      outline: none;
+      float: right;
+      margin-left: 20px;
+      height: 39px;
+      position: relative;
+
+      span:first-child {
+        margin-right: 5px;
+      }
+
+      &:hover {
+        border: 1px solid darken($blue, 20%);
+        color: darken($blue, 20%);
+      }
+
+      &:active {
+        background-color: lighten($blue, 40%);
+      }
+    }
+
+    .doctor-item__edit--delete-button {
+      @extend .doctor-item__edit--save-button;
+
+      border: 1px solid $red;
+      color: $red;
+
+
+
+      &:hover {
+        border: 1px solid darken($red, 20%);
+        color: darken($red, 20%);
+      }
+
+      &:active {
+        background-color: lighten($red, 40%);
+      }
+    }
+  }
+}

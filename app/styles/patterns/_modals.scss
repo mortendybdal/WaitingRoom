@@ -15,11 +15,30 @@
     margin-bottom: 20px;
     font-size: 25px;
     font-weight: 200;
+
+    span {
+      vertical-align: top;
+      line-height: 40px;
+
+      &:first-child {
+        font-size: 40px;
+        margin-right: 10px;
+      }
+
+      &:last-child {
+        line-height: 40px;
+      }
+    ;
+    }
   }
 
   .item-modal__content {
     .item-modal__text {
       padding: 10px 0px 40px 0px;
+    }
+
+    .row.doctor-item__edit-actions {
+      padding: 10px;
     }
 
     .item-modal__create-button {
@@ -83,34 +102,10 @@
   @extend .create-item-modal;
 }
 
-
-
-/*
-
-.create-scheme-modal {
-  .modal-body {
-    overflow: hidden;
-  }
-
-  .form-group {
-    margin-bottom: 40px;
-  }
-
-
-  .modal-title {
-    margin-bottom: 20px;
-    font-size: 25px;
-    font-weight: 200;
-  }
-
-
+.create-clinic-modal {
+  @extend .create-item-modal;
 }
 
-.delet-scheme-modal {
-  @extend .create-scheme-modal;
-
-  .modal-body__content {
-    padding-bottom: 40px;
-  }
+.create-doctor-modal {
+  @extend .create-item-modal;
 }
-*/

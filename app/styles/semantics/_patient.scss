@@ -88,16 +88,16 @@
     background-color: lighten($blue, 40%);
   }
 
-  &.active {
-    background-color: lighten($blue, 30%);
+  &.done {
+    background-color: lighten($blue, 20%);
     color: white;
 
     &:after {
-      background-color: lighten($blue, 30%);
+      background-color: lighten($blue, 20%);
     }
   }
 
-  &.done {
+  &.active {
     background-color: $blue;
     color: white;
 

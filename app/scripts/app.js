@@ -11,9 +11,10 @@ angular.module('waitingRoomApp', [
         'ngClipboard',
         'restangular',
         'ui.tree',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'angular-loading-bar'
     ])
-    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+    .config(function ($routeProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider) {
 
         //================================================
         // Define all the routes
@@ -25,7 +26,7 @@ angular.module('waitingRoomApp', [
                 controller: 'FrontpageCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['User', 'Editor', 'Admin']);
                     }
                 }
             })
@@ -34,7 +35,7 @@ angular.module('waitingRoomApp', [
                 controller: 'PatientCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['User', 'Editor', 'Admin']);
                     }
                 }
             })
@@ -43,7 +44,7 @@ angular.module('waitingRoomApp', [
                 controller: 'SchemeBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['Editor', 'Admin']);
                     }
                 }
             })
@@ -52,7 +53,7 @@ angular.module('waitingRoomApp', [
                 controller: 'StepBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['Editor', 'Admin']);
                     }
                 }
             })
@@ -61,20 +62,34 @@ angular.module('waitingRoomApp', [
                 controller: 'QuestionBuilderCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['Editor', 'Admin']);
                     }
                 }
             })
-            .when('/tablet', {
-                templateUrl: 'partials/tablet',
-                controller: 'TabletCtrl'
+            .when('/customers', {
+                templateUrl: 'partials/customers/clinics',
+                controller: 'ClinicsCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Admin']);
+                    }
+                }
+            })
+            .when('/customer/clinic/:id', {
+                templateUrl: 'partials/customers/doctors',
+                controller: 'DoctorsCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Admin']);
+                    }
+                }
             })
             .when('/settings', {
                 templateUrl: 'partials/settings',
                 controller: 'SettingsCtrl',
                 resolve: {
                     loggedin: function (Auth) {
-                        return Auth.isLoggedIn();
+                        return Auth.isLoggedIn(['User', 'Editor', 'Admin']);
                     }
                 }
             })
@@ -82,15 +97,57 @@ angular.module('waitingRoomApp', [
                 templateUrl: 'partials/login',
                 controller: 'LoginCtrl'
             })
-            .when('/signup', {
-                templateUrl: 'partials/signup',
-                controller: 'SignupCtrl'
+            .when('/tablet/:direction/:id', {
+                templateUrl: 'partials/tablet/tablet_question',
+                controller: 'TabletQuestionCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
+            })
+            .when('/tablet/schemes', {
+                templateUrl: 'partials/tablet/tablet_scheme_list',
+                controller: 'TabletSchemeListCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
+            })
+            .when('/tablet', {
+                templateUrl: 'partials/tablet/tablet_doctor_list',
+                controller: 'TabletDoctorListCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
+            })
+            .when('/tablet/finish', {
+                templateUrl: 'partials/tablet/tablet_finish',
+                controller: 'TabletFinishCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
+            })
+            .when('/tablet/thankyou', {
+                templateUrl: 'partials/tablet/tablet_thankyou',
+                controller: 'TabletThankYouCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
             })
             .otherwise({
                 redirectTo: '/'
             });
 
         $locationProvider.html5Mode(true);
+        cfpLoadingBarProvider.includeSpinner = false;
 
         // Intercept 401s and redirect you to login
         $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
@@ -117,7 +174,8 @@ angular.module('waitingRoomApp', [
         // Redirect to login if route requires auth and you're not logged in
         $rootScope.$on('$routeChangeStart', function (event, next) {
 
-            $rootScope.$broadcast("event:load_start");
+            //$rootScope.$broadcast("event:load_start");
+
 
             if (next.authenticate && !Auth.isLoggedIn()) {
                 $location.path('/login');

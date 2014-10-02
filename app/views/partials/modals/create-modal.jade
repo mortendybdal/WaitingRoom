@@ -1,19 +1,21 @@
 .create-item-modal
-    .item-modal__header Create {{type}}
+    .item-modal__header
+        span(ng-class="{'ion-help-circled': type === 'Question' || type === 'Subquestion', 'ion-folder': type === 'Step', 'ion-document-text': type === 'Scheme'}")
+        span {{d.GENERAL_Create}} {{title}} {{type}}
 
     .item-modal__content
 
         form(name='modal_form', novalidate='novalidate')
             .form-group(ng-class="{'has-error':modal_form.title.$error.required && ModalService.isSubmitted()}")
-                label Title
+                label {{d.GENERAL_Title}}
                 input.form-control(type='text', name='title', ng-model='scheme_title', required)
 
-                p.help-block.has-error(ng-show='modal_form.title.$error.required && ModalService.isSubmitted()') Please enter a title for the {{type}}
+                p.help-block.has-error(ng-show='modal_form.title.$error.required && ModalService.isSubmitted()') {{d.MODAL_EnterTitleFor}} {{title}}
 
             button.item-modal__create-button(ng-click="ModalService.save(modal_form, type, parent_id, modal_form.title.$modelValue)")
-                span Create {{type}}
+                span {{d.GENERAL_Create}} {{title}}
                 .element-loader__container(ng-class="{fade: ModalService.isLoading()}")
                     .element-loader
 
-            button.item-modal__cancel-button(ng-click="ModalService.close()") Cancel
+            button.item-modal__cancel-button(ng-click="ModalService.close()") {{d.GENERAL_Cancel}}
 

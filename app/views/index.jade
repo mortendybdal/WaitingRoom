@@ -9,7 +9,7 @@ html.no-js
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
     base(href="/")
-    title
+    title DokHop
     meta(name="description", content="")
     meta(name="viewport", content="width=device-width")
     // Place favicon.ico and apple-touch-icon.png in the root directory
@@ -19,12 +19,14 @@ html.no-js
     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/ionicons/css/ionicons.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  body(ng-app="waitingRoomApp", ng-class="{'tablet-design':hide_navigation_menu}")
+  body(ng-app="waitingRoomApp", ng-class="{'tablet-ui':tablet_ui}")
     //[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
       <![endif]
@@ -34,12 +36,13 @@ html.no-js
       <![endif]
 
     .page(ng-controller="MainCtrl")
-      ng-include(src="'partials/navigation'", ng-show="!hide_navigation_menu")
+      ng-include(src="'partials/navigation'", ng-show="!tablet_ui")
+      ng-include(src="'partials/tablet/tablet_navigation'", ng-show="tablet_ui")
 
       .content
-        .content-view(ng-view, ng-class="{fade: is_loading_content}")
+        .content-view(ng-view, ng-hide="is_loading_content", ng-class="{'tablet-ui':tablet_ui}", class="{{page_class}}")
 
-        .content-loader__container(ng-class="{fade: is_loading_content}")
+        .content-loader__container(ng-show="is_loading_content")
             .content-loader(ng-class="{is_white: hide_navigation_menu}")
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
@@ -68,8 +71,10 @@ html.no-js
     <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/MainCtrl.js"></script>
@@ -83,12 +88,27 @@ html.no-js
     <script src="scripts/controllers/builder/SchemeBuilderCtrl.js"></script>
     <script src="scripts/controllers/builder/StepBuilderCtrl.js"></script>
     <script src="scripts/controllers/builder/QuestionBuilderCtrl.js"></script>
+    <script src="scripts/controllers/builder/NavigationBuilderCtrl.js"></script>
+    <script src="scripts/controllers/customers/ClinicsCtrl.js"></script>
+    <script src="scripts/controllers/customers/DoctorsCtrl.js"></script>
+    <script src="scripts/controllers/tablet/TabletQuestionCtrl.js"></script>
+    <script src="scripts/controllers/tablet/TabletSchemeListCtrl.js"></script>
+    <script src="scripts/controllers/tablet/TabletDoctorListCtrl.js"></script>
+    <script src="scripts/controllers/tablet/TabletFinishCtrl.js"></script>
+    <script src="scripts/controllers/tablet/TabletThankYouCtrl.js"></script>
+    <script src="scripts/controllers/tablet/TabletNavigationCtrl.js"></script>
+
     <script src="scripts/directives/offClick.js"></script>
     <script src="scripts/directives/contentEditable.js"></script>
+
     <script src="scripts/services/ModalService.js"></script>
     <script src="scripts/services/auth.js"></script>
     <script src="scripts/services/session.js"></script>
     <script src="scripts/services/user.js"></script>
+    <script src="scripts/services/dictionary.js"></script>
+
     <script src="scripts/directives/mongooseError.js"></script>
+
+
     <!-- endbuild -->
     

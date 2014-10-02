@@ -1,0 +1,23 @@
+.clinics
+
+    .clinic-list__widget
+        .widget-header
+            .widget-actions
+                button.clinic__add-customer(ng-click="openModal()")
+                    span.icon.ion-person-add
+                    span {{d.CLINIC_AddClinic}}
+
+            .widget-title {{d.CLINIC_CustomerOverview}}
+
+        .clinic-list__header
+            .clinic-item__row.lable-icon
+            .clinic-item__row.lable-name {{d.CLINIC_Clinic}}
+            .clinic-item__row.lable-doctors-count {{d.CLINIC_Doctor}}
+
+        .clinic-list__content
+            a.clinic-item(ng-repeat="clinic in clinics", ng-href="/customer/clinic/{{clinic._id}}")
+                .clinic-item__row.lable-icon
+                    i.ion-ios7-pulse-strong
+                .clinic-item__row.lable-name {{clinic.Name}}
+                .clinic-item__row.lable-doctors-count 5
+

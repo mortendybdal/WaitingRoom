@@ -46,7 +46,7 @@
     display: block;
 
     &:hover {
-      span {
+      span, i {
         color: white;
       }
     }
@@ -56,6 +56,15 @@
       @include transition-timing-function(ease-in);
       line-height: 70px;
       font-size: 25px;
+      color: $icon-dark-blue;
+      pointer-events: none;
+    }
+
+    i {
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease-in);
+      line-height: 70px;
+      font-size: 35px;
       color: $icon-dark-blue;
       pointer-events: none;
     }
@@ -113,6 +122,7 @@
     }
   }
 
+
   &.angular-ui-tree-nodes {
     padding: 0;
   }
@@ -135,14 +145,26 @@
     color: $blue;
     cursor: pointer;
     font-weight: 200;
+
+    &:first-child{
+      &:hover {
+        color: darken($blue, 30%);
+      }
+    }
   }
 
+
   .content-tree__item-icon {
-    font-size: 12px;
+    font-size: 15px;
+
+    &:before {
+      vertical-align: top;
+      line-height: 22px;
+    }
   }
 
   .content-tree__item-link {
-    @include calc("width", "100% - 30px");
+    @include calc("width", "100% - 34px");
 
     display: inline-block;
     position: relative;

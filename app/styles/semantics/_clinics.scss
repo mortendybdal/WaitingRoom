@@ -1,0 +1,63 @@
+.clinic-list__widget {
+  @extend %widget-box;
+
+  .customer-list__widget-title {
+    font-size: 28px;
+    font-weight: 100;
+    padding: 20px 0 10px 0;
+  }
+}
+
+
+
+.clinic-list__header {
+  @extend .user-list__header;
+
+  border-color: $black-font-color;
+}
+
+.clinic-item__row {
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  color: $black-font-color;
+
+  &.lable-icon {
+    width: 50px;
+    text-align: center;
+
+    i {
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+
+  &.lable-name {
+    width: 50%;
+    vertical-align: middle;
+  }
+
+  &.lable-doctors-count {
+    @include calc("width", "50% - 50px");
+
+    vertical-align: middle;
+  }
+}
+
+.clinic-item {
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in);
+
+  padding: 12px 0;
+  border-bottom: 1px dotted $black-font-color;
+  cursor: pointer;
+  display: block;
+
+  &:hover {
+    background-color: $blue-hover;
+  }
+
+  .user-item__row {
+    font-weight: 200;
+  }
+}

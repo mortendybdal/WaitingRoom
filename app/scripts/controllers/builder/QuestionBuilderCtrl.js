@@ -90,13 +90,14 @@ angular.module('waitingRoomApp')
             }
         };
 
-        $scope.openModal = function (type, parent_id) {
+        $scope.openModal = function (type, title, parent_id) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'partials/modals/create-modal.html',
                 controller: function ($scope, $modalInstance, ModalService) {
                     $scope.ModalService = ModalService.init($modalInstance);
                     $scope.type = type;
+                    $scope.title = title;
                     $scope.parent_id = parent_id;
                 }
             });

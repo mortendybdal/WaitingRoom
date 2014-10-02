@@ -11,10 +11,11 @@ angular.module('waitingRoomApp')
       });
 
       $scope.calcTimeSinceSubmition = function (time) {
-          return window.moment(time).fromNow();
+          return window.moment(time).zone('0000').fromNow();
       };
 
       $scope.formatDateTime = function (time) {
-          return window.moment(time).format('HH:mm');
+          return window.moment(time).zone('0000').format('HH:mm');
       };
+
    });

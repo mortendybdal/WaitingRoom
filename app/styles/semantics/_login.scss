@@ -12,12 +12,13 @@
   z-index: 300;
 }
 
+
 .login-box {
   @include box-shadow(0 0 20px rgba(black, 0.3));
 
   width: 320px;
   margin: 0 auto;
-  top: 30%;
+  top: calc(50% - 195px);
   position: relative;
   background-color: white;
 
