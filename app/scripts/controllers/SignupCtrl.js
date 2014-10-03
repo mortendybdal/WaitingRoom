@@ -2,7 +2,6 @@
 
 angular.module('waitingRoomApp')
   .controller('SignupCtrl', function ($scope, $rootScope, Auth, $location) {
-    $rootScope.$broadcast("event:load_stop");
     $scope.user = {};
     $scope.errors = {};
 

@@ -40,10 +40,9 @@ html.no-js
       ng-include(src="'partials/tablet/tablet_navigation'", ng-show="tablet_ui")
 
       .content
-        .content-view(ng-view, ng-hide="is_loading_content", ng-class="{'tablet-ui':tablet_ui}", class="{{page_class}}")
+        .content-view(ng-view, ng-class="{'tablet-ui':tablet_ui}", class="{{page_class}}")
 
-        .content-loader__container(ng-show="is_loading_content")
-            .content-loader(ng-class="{is_white: hide_navigation_menu}")
+        .content-loader__container
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.

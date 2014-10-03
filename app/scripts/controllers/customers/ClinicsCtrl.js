@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('ClinicsCtrl', function ($scope, $rootScope, $modal, Restangular) {
-        $scope.baseClinics = Restangular.all("clinics");
-        $scope.clinics = [];
+    .controller('ClinicsCtrl', function ($scope, $rootScope, $modal, clinics) {
+        $scope.clinics = clinics;
 
 
         $scope.openModal = function () {
@@ -40,13 +39,4 @@ angular.module('waitingRoomApp')
                 }
             });
         }
-
-        function init () {
-            $scope.baseClinics.getList().then(function(clinics) {
-                $scope.clinics = clinics;
-                $rootScope.$broadcast("event:load_stop");
-            });
-        }
-
-        init();
     });

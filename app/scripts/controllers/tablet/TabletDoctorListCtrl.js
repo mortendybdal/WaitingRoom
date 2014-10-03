@@ -9,7 +9,6 @@ angular.module('waitingRoomApp')
         }
 
         $rootScope.tablet_ui = true;
-        $rootScope.$broadcast("event:load_stop");
 
         $scope.page_class = 'page-slide-up';
 

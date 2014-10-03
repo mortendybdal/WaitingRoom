@@ -24,8 +24,6 @@ angular.module('waitingRoomApp')
 
 
                             generateJournal();
-
-                            $rootScope.$broadcast("event:load_stop");
                         });
                     }
                 });

@@ -1,13 +1,10 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('StepBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, $location, Restangular) {
+    .controller('StepBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, step) {
 
-        if ($routeParams.id) {
-            Restangular.one('steps', $routeParams.id).get().then(function (step) {
-                $scope.step = step;
-                $rootScope.$broadcast("event:load_stop");
-            });
+        if (step) {
+            $scope.step = step;
         }
 
         $scope.save = function (form) {

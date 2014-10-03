@@ -27,6 +27,9 @@ angular.module('waitingRoomApp', [
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['User', 'Editor', 'Admin']);
+                    },
+                    patients: function (Restangular) {
+                        return Restangular.all("patients").getList();
                     }
                 }
             })
@@ -45,6 +48,9 @@ angular.module('waitingRoomApp', [
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['Editor', 'Admin']);
+                    },
+                    scheme: function (Restangular, $route) {
+                        return Restangular.one('schemes', $route.current.params.id).get();
                     }
                 }
             })
@@ -54,6 +60,9 @@ angular.module('waitingRoomApp', [
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['Editor', 'Admin']);
+                    },
+                    step: function (Restangular, $route) {
+                        return Restangular.one('steps', $route.current.params.id).get();
                     }
                 }
             })
@@ -63,6 +72,9 @@ angular.module('waitingRoomApp', [
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['Editor', 'Admin']);
+                    },
+                    question: function (Restangular, $route) {
+                        return Restangular.one('questions', $route.current.params.id).get();
                     }
                 }
             })
@@ -72,6 +84,9 @@ angular.module('waitingRoomApp', [
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['Admin']);
+                    },
+                    clinics: function (Restangular) {
+                        return  Restangular.all("clinics").getList();
                     }
                 }
             })
@@ -81,6 +96,12 @@ angular.module('waitingRoomApp', [
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['Admin']);
+                    },
+                    users: function (Restangular, $route) {
+                        return Restangular.one('clinics', $route.current.params.id).getList('users');
+                    },
+                    clinic: function (Restangular, $route) {
+                        return Restangular.one('clinics', $route.current.params.id).get()
                     }
                 }
             })

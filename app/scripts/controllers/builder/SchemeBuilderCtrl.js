@@ -1,13 +1,10 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('SchemeBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, $location, Restangular) {
+    .controller('SchemeBuilderCtrl', function ($scope, $rootScope, $modal, scheme) {
 
-        if ($routeParams.id) {
-            Restangular.one('schemes', $routeParams.id).get().then(function (scheme) {
-                $scope.scheme = scheme;
-                $rootScope.$broadcast("event:load_stop");
-            });
+        if (scheme) {
+            $scope.scheme = scheme;
         }
 
         $scope.save = function (form) {

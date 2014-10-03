@@ -55,9 +55,6 @@ angular.module('waitingRoomApp')
 
         $scope.baseSchemes.getList().then(function(schemes) {
             $scope.schemes = schemes;
-            $timeout(function () {
-                $rootScope.$broadcast("event:load_stop");
-            });
         });
 
         $scope.nextSlide = function (question) {

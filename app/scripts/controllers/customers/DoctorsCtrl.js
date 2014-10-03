@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-  .controller('DoctorsCtrl', function ($scope, $rootScope, $routeParams, $modal, Restangular) {
+  .controller('DoctorsCtrl', function ($scope, $rootScope, $routeParams, $modal, clinic, users) {
         $scope.roles = ["Admin", "Editor", "User", "Tablet"];
+        $scope.clinic = clinic;
+        $scope.users = users;
+
 
         $scope.current_selected_doctor = null;
 
@@ -93,7 +96,7 @@ angular.module('waitingRoomApp')
         $scope.openDeleteClinicModal = function (clinic) {
             $modal.open({
                 templateUrl: 'partials/modals/delete-clinic-modal.html',
-                controller: function ($scope, $modalInstance, $location) {
+                controller: function ($scope, $modalInstance, $location, clinic, users) {
                     $scope.clinic = clinic;
 
                     $scope.delete = function (item_id) {
@@ -119,25 +122,4 @@ angular.module('waitingRoomApp')
                 $scope.current_selected_doctor = null;
             }
         };
-
-        function init() {
-            if ($routeParams.id) {
-
-                Restangular.one('clinics', $routeParams.id).get().then(function (clinic) {
-                    $scope.clinic = clinic;
-
-                    console.log($scope.clinic);
-
-                    $rootScope.$broadcast("event:load_stop");
-                });
-
-                Restangular.one('clinics', $routeParams.id).getList('users').then(function (users) {
-                    $scope.users = users;
-
-                    console.log($scope.users);
-                });
-            }
-        }
-
-        init();
   });

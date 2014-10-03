@@ -3,7 +3,6 @@
 angular.module('waitingRoomApp')
     .controller('TabletThankYouCtrl', function ($scope, $rootScope, $interval, $location) {
         $rootScope.tablet_ui = true;
-        $rootScope.$broadcast("event:load_stop");
         $scope.reset_clock = 10;
 
         $scope.page_class = 'page-slide-up';

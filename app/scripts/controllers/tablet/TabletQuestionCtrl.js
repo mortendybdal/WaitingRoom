@@ -3,7 +3,6 @@
 angular.module('waitingRoomApp')
     .controller('TabletQuestionCtrl', function ($scope, $rootScope, $routeParams, $location) {
         $rootScope.tablet_ui = true;
-        $rootScope.$broadcast("event:load_stop");
 
         //Test to se if patient has selected a scheme
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('QuestionBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, $location, Restangular) {
+    .controller('QuestionBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, $location, Restangular, question) {
         $scope.options = [
             { Label: 'Single Text', Value: "single-text" },
             { Label: 'Multi Text', Value: "multi-text" },
@@ -12,20 +12,15 @@ angular.module('waitingRoomApp')
         $scope.journal_suffix = "......";
 
 
-        if ($routeParams.id) {
+        if (question) {
+            $scope.question = question;
+            $scope.question.Type = _.find($scope.options, $scope.question.Type);
 
-            Restangular.one('questions', $routeParams.id).get().then(function (question) {
-                $scope.question = question;
-                $scope.question.Type = _.find($scope.options, $scope.question.Type);
+            if($scope.question.ParentQuestion && $scope.question.ParentQuestion.Options && $scope.question.CorrectAnswer) {
+                $scope.question.CorrectAnswer = _.find($scope.question.ParentQuestion.Options, $scope.question.CorrectAnswer);
+            }
 
-                if($scope.question.ParentQuestion && $scope.question.ParentQuestion.Options && $scope.question.CorrectAnswer) {
-                    $scope.question.CorrectAnswer = _.find($scope.question.ParentQuestion.Options, $scope.question.CorrectAnswer);
-                }
-
-                setJournalText($scope.question.JournalText);
-
-                $rootScope.$broadcast("event:load_stop");
-            });
+            setJournalText($scope.question.JournalText);
         }
 
         function getJournalText() {
