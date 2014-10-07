@@ -2,7 +2,7 @@
 
 
 angular.module('waitingRoomApp')
-    .factory('Dictionary', function () {
+    .factory('Dictionary', function ($window) {
         var dictionary = [
             {
                 key: 'GENERAL_CompanyName',
@@ -320,6 +320,13 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'FRONTPAGE_DateForAppointment',
+                values: [
+                    { value: 'Dato for konsultation', language: 'da'},
+                    { value: 'Date for appointment', language: 'en'}
+                ]
+            },
+            {
                 key: 'FRONTPAGE_Submitted',
                 values: [
                     { value: 'Tid for indsendelse', language: 'da'},
@@ -467,6 +474,13 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'CLINIC_BackToOverview',
+                values: [
+                    { value: 'Tilbage til oversigt', language: 'da'},
+                    { value: 'Back to the overview', language: 'en'}
+                ]
+            },
+            {
                 key: 'DOCTOR_AddDoctor',
                 values: [
                     { value: 'Tilføj Læge', language: 'da'},
@@ -596,6 +610,8 @@ angular.module('waitingRoomApp')
 
         return {
             init: function (lang) {
+                $window.moment().lang(lang)
+
                 var d = {};
                 _.forEach(dictionary, function (k) {
                     d[k.key] = _.find(k.values, function (v) {

@@ -3,10 +3,25 @@
 }
 
 .user-item__row {
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in);
+
   font-size: 12px;
   font-weight: 500;
   display: inline-block;
   color: $blue;
+  
+  span:last-child {
+    margin-left: 10px;
+  }
+
+  &.lable {
+    cursor: pointer;
+
+    &:hover {
+      color: darken($blue, 20%);
+    }
+  }
 
   &.lable-icon {
     width: 50px;
@@ -19,11 +34,15 @@
   }
 
   &.lable-scheme {
-    width: 30%;
+    width: 20%;
   }
 
   &.lable-appointment {
-    width: 30%;
+    width: 20%;
+  }
+
+  &.lable-appointment-date {
+    width: 20%;
   }
 
 

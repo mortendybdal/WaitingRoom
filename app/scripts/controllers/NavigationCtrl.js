@@ -8,7 +8,6 @@ angular.module('waitingRoomApp')
         };
 
         $scope.hideContentTree = function () {
-            console.log("Hide");
             $scope.show_content_tree = false;
         };
 

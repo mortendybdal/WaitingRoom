@@ -10,21 +10,20 @@
   width: 75px;
   height: 75px;
   float: left;
-  border: 2px solid $blue;
-  border-radius: 3px;
+  border: 1px solid $nav-background;
   text-align: center;
   
   span {
     line-height: 70px;
-    font-size: 45px;
-    color: $blue;
+    font-size: 55px;
+    color: $nav-background;
   }
 }
 
 
 .patient-summery__info {
   overflow: hidden;
-  padding-left: 50px;
+  padding-left: 20px;
 }
 
 .patient-summery__info-row {
@@ -46,6 +45,7 @@
   .patient-summery__value {
     display: inline-block;
     font-size: 12px;
+    font-weight: 500;
   }
 
   &:last-child {

@@ -1,34 +1,39 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, Restangular) {
+    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, Restangular, patient) {
         $scope.is_copying_jounal = false;
         $scope.is_loading_soap_widget = false;
         $scope.baseAnswers = Restangular.all("answers");
 
+        console.log("PATIENT!!!!!!", patient);
+
         function init() {
-            if($routeParams.id) {
+            $scope.patient = patient.patient;
+            $scope.scheme = $scope.patient.Schemes[$routeParams.scheme];
+            $scope.questions = patient.questions;
+            $scope.steps = _.sortBy(_.uniq(_.map($scope.questions, "Step"), "Title"), "SortOrder");
 
-                Restangular.one('patients', $routeParams.id).get().then(function (patient) {
-                    if (patient){
-                        $scope.patient = patient;
-
-                        //TODO - handel multiple schemes
-                        Restangular.one('schemes', $scope.patient.Schemes[0]._id).one('patient', $scope.patient._id).get().then(function (questions) {
-                            $scope.questions = questions;
-
-                            $scope.steps = _.sortBy(_.uniq(_.map($scope.questions, "Step"), "Title"), "SortOrder");
-
-                            //Get all questions for the first step when you load page
-                            $scope.setQuestions($scope.steps[1]);
-
-
-                            generateJournal();
-                        });
-                    }
-                });
+            //Get all questions for the first step when you load page
+            if($scope.steps[1]) {
+                $scope.setQuestions($scope.steps[1]);
+            } else if ($scope.steps[0]) {
+                $scope.setQuestions($scope.steps[0]);
+            } else {
+                $location.path('/');
             }
+
+            generateJournal();
         }
+
+        $scope.calcTimeSinceSubmition = function (time) {
+            return window.moment(time).zone('0000').fromNow();
+        };
+
+        $scope.formatDateTime = function (time) {
+            return window.moment(time).zone('0000').format('HH:mm');
+        };
+
 
         function getQuestionsByStep(step) {
             return _.sortBy(_.filter($scope.questions, function (q) {

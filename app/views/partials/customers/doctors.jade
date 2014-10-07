@@ -8,7 +8,7 @@
     .doctor-list__widget
         .widget-header
             .widget-actions
-                button.clinic__add-customer(ng-click="openModal()")
+                button.clinic__add-customer(ng-click="openCreateDoctorModal()")
                     span.icon.ion-person-add
                     span {{d.DOCTOR_AddDoctor}}
 
@@ -62,3 +62,7 @@
                                         .element-loader__container(ng-class="{fade: updating_user}")
                                             .element-loader.is_white
                                         span {{d.DOCTOR_DeleteDoctor}}
+
+        a.doctor-list__back-button(ng-href="/customers")
+            span.ion-chevron-left
+            span {{d.CLINIC_BackToOverview}}

@@ -33,12 +33,15 @@ angular.module('waitingRoomApp', [
                     }
                 }
             })
-            .when('/patient/:step/:id', {
+            .when('/patient/:id/scheme/:scheme', {
                 templateUrl: 'partials/patient',
                 controller: 'PatientCtrl',
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['User', 'Editor', 'Admin']);
+                    },
+                    patient: function (Restangular, $route) {
+                        return Restangular.one('patients', $route.current.params.id).one('scheme', $route.current.params.scheme).get();
                     }
                 }
             })
@@ -118,7 +121,7 @@ angular.module('waitingRoomApp', [
                 templateUrl: 'partials/login',
                 controller: 'LoginCtrl'
             })
-            .when('/tablet/:direction/:id', {
+            .when('/tablet/question/:id/:direction', {
                 templateUrl: 'partials/tablet/tablet_question',
                 controller: 'TabletQuestionCtrl',
                 resolve: {
@@ -127,7 +130,7 @@ angular.module('waitingRoomApp', [
                     }
                 }
             })
-            .when('/tablet/schemes', {
+            .when('/tablet/schemes/:direction', {
                 templateUrl: 'partials/tablet/tablet_scheme_list',
                 controller: 'TabletSchemeListCtrl',
                 resolve: {
@@ -135,6 +138,7 @@ angular.module('waitingRoomApp', [
                         return Auth.isLoggedIn(['Tablet']);
                     }
                 }
+
             })
             .when('/tablet', {
                 templateUrl: 'partials/tablet/tablet_doctor_list',

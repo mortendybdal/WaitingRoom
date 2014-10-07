@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('ClinicsCtrl', function ($scope, $rootScope, $modal, clinics) {
+    .controller('ClinicsCtrl', function ($scope, $rootScope, $modal, clinics, Restangular) {
         $scope.clinics = clinics;
 
 
@@ -20,6 +20,7 @@ angular.module('waitingRoomApp')
                             Restangular.all("clinics").post(clinic).then(function (clinic) {
                                 $scope.is_loading = false;
                                 $scope.is_submitted = false;
+                                clinic.NumberOfUsers = 0;
                                 clinics.push(clinic);
                                 $modalInstance.close();
                             }, function () {

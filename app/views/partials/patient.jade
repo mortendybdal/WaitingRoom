@@ -3,19 +3,15 @@
     /////////////////////SUMMERY WIDGET///////////////////////
     .patient-summery__widget
         .patient-summery__image
-            span.glyphicon.glyphicon-user
+            span.ion-man
 
         .patient-summery__info
             .patient-summery__info-row
-                .patient-summery__lable-scheme Halssmerter - Kl 15:40
+                .patient-summery__lable-scheme {{scheme.Title}}
 
             .patient-summery__info-row
-                .patient-summery__lable Age
-                .patient-summery__value 47 years
-
-            .patient-summery__info-row
-                .patient-summery__lable Gender
-                .patient-summery__value Woman
+                .patient-summery__lable {{d.FRONTPAGE_Submitted}}
+                .patient-summery__value : {{calcTimeSinceSubmition(patient.Submitted)}}
 
 
     /////////////////////SOAP WIDGET///////////////////////

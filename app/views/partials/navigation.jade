@@ -7,8 +7,8 @@ nav(ng-controller="NavigationCtrl", ng-show="is_logged_in")
         .navigation__menu
             a.navigation__menu-item(ng-href="/", title="{{d.NAVIGATION_Home}}")
                 span.glyphicon.glyphicon-home
-            a.navigation__menu-item(ng-href="/customers", title="{{d.NAVIGATION_Members}}", , ng-show="auth.roleHasAccess(['Admin'])")
-                i.ion-person-stalker
+            a.navigation__menu-item(ng-href="/customers", title="{{d.NAVIGATION_Members}}", ng-show="auth.roleHasAccess(['Admin'])")
+                span.ion-android-friends
             .navigation__menu-item.navigation__menu-item--builder(ng-click="showContentTree()", title="{{d.NAVIGATION_SchemeaBuilder}}", ng-show="auth.roleHasAccess(['Editor', 'Admin'])")
                 span.glyphicon.glyphicon-list-alt
             a.navigation__menu-item(ng-href="/settings", title="{{d.NAVIGATION_Settings}}")

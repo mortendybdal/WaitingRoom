@@ -58,6 +58,10 @@
       font-size: 25px;
       color: $icon-dark-blue;
       pointer-events: none;
+
+      &.ion-android-friends {
+        font-size: 30px;
+      }
     }
 
     i {

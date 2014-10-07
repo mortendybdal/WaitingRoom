@@ -17,6 +17,34 @@
 
 .doctor-list__widget {
   @extend %widget-box;
+
+  .doctor-list__back-button {
+    border: 1px solid $blue;
+    padding: 7px;
+    text-align: center;
+    margin-top: 30px;
+    display: inline-block;
+    width: 100%;
+
+    &:hover {
+      text-decoration: none;
+      border-color: darken($blue, 20%);
+
+      span {
+        color: darken($blue, 20%);
+      }
+    }
+
+    span {
+      color: $blue;
+      font-size: 12px;
+      font-weight: 200;
+
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 .doctor-list__header {

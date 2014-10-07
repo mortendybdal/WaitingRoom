@@ -4,6 +4,7 @@ angular.module('waitingRoomApp')
     .controller('TabletQuestionCtrl', function ($scope, $rootScope, $routeParams, $location) {
         $rootScope.tablet_ui = true;
 
+        console.log("TabletQuestionCtrl");
         //Test to se if patient has selected a scheme
 
         function findNextInOrder () {
@@ -25,12 +26,10 @@ angular.module('waitingRoomApp')
             });
 
             if(!next_question) {
-                console.log("GO TO FINISH PAGE");
-
                 $location.path('/tablet/finish');
 
             } else {
-                $location.path('tablet/next/' + next_question._id);
+                $location.path('tablet/question/' + next_question._id + '/next');
             }
         }
 
@@ -54,9 +53,9 @@ angular.module('waitingRoomApp')
             });
 
             if(!previous_question) {
-                $location.path('tablet/schemes');
+                $location.path('tablet/schemes/previous');
             } else {
-                $location.path('tablet/previous/' + previous_question._id);
+                $location.path('tablet/question/' + previous_question._id + '/previous');
             }
         }
 
@@ -70,20 +69,22 @@ angular.module('waitingRoomApp')
 
         function setSlideDirection() {
             if($routeParams.direction === "next") {
-                $scope.page_class = 'page-slide-up';
+                $scope.page_class = 'page-slide-in-right';
             }
 
             if($routeParams.direction === "previous") {
-                $scope.page_class = 'page-slide-down';
+                $scope.page_class = 'page-slide-in-left';
             }
         }
 
         $scope.nextSlide = function () {
+            $scope.page_class = 'page-slide-in-left revert';
             findNextInOrder();
         };
 
 
         $scope.backSlide = function () {
+            $scope.page_class = 'page-slide-in-right revert';
             findPreviousInOrder();
         };
 

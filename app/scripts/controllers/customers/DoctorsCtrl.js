@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-  .controller('DoctorsCtrl', function ($scope, $rootScope, $routeParams, $modal, clinic, users) {
+  .controller('DoctorsCtrl', function ($scope, $rootScope, $routeParams, $modal, clinic, users, Restangular) {
         $scope.roles = ["Admin", "Editor", "User", "Tablet"];
         $scope.clinic = clinic;
         $scope.users = users;
@@ -9,7 +9,8 @@ angular.module('waitingRoomApp')
 
         $scope.current_selected_doctor = null;
 
-        $scope.openModal = function () {
+        $scope.openCreateDoctorModal = function () {
+            console.log("Open create doctor");
             var modalInstance = $modal.open({
                 templateUrl: 'partials/modals/create-doctor-modal.html',
                 controller: function ($scope, $modalInstance, users, roles) {
@@ -19,7 +20,7 @@ angular.module('waitingRoomApp')
                     $scope.save = function (form, user) {
                         $scope.is_submitted = true;
 
-                        console.log(form);
+                        console.log(user);
                         if(form.$valid) {
                             $scope.is_loading = true;
 
@@ -96,7 +97,7 @@ angular.module('waitingRoomApp')
         $scope.openDeleteClinicModal = function (clinic) {
             $modal.open({
                 templateUrl: 'partials/modals/delete-clinic-modal.html',
-                controller: function ($scope, $modalInstance, $location, clinic, users) {
+                controller: function ($scope, $modalInstance, $location) {
                     $scope.clinic = clinic;
 
                     $scope.delete = function (item_id) {
@@ -107,6 +108,7 @@ angular.module('waitingRoomApp')
                             $location.path('/customers');
                         });
                     }
+
 
                     $scope.close = function () {
                         $modalInstance.close();

@@ -10,10 +10,10 @@ angular.module('waitingRoomApp')
 
         $rootScope.tablet_ui = true;
 
-        $scope.page_class = 'page-slide-up';
+        $scope.page_class = 'page-slide-in-right';
 
         $scope.selectDoctor = function (doctor) {
             $rootScope.response.doctor = doctor;
-            $location.path('tablet/schemes')
+            $location.path('tablet/schemes/next')
         }
     });
