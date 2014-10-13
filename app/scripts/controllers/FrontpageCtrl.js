@@ -5,6 +5,7 @@ angular.module('waitingRoomApp')
         var orderBy = $filter('orderBy');
         $scope.patients = patients;
         $scope.order_by = '';
+        $scope.reverse = true;
 
         $scope.calcTimeSinceSubmition = function (time) {
             return $window.moment(time).zone('0000').fromNow();
@@ -31,7 +32,8 @@ angular.module('waitingRoomApp')
                 patient.Submitted = $scope.calcTimeSinceSubmition(patient.Submitted);
             });
 
-            $scope.order('DateForAppointment', false);
+            $scope.order('DateForAppointment', true);
+
         }
 
         init();

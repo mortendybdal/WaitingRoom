@@ -11,13 +11,14 @@ angular.module('waitingRoomApp')
         };
 
         $rootScope.d = Dictionary.init('da');
+        console.log($rootScope.d);
 
         $rootScope.$watch('currentUser', function () {
             if(Auth.roleHasAccess(['Tablet'])) {
                 Restangular.one("tablets").get().then(function(tablet_response) {
                     $rootScope.t = tablet_response;
 
-                    console.log(tablet_response);
+
                 });
             }
         });
