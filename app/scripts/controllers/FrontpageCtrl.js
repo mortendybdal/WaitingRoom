@@ -33,10 +33,7 @@ angular.module('waitingRoomApp')
                 patient.mSubmitted = $scope.calcTimeSinceSubmition(patient.Submitted);
             });
 
-            console.log($scope.patients);
-
-            $scope.order('TimeOfAppointment', true);
-
+            $scope.order('Submitted', true);
         }
 
         init();

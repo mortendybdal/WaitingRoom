@@ -173,6 +173,13 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'TABLET_EnterNumber',
+                values: [
+                    { value: 'Indtast svar i tal', language: 'da'},
+                    { value: 'Enter number', language: 'en'}
+                ]
+            },
+            {
                 key: 'TABLET_ChooseSchemet',
                 values: [
                     { value: 'Hvad vil du tale med din læge om?', language: 'da'},

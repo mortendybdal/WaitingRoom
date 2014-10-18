@@ -1,6 +1,7 @@
 .tablet-question {
   .tablet__content {
-    width: 60%;
+    @include calc('width', '100% - 40px');
+
     position: relative;
     margin: 0 auto;
 
@@ -37,6 +38,15 @@
             color: $blue;
           }
         }
+
+        &.ng-invalid-number {
+          color: $red;
+
+          & + .single-text__border {
+            border-color: $red;
+          }
+        }
+
       }
 
       .single-text__border {
@@ -51,7 +61,11 @@
         border-bottom: 1px solid $nav-button-background;
         border-left: 1px solid $nav-button-background;
         border-right: 1px solid $nav-button-background;
+
+
       }
+
+
     }
 
 
@@ -124,7 +138,7 @@
       }
 
       .radio-list--wrapper {
-        height: 280px;
+        height: 540px;
         overflow: auto;
 
         &.is_scrollable {

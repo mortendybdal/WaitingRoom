@@ -6,7 +6,8 @@ angular.module('waitingRoomApp')
             { Label: 'Single Text', Value: "single-text" },
             { Label: 'Multi Text', Value: "multi-text" },
             { Label: 'Radio List', Value: "radio-list" },
-            { Label: 'Select List', Value: "select-list" }
+            { Label: 'Select List', Value: "select-list" },
+            { Label: 'Numeric', Value: "numeric" }
         ];
         $scope.journal_prefix = "......";
         $scope.journal_suffix = "......";
@@ -74,6 +75,8 @@ angular.module('waitingRoomApp')
                 _.remove($scope.question.Options, function(option) {
                     return option.Value === "" && option.Key === "";
                 });
+
+                console.log($scope.question);
 
                 $scope.question.JournalText = getJournalText()
 

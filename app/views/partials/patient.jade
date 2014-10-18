@@ -10,8 +10,12 @@
                 .patient-summery__lable-scheme {{scheme.Title}}
 
             .patient-summery__info-row
-                .patient-summery__lable {{d.FRONTPAGE_Submitted}}
-                .patient-summery__value : {{calcTimeSinceSubmition(patient.Submitted)}}
+                .patient-summery__lable {{d.FRONTPAGE_Submitted}}:
+                .patient-summery__value  {{ calcTimeSinceSubmition(patient.Submitted)}}
+
+        button.patient-summery__finish-patient(ng-click="completePatient()")
+            span.ion-log-in
+            span Afslut patient
 
 
     /////////////////////SOAP WIDGET///////////////////////
@@ -39,7 +43,7 @@
                                                         blur="submit",
                                                         placeholder="Text",
                                                         onaftersave="saveAnswer(soap_item)",
-                                                        ng-if="soap_item.Type.Value === 'single-text'") {{soap_item.Answer || d.PATIENT_Empty}}
+                                                        ng-if="soap_item.Type.Value === 'single-text' || soap_item.Type.Value === 'numeric'") {{soap_item.Answer || d.PATIENT_Empty}}
 
                             // ==> Radio-List
                             .patient-soap__item--answer(editable-radiolist="soap_item.Answer",
@@ -65,7 +69,7 @@
                                                         onaftersave="saveAnswer(soap_item)",
                                                         ng-if="soap_item.Type.Value  === 'select-list'") {{findOptionByKey(soap_item.Answer, soap_item.Options) || d.PATIENT_Empty}}
 
-                        .patient-soap__item--container.sub-item(ng-repeat="sub_soap_item in soap_item.questions", collapse="soap_item.Answer != sub_soap_item.CorrectAnswer.Value")
+                        .patient-soap__item--container.sub-item(ng-repeat="sub_soap_item in soap_item.questions | orderBy: 'SortOrder'", collapse="soap_item.Answer != sub_soap_item.CorrectAnswer.Key")
                             .patient-soap__item
                                 .patient-soap__item--question {{sub_soap_item.QuestionText}}
 
@@ -75,14 +79,14 @@
                                                         blur="submit",
                                                         placeholder="Text",
                                                         onaftersave="saveAnswer(sub_soap_item)",
-                                                        ng-if="sub_soap_item.Type.Value === 'single-text'") {{sub_soap_item.Answer || d.PATIENT_Empty}}
+                                                        ng-if="sub_soap_item.Type.Value === 'single-text' || sub_soap_item.Type.Value === 'numeric'") {{sub_soap_item.Answer || d.PATIENT_Empty}}
 
                                 // ==> Radio-List
                                 .patient-soap__item--answer(editable-radiolist="sub_soap_item.Answer",
-                                                        e-ng-options="o.Value as o.Value for o in sub_soap_item.Options"
+                                                        e-ng-options="o.Key as o.Value for o in sub_soap_item.Options"
                                                         buttons="no",
                                                         onaftersave="saveAnswer(sub_soap_item)",
-                                                        ng-if="sub_soap_item.Type.Value === 'radio-list'") {{sub_soap_item.Answer || d.PATIENT_Empty}}
+                                                        ng-if="sub_soap_item.Type.Value === 'radio-list'") {{findOptionByKey(sub_soap_item.Answer, sub_soap_item.Options) || d.PATIENT_Empty}}
 
                                 // ==> Multi-text
                                 .patient-soap__item--answer(editable-textarea="sub_soap_item.Answer",
@@ -96,10 +100,10 @@
 
                                 // ==> Select-List
                                 .patient-soap__item--answer(editable-select="sub_soap_item.Answer",
-                                                        e-ng-options="o as o.Value for o in sub_soap_item.Options"
+                                                        e-ng-options="o.Key as o.Value for o in sub_soap_item.Options"
                                                         buttons="no",
                                                         onaftersave="saveAnswer(sub_soap_item)",
-                                                        ng-if="sub_soap_item.Type.Value  === 'select-list'") {{sub_soap_item.Answer || d.PATIENT_Empty}}
+                                                        ng-if="sub_soap_item.Type.Value  === 'select-list'") {{findOptionByKey(sub_soap_item.Answer, sub_soap_item.Options) || d.PATIENT_Empty}}
 
 
 
@@ -111,7 +115,7 @@
     .patient-journal__widget
         .patient-journal__copying(ng-if="is_copying_jounal") {{d.PATIENT_Copying}}
         .patient-journal__header
-            .patient-journal__row {{d.PATIENT_Description}}
+            .patient-journal__row {{d.PATIENT_ChartText}}
 
         .patient-journal__content
             pre {{journal_text}}

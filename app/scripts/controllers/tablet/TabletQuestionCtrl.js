@@ -15,7 +15,7 @@ angular.module('waitingRoomApp')
                         if (q.CorrectAnswer) {
                             var parent_question = _.find($rootScope.response.questions, {_id: q.ParentQuestion});
 
-                            if(q.CorrectAnswer.Value === parent_question.Answer) {
+                            if(q.CorrectAnswer.Key === parent_question.Answer) {
                                 return true;
                             }
                         }
@@ -42,7 +42,7 @@ angular.module('waitingRoomApp')
                         if (q.CorrectAnswer) {
                             var parent_question = _.find($rootScope.response.questions, {_id: q.ParentQuestion});
 
-                            if(q.CorrectAnswer.Value === parent_question.Answer) {
+                            if(q.CorrectAnswer.Key === parent_question.Answer) {
                                 return true;
                             }
                         }

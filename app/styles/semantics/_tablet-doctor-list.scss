@@ -2,8 +2,8 @@
   background-color: $main-background;
 
   .tablet__content {
-    width: 60%;
-    max-width: 500px;
+    @include calc("width", "100% - 40px");
+
     position: relative;
     margin: 0 auto;
 
@@ -12,8 +12,9 @@
 
       .arrow {
         position: absolute;
-        right: -20px;
-        color: darken($light-grey, 30%);
+        right: -30px;
+        color: #000000;
+        font-size: 20px;
 
         &.up-arrow {
           top: 0;
@@ -26,7 +27,7 @@
 
 
       .doctor-list--wrapper {
-        height: 302px;
+        height: 620px;
         overflow: auto;
         padding: 10px;
         border: 1px solid $light-grey;

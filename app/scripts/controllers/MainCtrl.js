@@ -11,7 +11,6 @@ angular.module('waitingRoomApp')
         };
 
         $rootScope.d = Dictionary.init('da');
-        console.log($rootScope.d);
 
         $rootScope.$watch('currentUser', function () {
             $scope.tablet_is_loading = true;

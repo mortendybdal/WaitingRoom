@@ -3,9 +3,9 @@
 
     .tablet__content
         .scheme-list
-            span.arrow.up-arrow.ion-chevron-up(ng-show="t.schemes.length > 4")
-            span.arrow.down-arrow.ion-chevron-down(ng-show="t.schemes.length > 4")
-            .scheme-list--wrapper(ng-class="{is_scrollable: t.schemes.length > 4}")
+            span.arrow.up-arrow.ion-chevron-up(ng-show="t.schemes.length > 7")
+            span.arrow.down-arrow.ion-chevron-down(ng-show="t.schemes.length > 7")
+            .scheme-list--wrapper(ng-class="{is_scrollable: t.schemes.length > 7}")
                 .scheme-item__container(ng-repeat="scheme in t.schemes", ng-click="selectScheme(scheme)")
                     .scheme-item {{scheme.Title}}
 

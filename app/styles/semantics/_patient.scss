@@ -4,18 +4,19 @@
   @extend %widget-box;
   overflow: hidden;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .patient-summery__image {
-  width: 75px;
-  height: 75px;
+  width: 55px;
+  height: 55px;
   float: left;
   border: 1px solid $nav-background;
   text-align: center;
   
   span {
-    line-height: 70px;
-    font-size: 55px;
+    line-height: 55px;
+    font-size: 45px;
     color: $nav-background;
   }
 }
@@ -32,24 +33,53 @@
   font-weight: 200;
 
   .patient-summery__lable-scheme {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .patient-summery__lable {
     display: inline-block;
-    font-size: 12px;
-    width: 100px;
+    font-size: 14px;
+    margin-right: 5px;
     font-weight: 200;
   }
 
   .patient-summery__value {
     display: inline-block;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
   }
 
   &:last-child {
     padding-bottom: 0;
+  }
+}
+
+.patient-summery__finish-patient {
+  @include transition-duration(0.5s);
+  @include transition-timing-function(liniar);
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: 1px solid $green;
+  color: $green;
+  margin: 30px;
+  padding: 18px 30px;
+  outline: none;
+
+  span:first-child {
+    margin-right: 5px;
+  }
+
+  &:hover {
+    border-color: darken($green, 20%);
+    color: darken($green, 20%);
+  }
+
+  &:active {
+    border-color: darken($green, 40%);
+    color: darken($green, 40%);
   }
 }
 
@@ -63,11 +93,11 @@
 .patient-soap__breadcrumb-step {
   display: inline-block;
   flex-grow: 1;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 200;
   width: 25%;
   border: none;
-  padding: 10px;
+  padding: 9px 9px 8px 9px;
   text-align: center;
   position: relative;
   background-color: lighten($blue, 40%);
@@ -186,24 +216,25 @@
 }
 
 .patient-soap__row {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 200;
   display: inline-block;
   color: $blue;
   width: 50%;
+
 }
 
 .patient-soap__item--container {
   &.sub-item {
-    border-left: 20px darken($subquestion-background-color, 30%) solid;
+    border-left: 30px solid transparent;
   }
 }
 
 .patient-soap__item {
-  padding: 5px 0 5px 0;
+  padding: 4px 0 4px 0;
   border-bottom: 1px dotted $blue;
   color: $icon-dark-blue;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 200;
 
   .sub-item > & {
@@ -228,6 +259,7 @@
   display: inline-block;
   width: 50%;
   vertical-align: top;
+  font-size: 14px;
 }
 
 .patient-soap__navigation {
@@ -240,7 +272,7 @@
     width: 200px;
     float: left;
     background-color: white;
-    font-size: 12px;
+    font-size: 14px;
     padding: 10px;
     outline: none;
 
@@ -306,7 +338,7 @@
 }
 
 .patient-journal__row {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 200;
   display: inline-block;
   color: $blue;
@@ -317,7 +349,7 @@
   line-height: 25px;
   padding: 20px 0 20px 0;
   color: $icon-dark-blue;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 200;
   border: none;
   background-color: transparent;
@@ -335,7 +367,7 @@
   background-color: transparent;
   border: 1px solid $blue;
   padding: 10px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 200;
   color: $blue;
   outline: none;

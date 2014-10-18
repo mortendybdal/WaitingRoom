@@ -7,6 +7,12 @@
             input(ng-model="question.Answer", placeholder="{{d.TABLET_EnterText}}")
             .single-text__border
 
+        // ==> Single-Text
+        .single-text(ng-if="question.Type.Value === 'numeric'", ng-keypress="onKeyPressed($event)")
+            input(type="number", ng-model="question.Answer", placeholder="{{d.TABLET_EnterNumber}}")
+            .single-text__border
+
+
 
         // ==> Multi-text
         .tablet-page__answer.multi-text(ng-if="question.Type.Value === 'multi-text'", ng-keypress="onKeyPressed($event)")
@@ -17,9 +23,9 @@
 
         // ==> Radio-List & Selected-List
         .radio-list(ng-if="question.Type.Value === 'radio-list' || question.Type.Value === 'select-list'")
-            span.up-arrow.ion-chevron-up(ng-show="question.Options.length > 4")
-            span.down-arrow.ion-chevron-down(ng-show="question.Options.length > 4")
-            .radio-list--wrapper(ng-class="{is_scrollable: question.Options.length > 4}")
+            span.up-arrow.ion-chevron-up(ng-show="question.Options.length > 7")
+            span.down-arrow.ion-chevron-down(ng-show="question.Options.length > 7")
+            .radio-list--wrapper(ng-class="{is_scrollable: question.Options.length > 7}")
                 .tablet-page__answer-option(ng-repeat="option in question.Options")
                     .tablet-page__answer-option--inner(ng-click="question.Answer = option.Key; nextSlide(question)", ng-class="{active: question.Answer === option.Key}") {{option.Value}}
 

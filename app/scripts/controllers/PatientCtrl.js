@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, Restangular, patient) {
+    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, $location, Restangular, patient) {
         $scope.is_copying_jounal = false;
         $scope.is_loading_soap_widget = false;
         $scope.baseAnswers = Restangular.all("answers");
-
-        console.log("PATIENT!!!!!!", patient);
 
         function init() {
             $scope.patient = patient.patient;
@@ -57,7 +55,7 @@ angular.module('waitingRoomApp')
 
                     _.forEach(question.questions, function (subquestion) {
 
-                        if (subquestion.CorrectAnswer && question.Answer === subquestion.CorrectAnswer.Value) {
+                        if (subquestion.CorrectAnswer && question.Answer === subquestion.CorrectAnswer.Key) {
                             if (subquestion.JournalText && subquestion.Answer) {
                                 j += subquestion.JournalText.replace("{{}}", subquestion.Answer) + ", ";
                             }
@@ -132,6 +130,15 @@ angular.module('waitingRoomApp')
 
             return option !== undefined ? option.Value : '';
         }
+
+        $scope.completePatient = function () {
+            $scope.patient.Completed = true;
+
+            Restangular.one('patients', $scope.patient._id).post(['Completed']).then(function () {
+                $location.path('/');
+            });
+        }
+
 
         init();
     });

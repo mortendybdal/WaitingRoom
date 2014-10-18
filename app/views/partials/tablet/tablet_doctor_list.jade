@@ -3,9 +3,9 @@
 
     .tablet__content
         .doctor-list
-            span.arrow.up-arrow.ion-chevron-up(ng-show="t.doctors.length > 4")
-            span.arrow.down-arrow.ion-chevron-down(ng-show="t.doctors.length > 4")
-            .doctor-list--wrapper(ng-class="{is_scrollable: t.doctors.length > 4}")
+            span.arrow.up-arrow.ion-chevron-up(ng-show="t.doctors.length > 7")
+            span.arrow.down-arrow.ion-chevron-down(ng-show="t.doctors.length > 7")
+            .doctor-list--wrapper(ng-class="{is_scrollable: t.doctors.length > 7}")
                 .doctor-item(ng-repeat="doctor in t.doctors", ng-click="selectDoctor(doctor)")
                     .doctor-item__profile-image
                         span.glyphicon.glyphicon-user

@@ -6,7 +6,7 @@
   @include transition-duration(0.3s);
   @include transition-timing-function(ease-in);
 
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   display: inline-block;
   color: $blue;
@@ -34,15 +34,22 @@
   }
 
   &.lable-scheme {
-    width: 30%;
+    @include calc("width", "50% - 50px");
   }
 
+  /*
   &.lable-appointment {
     width: 30%;
   }
+  */
 
   &.lable-submitted {
-    @include calc("width", "40% - 50px");
+    @include calc("width", "50% - 50px");
+  }
+
+  &.lable-status {
+    width: 50px;
+    color: $green;
   }
 }
 
@@ -55,10 +62,11 @@
   @include transition-duration(0.3s);
   @include transition-timing-function(ease-in);
 
-  padding: 15px 0 15px 0;
+  padding: 13px 0 13px 0;
   border-bottom: 1px dotted $blue;
   cursor: pointer;
   display: block;
+  position: relative;
 
   &:hover {
     background-color: $blue-hover;
@@ -66,5 +74,9 @@
 
   .user-item__row {
     font-weight: 200;
+  }
+
+  &.completed {
+    background-color: #F6F7FA;
   }
 }

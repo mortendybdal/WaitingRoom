@@ -1,6 +1,7 @@
 .tablet-finish {
   .tablet__content {
-    width: 60%;
+    @include calc('width', '100% - 40px');
+
     position: relative;
     margin: 0 auto;
 
@@ -26,7 +27,8 @@
 
 .tablet-thankyou {
   .tablet__content {
-    width: 60%;
+    @include calc('width', '100% - 40px');
+
     position: relative;
     margin: 0 auto;
 
