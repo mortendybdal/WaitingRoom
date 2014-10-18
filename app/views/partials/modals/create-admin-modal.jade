@@ -1,0 +1,30 @@
+.create-doctor-modal
+    .item-modal__header {{d.MODAL_CreateAdmin}}
+
+    .item-modal__content
+
+        form(name='modal_form', novalidate='novalidate')
+            .form-group(ng-class="{'has-error':modal_form.name.$error.required && is_submitted}")
+                label {{d.GENERAL_Name}}
+                input.form-control(type='text', name='name', ng-model='user.name', required)
+
+                p.help-block.has-error(ng-show='modal_form.name.$error.required && is_submitted') {{d.MODAL_EnterName}}
+
+            .form-group(ng-class="{'has-error':modal_form.email.$error.required && is_submitted}")
+                label {{d.GENERAL_Username}}
+                input.form-control(type='email', name='email', ng-model='user.email', required)
+
+                p.help-block.has-error(ng-show='modal_form.email.$error.email && is_submitted') {{d.MODAL_EnterEmail}}
+
+            .form-group(ng-class="{'has-error':modal_form.password.$error.required && is_submitted}")
+                label {{d.GENERAL_Password}}
+                input.form-control(type='password', name='password', ng-model='user.password', required)
+
+                p.help-block.has-error(ng-show='modal_form.password.$error.required && is_submitted') {{d.MODAL_EnterPassword}}
+
+            button.item-modal__create-button(ng-click="save(modal_form, user)")
+                span {{d.MODAL_CreateDoctor}}
+                .element-loader__container(ng-class="{fade: is_loading}")
+                    .element-loader
+
+            button.item-modal__cancel-button(ng-click="close()") {{d.GENERAL_Cancel}}

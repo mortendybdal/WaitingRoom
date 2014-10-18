@@ -26,7 +26,7 @@
 
                     p.help-block.has-error(ng-show='question_form.type.$error.required && submitted') {{d.QuestionBuilder_EnterQuestionType}}
 
-                .form-group(ng-class="{'has-error':question_form.type.$error.required && submitted}")
+                .form-group(ng-class="{'has-error':question_form.type.$error.required && submitted}", ng-hide="question.Type.Value === 'radio-list' || question.Type.Value === 'select-list'")
                     label {{d.QuestionBuilder_JournalText}}
                     .builder__widget-journaltext.form-control
                         span.journal_fix(type="text", contenteditable="true", name="journal_prefix", ng-model="journal_prefix", strip-br="true", select-non-editable="true", ng-focus="prefixFocus()", ng-blur="prefixBlur()") &#8203
@@ -35,6 +35,10 @@
 
                 .form-group.builder__widget-option(ng-show="question.Type.Value === 'radio-list' || question.Type.Value === 'select-list'")
                     label {{d.QuestionBuilder_Option}}
+
+                    .builder__widget-option-row.row
+                        .col-xs-6 {{d.QuestionBuilder_GeneratedJournalText}}
+                        .col-xs-6 {{d.QuestionBuilder_PatientAnswer}}
 
                     .builder__widget-option-row.row(ng-repeat="option in question.Options")
                         .col-xs-6

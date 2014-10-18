@@ -27,8 +27,8 @@ angular.module('waitingRoomApp')
                     })
                     .catch(function (err) {
                         err = err.data;
-                        $scope.errors.other = err.message;
-                        console.log($rootScope.d);
+                        $scope.errors.other = $rootScope.d[err.message];
+                        console.log(err.message);
                     });
             }
         };

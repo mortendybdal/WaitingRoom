@@ -1,24 +1,24 @@
 .page-slide-in-right {
   &.ng-enter {
     z-index: 9999;
-    -webkit-animation: slideInRight 0.5s both ease-in;
-    -moz-animation: slideInRight 0.5s both ease-in;
-    animation: slideInRight 0.5s both ease-in;
+    -webkit-animation: slideInRight 0.3s both ease-in;
+    -moz-animation: slideInRight 0.3s both ease-in;
+    animation: slideInRight 0.3s both ease-in;
   }
 
   &.ng-leave {
     z-index: 8888;
-    -webkit-animation: slideOutLeft 0.5s both ease-in;
-    -moz-animation: slideOutLeft 0.5s both ease-in;
-    animation: slideOutLeft 0.5s both ease-in;
+    -webkit-animation: slideOutLeft 0.3s both ease-in;
+    -moz-animation: slideOutLeft 0.3s both ease-in;
+    animation: slideOutLeft 0.3s both ease-in;
   }
 
   &.revert {
     &.ng-leave {
       z-index: 8888;
-      -webkit-animation: slideOutRight 0.5s both ease-in;
-      -moz-animation: slideOutRight 0.5s both ease-in;
-      animation: slideOutRight 0.5s both ease-in;
+      -webkit-animation: slideOutRight 0.3s both ease-in;
+      -moz-animation: slideOutRight 0.3s both ease-in;
+      animation: slideOutRight 0.3s both ease-in;
     }
   }
 }
@@ -26,24 +26,24 @@
 .page-slide-in-left {
   &.ng-enter {
     z-index: 9999;
-    -webkit-animation: slideInLeft 0.5s both ease-in;
-    -moz-animation: slideInLeft 0.5s both ease-in;
-    animation: slideInLeft 0.5s both ease-in;
+    -webkit-animation: slideInLeft 0.3s both ease-in;
+    -moz-animation: slideInLeft 0.3s both ease-in;
+    animation: slideInLeft 0.3s both ease-in;
   }
 
   &.ng-leave {
     z-index: 8888;
-    -webkit-animation: slideOutRight 0.5s both ease-in;
-    -moz-animation: slideOutRight 0.5s both ease-in;
-    animation: slideOutRight 0.5s both ease-in;
+    -webkit-animation: slideOutRight 0.3s both ease-in;
+    -moz-animation: slideOutRight 0.3s both ease-in;
+    animation: slideOutRight 0.3s both ease-in;
   }
 
   &.revert {
     &.ng-leave {
       z-index: 8888;
-      -webkit-animation: slideOutLeft 0.5s both ease-in;
-      -moz-animation: slideOutLeft 0.5s both ease-in;
-      animation: slideOutLeft 0.5s both ease-in;
+      -webkit-animation: slideOutLeft 0.3s both ease-in;
+      -moz-animation: slideOutLeft 0.3s both ease-in;
+      animation: slideOutLeft 0.35s both ease-in;
     }
   }
 }
@@ -51,32 +51,32 @@
 .page-slide-up {
   &.ng-enter {
     z-index: 9999;
-    -webkit-animation: slideInUp 0.5s both ease-in;
-    -moz-animation: slideInUp 0.5s both ease-in;
-    animation: slideInUp 0.5s both ease-in;
+    -webkit-animation: slideInUp 0.3s both ease-in;
+    -moz-animation: slideInUp 0.3s both ease-in;
+    animation: slideInUp 0.3s both ease-in;
   }
 
   &.ng-leave {
     z-index: 8888;
-    -webkit-animation: scaleDown 0.5s both ease-in;
-    -moz-animation: scaleDown 0.5s both ease-in;
-    animation: scaleDown 0.5s both ease-in;
+    -webkit-animation: scaleDown 0.3s both ease-in;
+    -moz-animation: scaleDown 0.3s both ease-in;
+    animation: scaleDown 0.3s both ease-in;
   }
 }
 
 .page-slide-down {
   &.ng-enter {
     z-index: 9999;
-    -webkit-animation: slideInDown 0.5s both ease-in;
-    -moz-animation: slideInDown 0.5s both ease-in;
-    animation: slideInDown 0.5s both ease-in;
+    -webkit-animation: slideInDown 0.3s both ease-in;
+    -moz-animation: slideInDown 0.3s both ease-in;
+    animation: slideInDown 0.3s both ease-in;
   }
 
   &.ng-leave {
     z-index: 8888;
-    -webkit-animation: scaleDown 0.5s both ease-in;
-    -moz-animation: scaleDown 0.5s both ease-in;
-    animation: scaleDown 0.5s both ease-in;
+    -webkit-animation: scaleDown 0.3s both ease-in;
+    -moz-animation: scaleDown 0.3s both ease-in;
+    animation: scaleDown 0.3s both ease-in;
   }
 }
 

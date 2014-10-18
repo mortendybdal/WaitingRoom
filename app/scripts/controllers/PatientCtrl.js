@@ -15,7 +15,7 @@ angular.module('waitingRoomApp')
             $scope.steps = _.sortBy(_.uniq(_.map($scope.questions, "Step"), "Title"), "SortOrder");
 
             //Get all questions for the first step when you load page
-            if($scope.steps[1]) {
+            if ($scope.steps[1]) {
                 $scope.setQuestions($scope.steps[1]);
             } else if ($scope.steps[0]) {
                 $scope.setQuestions($scope.steps[0]);
@@ -44,21 +44,21 @@ angular.module('waitingRoomApp')
         function generateJournal() {
             var j = "";
 
-            _.forEach($scope.steps, function(step) {
+            _.forEach($scope.steps, function (step) {
 
                 var step_questions = getQuestionsByStep(step);
 
 
-                _.forEach(step_questions, function(question) {
+                _.forEach(step_questions, function (question) {
 
-                    if(question.JournalText && question.Answer) {
+                    if (question.JournalText && question.Answer) {
                         j += question.JournalText.replace("{{}}", question.Answer) + ", ";
                     }
 
-                    _.forEach(question.questions, function(subquestion) {
+                    _.forEach(question.questions, function (subquestion) {
 
-                        if(subquestion.CorrectAnswer && question.Answer === subquestion.CorrectAnswer.Value) {
-                            if(subquestion.JournalText && subquestion.Answer) {
+                        if (subquestion.CorrectAnswer && question.Answer === subquestion.CorrectAnswer.Value) {
+                            if (subquestion.JournalText && subquestion.Answer) {
                                 j += subquestion.JournalText.replace("{{}}", subquestion.Answer) + ", ";
                             }
                         }
@@ -70,11 +70,10 @@ angular.module('waitingRoomApp')
             });
 
 
-
             $scope.journal_text = j;
         }
 
-        $scope.setQuestions = function(step) {
+        $scope.setQuestions = function (step) {
             $scope.is_loading_soap_widget = true;
             $scope.current_step = step;
 
@@ -85,7 +84,7 @@ angular.module('waitingRoomApp')
         };
 
         $scope.saveAnswer = function (question) {
-            if(question) {
+            if (question) {
                 var answer = {
                     AnswerText: question.Answer,
                     Question_id: question._id,
@@ -113,7 +112,7 @@ angular.module('waitingRoomApp')
         $scope.backStep = function () {
             var back_step = _.find($scope.steps, {SortOrder: $scope.current_step.SortOrder - 1});
 
-            if(back_step) {
+            if (back_step) {
                 $scope.setQuestions(back_step);
             }
         };
@@ -121,10 +120,18 @@ angular.module('waitingRoomApp')
         $scope.nextStep = function () {
             var next_step = _.find($scope.steps, {SortOrder: $scope.current_step.SortOrder + 1});
 
-            if(next_step) {
+            if (next_step) {
                 $scope.setQuestions(next_step);
             }
         };
+
+        $scope.findOptionByKey = function (answer, option) {
+            var option = _.find(option, function (option) {
+                return option.Key === answer;
+            });
+
+            return option !== undefined ? option.Value : '';
+        }
 
         init();
     });

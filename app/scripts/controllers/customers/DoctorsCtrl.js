@@ -2,12 +2,15 @@
 
 angular.module('waitingRoomApp')
   .controller('DoctorsCtrl', function ($scope, $rootScope, $routeParams, $modal, clinic, users, Restangular) {
-        $scope.roles = ["Admin", "Editor", "User", "Tablet"];
-        $scope.clinic = clinic;
-        $scope.users = users;
+        function init() {
+            $scope.roles = ["Editor", "User", "Tablet"];
+            $scope.clinic = clinic;
 
-
-        $scope.current_selected_doctor = null;
+            if($routeParams.id) {
+                $scope.users = _.where(users, {clinic: $routeParams.id});
+            }
+            $scope.current_selected_doctor = null;
+        }
 
         $scope.openCreateDoctorModal = function () {
             console.log("Open create doctor");
@@ -25,6 +28,7 @@ angular.module('waitingRoomApp')
                             $scope.is_loading = true;
 
                             user.clinic = $routeParams.id;
+
 
                             Restangular.all("users").post(user).then(function (user) {
                                 $scope.is_loading = false;
@@ -58,8 +62,6 @@ angular.module('waitingRoomApp')
 
             if (form.$valid) {
                 $scope.updating_user = true;
-
-                console.log(user);
 
                 user.put().then(function () {
                     $scope.updating_user = false;
@@ -124,4 +126,6 @@ angular.module('waitingRoomApp')
                 $scope.current_selected_doctor = null;
             }
         };
+
+        init();
   });

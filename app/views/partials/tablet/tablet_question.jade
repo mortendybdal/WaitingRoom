@@ -21,7 +21,7 @@
             span.down-arrow.ion-chevron-down(ng-show="question.Options.length > 4")
             .radio-list--wrapper(ng-class="{is_scrollable: question.Options.length > 4}")
                 .tablet-page__answer-option(ng-repeat="option in question.Options")
-                    .tablet-page__answer-option--inner(ng-click="question.Answer = option.Value; nextSlide(question)", ng-class="{active: question.Answer === option.Value}") {{option.Value}}
+                    .tablet-page__answer-option--inner(ng-click="question.Answer = option.Key; nextSlide(question)", ng-class="{active: question.Answer === option.Key}") {{option.Value}}
 
     .tablet__footer
         .tablet-page__next-button(ng-click="nextSlide()")

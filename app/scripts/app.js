@@ -12,7 +12,8 @@ angular.module('waitingRoomApp', [
         'restangular',
         'ui.tree',
         'ui.bootstrap',
-        'angular-loading-bar'
+        'angular-loading-bar',
+        'webcam'
     ])
     .config(function ($routeProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider) {
 
@@ -90,6 +91,9 @@ angular.module('waitingRoomApp', [
                     },
                     clinics: function (Restangular) {
                         return  Restangular.all("clinics").getList();
+                    },
+                    users: function (Restangular) {
+                        return  Restangular.all("users").getList();
                     }
                 }
             })
@@ -101,7 +105,7 @@ angular.module('waitingRoomApp', [
                         return Auth.isLoggedIn(['Admin']);
                     },
                     users: function (Restangular, $route) {
-                        return Restangular.one('clinics', $route.current.params.id).getList('users');
+                        return  Restangular.all("users").getList();
                     },
                     clinic: function (Restangular, $route) {
                         return Restangular.one('clinics', $route.current.params.id).get()

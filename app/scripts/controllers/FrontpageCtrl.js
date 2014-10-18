@@ -12,7 +12,7 @@ angular.module('waitingRoomApp')
         };
 
         $scope.timeForAppointment = function (time) {
-            return $window.moment(time).zone('0000').format('HH:mm');
+            return $window.moment(time).zone('+0200').format('HH:mm Do MMMM YYYY');
         };
 
         $scope.dateForAppointment = function (time) {
@@ -20,6 +20,7 @@ angular.module('waitingRoomApp')
         };
 
         $scope.order = function (predicate, reverse) {
+            console.log(predicate);
             $scope.order_by = predicate;
             $scope.patients = orderBy($scope.patients, predicate, reverse);
         };
@@ -27,12 +28,14 @@ angular.module('waitingRoomApp')
         function init() {
             _.forEach($scope.patients, function (patient) {
                 patient.SchemeTitle = patient.Schemes[0].Title;
-                patient.DateForAppointment = $scope.dateForAppointment(patient.TimeOfAppointment);
-                patient.TimeForAppointment = $scope.timeForAppointment(patient.TimeOfAppointment);
-                patient.Submitted = $scope.calcTimeSinceSubmition(patient.Submitted);
+                patient.mDateForAppointment = $scope.dateForAppointment(patient.TimeOfAppointment);
+                patient.mTimeForAppointment = $scope.timeForAppointment(patient.TimeOfAppointment);
+                patient.mSubmitted = $scope.calcTimeSinceSubmition(patient.Submitted);
             });
 
-            $scope.order('DateForAppointment', true);
+            console.log($scope.patients);
+
+            $scope.order('TimeOfAppointment', true);
 
         }
 

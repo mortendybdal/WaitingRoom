@@ -34,17 +34,12 @@
   }
 
   &.lable-scheme {
-    width: 20%;
+    width: 30%;
   }
 
   &.lable-appointment {
-    width: 20%;
+    width: 30%;
   }
-
-  &.lable-appointment-date {
-    width: 20%;
-  }
-
 
   &.lable-submitted {
     @include calc("width", "40% - 50px");

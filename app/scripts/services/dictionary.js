@@ -180,6 +180,13 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'TABLET_Home',
+                values: [
+                    { value: 'Forside', language: 'da'},
+                    { value: 'Home', language: 'en'}
+                ]
+            },
+            {
                 key: 'PATIENT_Question',
                 values: [
                     { value: 'Spørgsmål', language: 'da'},
@@ -306,6 +313,27 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'LOGIN_PasswordIncorrect',
+                values: [
+                    { value: 'Kodeordet er ikke korrekt.', language: 'da'},
+                    { value: 'This password is not correct.', language: 'en'}
+                ]
+            },
+            {
+                key: 'LOGIN_EmailNotRegistered',
+                values: [
+                    { value: 'Emailen kan ikke genkendes.', language: 'da'},
+                    { value: 'This email is not registered.', language: 'en'}
+                ]
+            },
+            {
+                key: 'LOGIN_MissingCredentials',
+                values: [
+                    { value: 'Brugernavn og kodeord mangler.', language: 'da'},
+                    { value: 'Credentials is missing.', language: 'en'}
+                ]
+            },
+            {
                 key: 'FRONTPAGE_Scheme',
                 values: [
                     { value: 'Spørgeskema', language: 'da'},
@@ -317,13 +345,6 @@ angular.module('waitingRoomApp')
                 values: [
                     { value: 'Tid for konsultation', language: 'da'},
                     { value: 'Time for appointment', language: 'en'}
-                ]
-            },
-            {
-                key: 'FRONTPAGE_DateForAppointment',
-                values: [
-                    { value: 'Dato for konsultation', language: 'da'},
-                    { value: 'Date for appointment', language: 'en'}
                 ]
             },
             {
@@ -418,6 +439,20 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'QuestionBuilder_GeneratedJournalText',
+                values: [
+                    { value: 'Til journal', language: 'da'},
+                    { value: 'For journal', language: 'en'}
+                ]
+            },
+            {
+                key: 'QuestionBuilder_PatientAnswer',
+                values: [
+                    { value: 'Patientsvar', language: 'da'},
+                    { value: 'Patient input', language: 'en'}
+                ]
+            },
+            {
                 key: 'SchemeBuilder_AddStep',
                 values: [
                     { value: 'Tilføj trin', language: 'da'},
@@ -453,6 +488,13 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'CLINIC_AddAdmin',
+                values: [
+                    { value: 'Tilføj administrator', language: 'da'},
+                    { value: 'Add administrator', language: 'en'}
+                ]
+            },
+            {
                 key: 'CLINIC_CustomerOverview',
                 values: [
                     { value: 'Kunde oversigt', language: 'da'},
@@ -478,6 +520,27 @@ angular.module('waitingRoomApp')
                 values: [
                     { value: 'Tilbage til oversigt', language: 'da'},
                     { value: 'Back to the overview', language: 'en'}
+                ]
+            },
+            {
+                key: 'CLINIC_Admin',
+                values: [
+                    { value: 'Administrator', language: 'da'},
+                    { value: 'Administrator', language: 'en'}
+                ]
+            },
+            {
+                key: 'CLINIC_SaveAdmin',
+                values: [
+                    { value: 'Gem Administrator', language: 'da'},
+                    { value: 'Save Administrator', language: 'en'}
+                ]
+            },
+            {
+                key: 'CLINIC_DeleteAdmin',
+                values: [
+                    { value: 'Slet Administrator', language: 'da'},
+                    { value: 'Delete Administrator', language: 'en'}
                 ]
             },
             {
@@ -548,6 +611,13 @@ angular.module('waitingRoomApp')
                 values: [
                     { value: 'Opret læge', language: 'da'},
                     { value: 'Create Doctor', language: 'en'}
+                ]
+            },
+            {
+                key: 'MODAL_CreateAdmin',
+                values: [
+                    { value: 'Opret administrator', language: 'da'},
+                    { value: 'Create Administrator', language: 'en'}
                 ]
             },
             {

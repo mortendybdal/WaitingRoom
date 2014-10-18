@@ -14,11 +14,11 @@ angular.module('waitingRoomApp')
         console.log($rootScope.d);
 
         $rootScope.$watch('currentUser', function () {
+            $scope.tablet_is_loading = true;
             if(Auth.roleHasAccess(['Tablet'])) {
                 Restangular.one("tablets").get().then(function(tablet_response) {
+                    $scope.tablet_is_loading = true;
                     $rootScope.t = tablet_response;
-
-
                 });
             }
         });

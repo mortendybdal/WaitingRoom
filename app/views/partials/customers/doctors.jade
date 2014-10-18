@@ -26,7 +26,7 @@
         .doctor-list__content
             .doctor-item(ng-repeat="user in users")
                 .doctor-item__row.lable-icon
-                    i.ion-man
+                    i(ng-class="{'ion-man': user.role === 'User', 'ion-ipad': user.role === 'Tablet', 'ion-edit': user.role === 'Editor'}")
                 .doctor-item__row.lable-name {{user.name}}
                 .doctor-item__row.lable-role {{user.role}}
                 .doctor-item__row.lable-edit(ng-click="collapsUser(user)")

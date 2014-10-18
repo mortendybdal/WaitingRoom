@@ -21,3 +21,50 @@
                 .clinic-item__row.lable-name {{clinic.Name}}
                 .clinic-item__row.lable-doctors-count {{clinic.NumberOfUsers}}
 
+.doctors
+    .doctor-list__widget
+        .widget-header
+            .widget-actions
+                button.clinic__add-customer(ng-click="openCreateAdminModal()")
+                    span.icon.ion-person-add
+                    span {{d.CLINIC_AddAdmin}}
+
+            .widget-title {{d.CLINIC_Admin}}
+
+        .doctor-list__header
+            .doctor-item__row.lable-icon
+            .doctor-item__row.lable-name {{d.GENERAL_Name}}
+            .doctor-item__row.lable-role {{d.GENERAL_Role}}
+
+        .doctor-list__content
+            .doctor-item(ng-repeat="admin in admins")
+                .doctor-item__row.lable-icon
+                    i.ion-man
+                .doctor-item__row.lable-name {{admin.name}}
+                .doctor-item__row.lable-role {{admin.role}}
+                .doctor-item__row.lable-edit(ng-click="collapsUser(admin)")
+                    i.ion-chevron-down
+
+                .doctor-item__edit--container(collapse="current_selected_admin != admin")
+                    .doctor-item__edit
+                        form(name='admin_form', novalidate='novalidate')
+                            .row
+                                .col-xs-6.form-group(ng-class="{'has-error':admin_form.name.$error.required && is_submitted}")
+                                    label {{d.GENERAL_Name}}
+                                    input.form-control(type='text', name='name', ng-model='admin.name', required)
+
+                                    p.help-block.has-error(ng-show='admin_form.name.$error.required && is_submitted') {{d.DOCTOR_EnterName}}
+
+                            .row.doctor-item__edit-actions
+                                .col-xs-12
+                                    button.doctor-item__edit--save-button(ng-click='save(admin_form, admin)')
+                                        span.glyphicon.glyphicon-cloud-upload
+                                        .element-loader__container(ng-class="{fade: updating_user}")
+                                            .element-loader.is_white
+                                        span {{d.CLINIC_SaveAdmin}}
+
+                                    button.doctor-item__edit--delete-button(ng-click='openDeleteModal(admin)')
+                                        span.trash.glyphicon.glyphicon-trash
+                                        .element-loader__container(ng-class="{fade: updating_user}")
+                                            .element-loader.is_white
+                                        span {{d.CLINIC_DeleteAdmin}}

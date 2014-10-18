@@ -6,12 +6,9 @@
             .user-item__row.lable.lable-scheme(ng-click="reverse=!reverse;order('SchemeTitle', reverse)")
                 span {{d.FRONTPAGE_Scheme}}
                 span(ng-class="{'ion-chevron-down': reverse && order_by === 'SchemeTitle', 'ion-chevron-up': !reverse && order_by === 'SchemeTitle'}")
-            .user-item__row.lable.lable-appointment(ng-click="reverse=!reverse;order('TimeForAppointment', reverse)")
+            .user-item__row.lable.lable-appointment(ng-click="reverse=!reverse;order('TimeOfAppointment', reverse)")
                 span {{d.FRONTPAGE_TimeForAppointment}}
-                span(ng-class="{'ion-chevron-down': reverse && order_by === 'TimeForAppointment', 'ion-chevron-up': !reverse && order_by === 'TimeForAppointment'}")
-            .user-item__row.lable.lable-appointment-date(ng-click="reverse=!reverse;order('DateForAppointment', reverse)")
-                span {{d.FRONTPAGE_DateForAppointment}}
-                span(ng-class="{'ion-chevron-down': reverse && order_by === 'DateForAppointment', 'ion-chevron-up': !reverse && order_by === 'DateForAppointment'}")
+                span(ng-class="{'ion-chevron-down': reverse && order_by === 'TimeOfAppointment', 'ion-chevron-up': !reverse && order_by === 'TimeOfAppointment'}")
             .user-item__row.lable.lable-submitted(ng-click="reverse=!reverse;order('Submitted', reverse)")
                 span {{d.FRONTPAGE_Submitted}}
                 span(ng-class="{'ion-chevron-down': reverse && order_by === 'Submitted', 'ion-chevron-up': !reverse && order_by === 'Submitted'}")
@@ -21,6 +18,5 @@
                 .user-item__row.lable-icon
                     span.glyphicon.glyphicon-time
                 .user-item__row.lable-scheme {{patient.SchemeTitle}}
-                .user-item__row.lable-appointment Kl {{patient.TimeForAppointment}}
-                .user-item__row.lable-appointment-date {{patient.DateForAppointment}}
-                .user-item__row.lable-submitted {{patient.Submitted}}
+                .user-item__row.lable-appointment {{patient.mTimeForAppointment}}
+                .user-item__row.lable-submitted {{patient.mSubmitted}}
