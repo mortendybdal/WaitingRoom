@@ -8,6 +8,13 @@
   }
 }
 
+.editable-input.editable-has-buttons {
+  width: 100%;
+
+}
+
+
+
 
 ///////////////////EDITABLE-TEXT/////////////////////
 div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[editable-select] {
@@ -98,14 +105,33 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
     padding: 10px 0 10px 0;
     background-color: $blue-hover;
     color: $editable-answer-blue;
-    height: 37px;
     border-radius: 0;
+  }
 
-    &:before {
-      @extend .glyphicon;
-      @extend .glyphicon-chevron-down;
+  .editable-buttons {
+    display: block;
 
-      content: "";
+    margin: 5px 0;
+
+    button {
+      @include calc("width", "50% - 10px");
+
+      margin: 0;
+      border: 1px solid $blue;
+      color: $blue;
+      background-color: transparent;
+
+      &:first-child {
+        margin-right: 10px;
+      }
+
+      &:last-child {
+        margin-left: 10px;
+      }
+
+      &:hover {
+        background-color: $blue-hover;
+      }
     }
   }
 }

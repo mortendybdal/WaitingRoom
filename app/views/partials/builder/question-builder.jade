@@ -2,7 +2,7 @@
     .builder__widget
         .widget-header
             .widget-actions
-                button.builder__add-sub-item(ng-click="openModal('Subquestion', d.GENERAL_SubQuestion, question._id)", ng-hide="question.ParentQuestion")
+                button.builder__add-sub-item(ng-click="openModal('Subquestion', d.GENERAL_SubQuestion, question._id)", ng-hide="question.ParentQuestion || question.Type.Value !== 'radio-list'")
                     span.ion-help-circled
                     span {{d.QuestionBuilder_AddSubQuestion}}
 
@@ -57,7 +57,7 @@
                                 span.glyphicon.glyphicon-plus
                                 span {{d.QuestionBuilder_AddOption}}
 
-                .form-group(ng-class="{'has-error':question_form.correct_answer.$error.required && submitted}", ng-show="question.ParentQuestion && question.ParentQuestion.Options")
+                .form-group(ng-class="{'has-error':question_form.correct_answer.$error.required && submitted}", ng-show="question.ParentQuestion && question.ParentQuestion.Options && question.ParentQuestion.Type.Value === 'radio-list'")
                     label {{d.QuestionBuilder_CorrectParentAnswer}}
                     select.form-control(name='correct_answer', ng-model='question.CorrectAnswer', ng-options="opt as opt.Value for opt in question.ParentQuestion.Options", placeholder="Question Type")
 

@@ -119,7 +119,7 @@
       }
     }
 
-    .radio-list {
+    .list-picker {
       position: relative;
 
       span {
@@ -160,8 +160,9 @@
         text-align: center;
 
         &.active {
-          border-color: $blue;
-          color: $blue;
+          border-color: $dark-blue;
+          background-color: $light-blue;
+          color: $dark-blue;
         }
       }
 

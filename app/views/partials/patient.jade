@@ -64,12 +64,13 @@
 
                             // ==> Select-List
                             .patient-soap__item--answer(editable-select="soap_item.Answer",
+                                                        e-multiple,
                                                         e-ng-options="o.Key as o.Value for o in soap_item.Options"
-                                                        buttons="no",
+                                                        buttons="yes",
                                                         onaftersave="saveAnswer(soap_item)",
-                                                        ng-if="soap_item.Type.Value  === 'select-list'") {{findOptionByKey(soap_item.Answer, soap_item.Options) || d.PATIENT_Empty}}
+                                                        ng-if="soap_item.Type.Value  === 'select-list'") {{findSelectOptionByKey(soap_item.Answer, soap_item.Options) || d.PATIENT_Empty}}
 
-                        .patient-soap__item--container.sub-item(ng-repeat="sub_soap_item in soap_item.questions | orderBy: 'SortOrder'", collapse="soap_item.Answer != sub_soap_item.CorrectAnswer.Key")
+                        .patient-soap__item--container.sub-item(ng-repeat="sub_soap_item in soap_item.questions | orderBy: 'SortOrder'", collapse="soap_item.Answer === undefined || soap_item.Answer != sub_soap_item.CorrectAnswer.Key")
                             .patient-soap__item
                                 .patient-soap__item--question {{sub_soap_item.QuestionText}}
 

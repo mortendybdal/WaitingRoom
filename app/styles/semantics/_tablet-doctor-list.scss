@@ -75,9 +75,13 @@
         vertical-align: top;
       }
 
-      &:hover {
-        .doctor-item__profile-name {
-          color: $blue;
+      &:active {
+        background-color: $light-blue;
+        border-color: $dark-blue;
+        color: $dark-blue;
+
+        .doctor-item__profile-image {
+          color: $dark-blue;
         }
       }
     }

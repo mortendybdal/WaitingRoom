@@ -54,13 +54,10 @@
   cursor: pointer;
   margin: 1px 1px 10px 1px;
 
-  &:hover {
-    color: $blue;
-    border-color: $blue;
+  &:active {
+    background-color: $light-blue;
+    border-color: $dark-blue;
+    color: $dark-blue;
   }
 
-  &:active {
-    background-color: lighten($blue, 20%);
-    color: white;
-  }
 }

@@ -30,16 +30,16 @@ angular.module('waitingRoomApp')
             if($scope.journal_prefix === "......" || $scope.journal_prefix === "&#8203") {
                 prefix = "";
             }else {
-                prefix = $scope.journal_prefix;
+                prefix = $scope.journal_prefix + " ";
             }
 
             if($scope.journal_suffix === "......" || $scope.journal_suffix === "&#8203") {
                 suffix = "";
             }else {
-                suffix = $scope.journal_suffix;
+                suffix = " " + $scope.journal_suffix;
             }
 
-            var journal = prefix + " {{}} " + suffix;
+            var journal = prefix + "{{}}" + suffix;
 
             return journal.replace(/&nbsp;/g,'');
         }
@@ -52,14 +52,14 @@ angular.module('waitingRoomApp')
                 if(!journal_array[0]) {
                     $scope.journal_prefix = "......";
                 }else {
-                    $scope.journal_prefix = journal_array[0];
+                    $scope.journal_prefix = journal_array[0].trim();
                 }
 
                 console.log(journal_array[1]);
                 if(!journal_array[1]) {
                     $scope.journal_suffix = "......";
                 }else {
-                    $scope.journal_suffix = journal_array[1];
+                    $scope.journal_suffix = journal_array[1].trim();
                 }
             }
         }
@@ -70,15 +70,20 @@ angular.module('waitingRoomApp')
             console.log(form);
 
             if (form.$valid) {
-
                 $scope.updating_question = true;
                 _.remove($scope.question.Options, function(option) {
                     return option.Value === "" && option.Key === "";
                 });
 
-                console.log($scope.question);
+                $scope.question.JournalText = getJournalText();
 
-                $scope.question.JournalText = getJournalText()
+
+                //Reset journal formatting for radio and select list
+                if ($scope.question.Type.Value === 'select-list' || $scope.question.Type.Value === 'radio-list') {
+                    $scope.question.JournalText = "{{}}";
+                    $scope.journal_prefix = "......";
+                    $scope.journal_suffix = "......";
+                }
 
                 $scope.question.save().then(function () {
                     $scope.updating_question = false;

@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('TabletQuestionCtrl', function ($scope, $rootScope, $routeParams, $location) {
+    .controller('TabletQuestionCtrl', function ($scope, $rootScope, $routeParams, $location, $timeout) {
         $rootScope.tablet_ui = true;
+
 
         console.log("TabletQuestionCtrl");
         //Test to se if patient has selected a scheme
@@ -94,12 +95,38 @@ angular.module('waitingRoomApp')
             }
         }
 
+        $scope.addToSelectList = function (answer) {
+            var answer_array = $scope.question.Answer.split("|");
+
+            if(_.contains(answer_array, answer)) {
+                _.remove(answer_array, function(a) { return a === answer; });
+            } else {
+                answer_array.push(answer);
+            }
+
+            $scope.question.Answer = _.compact(answer_array).join("|");
+
+        }
+
+        $scope.existInSelectList = function (answer) {
+
+            if ($scope.question.Answer === undefined) {
+                $scope.question.Answer = ""
+            };
+
+            return _.contains($scope.question.Answer.split("|"), answer);
+        }
+
         function init() {
             if($routeParams.id) {
                 if ($rootScope.response.questions) {
                     setSlideDirection($rootScope.response.questions);
 
                     setCurrentQuestion($rootScope.response.questions);
+
+                    $timeout(function () {
+                        $scope.set_focus = true;
+                    }, 800);
                 } else {
                     $location.path('tablet');
                 }

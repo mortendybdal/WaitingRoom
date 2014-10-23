@@ -50,13 +50,16 @@ angular.module('waitingRoomApp')
                 _.forEach(step_questions, function (question) {
 
                     if (question.JournalText && question.Answer) {
+                        console.log("," + question.JournalText.replace("{{}}", question.Answer) + ", ");
                         j += question.JournalText.replace("{{}}", question.Answer) + ", ";
                     }
 
                     _.forEach(question.questions, function (subquestion) {
 
+
                         if (subquestion.CorrectAnswer && question.Answer === subquestion.CorrectAnswer.Key) {
                             if (subquestion.JournalText && subquestion.Answer) {
+
                                 j += subquestion.JournalText.replace("{{}}", subquestion.Answer) + ", ";
                             }
                         }
@@ -83,6 +86,7 @@ angular.module('waitingRoomApp')
 
         $scope.saveAnswer = function (question) {
             if (question) {
+
                 var answer = {
                     AnswerText: question.Answer,
                     Question_id: question._id,
@@ -131,6 +135,17 @@ angular.module('waitingRoomApp')
             return option !== undefined ? option.Value : '';
         }
 
+        $scope.findSelectOptionByKey = function (answer, option) {
+            var answer_array = [];
+            _.forEach(option, function (option) {
+                if(_.contains(answer, option.Key)) {
+                    answer_array.push(option.Value);
+                }
+            });
+
+            return answer_array.length >= 0 ? answer_array.join("|") : '';
+        }
+
         $scope.completePatient = function () {
             $scope.patient.Completed = true;
 
@@ -138,7 +153,6 @@ angular.module('waitingRoomApp')
                 $location.path('/');
             });
         }
-
 
         init();
     });

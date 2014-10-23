@@ -7,8 +7,8 @@ angular.module('waitingRoomApp')
             {
                 key: 'GENERAL_CompanyName',
                 values: [
-                    { value: 'DokHop', language: 'da'},
-                    { value: 'DocHub', language: 'en'}
+                    { value: 'Predok', language: 'da'},
+                    { value: 'Predok', language: 'en'}
                 ]
             },
             {
