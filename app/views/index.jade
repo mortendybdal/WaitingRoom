@@ -26,7 +26,7 @@ html.no-js
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  body(ng-app="waitingRoomApp", ng-class="{'tablet-ui':tablet_ui}")
+  body(ng-app="waitingRoomApp", ng-class="{'tablet-ui':tablet_ui}", ng-cloak)
     //[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
       <![endif]
@@ -36,13 +36,15 @@ html.no-js
       <![endif]
 
     .page(ng-controller="MainCtrl")
-      ng-include(src="'partials/navigation'", ng-show="!tablet_ui")
+      //ng-include(src="'partials/navigation'", ng-show="!tablet_ui")
+      ng-include(src="'partials/sidebar'", ng-show="!tablet_ui")
       ng-include(src="'partials/tablet/tablet_navigation'", ng-show="tablet_ui")
 
       .content
         .content-view(ng-view, ng-class="{'tablet-ui':tablet_ui}", class="{{page_class}}")
 
-        .content-loader__container
+      .connection_status(ng-class="{'is_offline': !online}")
+        span.connection_message {{d.GENERAL_TabletIsOffline}}
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.
@@ -84,7 +86,7 @@ html.no-js
     <script src="scripts/controllers/TabletCtrl.js"></script>
     <script src="scripts/controllers/LoginCtrl.js"></script>
     <script src="scripts/controllers/SignupCtrl.js"></script>
-    <script src="scripts/controllers/NavigationCtrl.js"></script>
+    <script src="scripts/controllers/SideBarCtrl.js"></script>
     <script src="scripts/controllers/SettingsCtrl.js"></script>
     <script src="scripts/controllers/builder/SchemeBuilderCtrl.js"></script>
     <script src="scripts/controllers/builder/StepBuilderCtrl.js"></script>
@@ -102,6 +104,7 @@ html.no-js
     <script src="scripts/directives/offClick.js"></script>
     <script src="scripts/directives/focusMe.js"></script>
     <script src="scripts/directives/contentEditable.js"></script>
+    <script src="scripts/directives/spinner.js"></script>
 
     <script src="scripts/services/ModalService.js"></script>
     <script src="scripts/services/auth.js"></script>

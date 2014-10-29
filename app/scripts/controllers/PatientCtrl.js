@@ -50,8 +50,14 @@ angular.module('waitingRoomApp')
                 _.forEach(step_questions, function (question) {
 
                     if (question.JournalText && question.Answer) {
-                        console.log("," + question.JournalText.replace("{{}}", question.Answer) + ", ");
-                        j += question.JournalText.replace("{{}}", question.Answer) + ", ";
+
+                        //Special journal formatting for select list - pipe seperator
+                        if (question.Type.Value === 'select-list') {
+                            var concat_string = question.Answer.toString().replace(/,/g, "|");
+                            j += question.JournalText.replace("{{}}", concat_string) + ", ";
+                        }else {
+                            j += question.JournalText.replace("{{}}", question.Answer) + ", ";
+                        }
                     }
 
                     _.forEach(question.questions, function (subquestion) {
@@ -60,7 +66,13 @@ angular.module('waitingRoomApp')
                         if (subquestion.CorrectAnswer && question.Answer === subquestion.CorrectAnswer.Key) {
                             if (subquestion.JournalText && subquestion.Answer) {
 
-                                j += subquestion.JournalText.replace("{{}}", subquestion.Answer) + ", ";
+                                //Special journal formatting for select list - pipe seperator
+                                if (subquestion.Type.Value === 'select-list') {
+                                    var concat_string = subquestion.Answer.toString().replace(/,/g, "|");
+                                    j += subquestion.JournalText.replace("{{}}", concat_string) + ", ";
+                                }else {
+                                    j += subquestion.JournalText.replace("{{}}", subquestion.Answer) + ", ";
+                                }
                             }
                         }
                     });
@@ -86,6 +98,7 @@ angular.module('waitingRoomApp')
 
         $scope.saveAnswer = function (question) {
             if (question) {
+
 
                 var answer = {
                     AnswerText: question.Answer,
@@ -128,12 +141,12 @@ angular.module('waitingRoomApp')
         };
 
         $scope.findOptionByKey = function (answer, option) {
-            var option = _.find(option, function (option) {
-                return option.Key === answer;
+            var _option = _.find(option, function (o) {
+                return o.Key === answer;
             });
 
-            return option !== undefined ? option.Value : '';
-        }
+            return _option !== undefined ? _option.Value : '';
+        };
 
         $scope.findSelectOptionByKey = function (answer, option) {
             var answer_array = [];
@@ -144,7 +157,7 @@ angular.module('waitingRoomApp')
             });
 
             return answer_array.length >= 0 ? answer_array.join("|") : '';
-        }
+        };
 
         $scope.completePatient = function () {
             $scope.patient.Completed = true;
@@ -152,7 +165,7 @@ angular.module('waitingRoomApp')
             Restangular.one('patients', $scope.patient._id).post(['Completed']).then(function () {
                 $location.path('/');
             });
-        }
+        };
 
         init();
     });

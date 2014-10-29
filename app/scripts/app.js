@@ -104,11 +104,11 @@ angular.module('waitingRoomApp', [
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['Admin']);
                     },
-                    users: function (Restangular, $route) {
+                    users: function (Restangular) {
                         return  Restangular.all("users").getList();
                     },
                     clinic: function (Restangular, $route) {
-                        return Restangular.one('clinics', $route.current.params.id).get()
+                        return Restangular.one('clinics', $route.current.params.id).get();
                     }
                 }
             })
@@ -193,19 +193,35 @@ angular.module('waitingRoomApp', [
             };
         }]);
     })
-    .run(function ($rootScope, $location, Auth, Restangular) {
+    .run(function ($rootScope, $location, $window, Auth, Restangular) {
+        //================================================
+        // Listen for coneection status
+        //================================================
+        $rootScope.online = navigator.onLine;
+
+        $window.addEventListener("offline", function () {
+            console.log("Is offline");
+            $rootScope.$apply(function() {
+                $rootScope.online = false;
+            });
+        }, false);
+
+        $window.addEventListener("online", function () {
+            console.log("Is online");
+            $rootScope.$apply(function() {
+                $rootScope.online = true;
+            });
+        }, false);
 
         //================================================
         // Configure restangular
         //================================================
         Restangular.setBaseUrl('api');
 
-        // Redirect to login if route requires auth and you're not logged in
+        //================================================
+        // Redirection on auth equals false
+        //================================================
         $rootScope.$on('$routeChangeStart', function (event, next) {
-
-            //$rootScope.$broadcast("event:load_start");
-
-
             if (next.authenticate && !Auth.isLoggedIn()) {
                 $location.path('/login');
             }

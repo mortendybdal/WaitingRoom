@@ -19,12 +19,12 @@ $ionicons-font-path: "/bower_components/ionicons/fonts/" !default;
 //PATTERNS
 @import "patterns/modals";
 @import "patterns/widgets";
-@import "patterns/loader";
+@import "patterns/spinner";
 @import "patterns/editable";
 
 //SEMANTICS
 @import "semantics/frontpage";
-@import "semantics/navigation";
+@import "semantics/sidebar";
 @import "semantics/patient";
 @import "semantics/login";
 @import "semantics/builder";

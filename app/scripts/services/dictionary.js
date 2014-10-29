@@ -110,6 +110,13 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'GENERAL_TabletIsOffline',
+                values: [
+                    { value: 'Tableten kan ikke komme på nettet...', language: 'da'},
+                    { value: 'The tablet is offline...', language: 'en'}
+                ]
+            },
+            {
                 key: 'TABLET_PleaseChooseScheme',
                 values: [
                     { value: 'Vælg et skema', language: 'da'},
@@ -687,7 +694,7 @@ angular.module('waitingRoomApp')
 
         return {
             init: function (lang) {
-                $window.moment().lang(lang)
+                $window.moment().lang(lang);
 
                 var d = {};
                 _.forEach(dictionary, function (k) {
@@ -700,5 +707,5 @@ angular.module('waitingRoomApp')
 
                 return d;
             }
-        }
+        };
     } );

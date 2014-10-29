@@ -101,11 +101,11 @@
 
                                 // ==> Select-List
                                 .patient-soap__item--answer(editable-select="sub_soap_item.Answer",
+                                                        e-multiple,
                                                         e-ng-options="o.Key as o.Value for o in sub_soap_item.Options"
-                                                        buttons="no",
+                                                        buttons="yes",
                                                         onaftersave="saveAnswer(sub_soap_item)",
-                                                        ng-if="sub_soap_item.Type.Value  === 'select-list'") {{findOptionByKey(sub_soap_item.Answer, sub_soap_item.Options) || d.PATIENT_Empty}}
-
+                                                        ng-if="sub_soap_item.Type.Value  === 'select-list'") {{findSelectOptionByKey(sub_soap_item.Answer, sub_soap_item.Options) || d.PATIENT_Empty}}
 
 
                     .patient-soap__navigation

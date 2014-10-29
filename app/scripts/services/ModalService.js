@@ -1,4 +1,5 @@
 'use strict';
+/* jshint -W030 */
 
 angular.module('waitingRoomApp')
     .factory('ModalService', function ModalService($rootScope, $timeout, $location, Restangular) {

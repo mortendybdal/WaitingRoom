@@ -11,8 +11,8 @@ body {
   position: relative;
   padding: 20px 20px 20px 20px;
   display: inline-block;
-  width: calc(100% - 70px);
-  left: 70px;
+  width: calc(100% - 200px);
+  left: 200px;
 
   .content-view {
     position: absolute;
@@ -23,6 +23,35 @@ body {
   }
 }
 
+.connection_status {
+  @include transition-duration(0.3s);
+  @include transition-timing-function(ease-in);
+
+
+  background: $red;
+  position: fixed;
+  width: 100%;
+  height: 75px;
+  bottom: -80px;
+  left: 70px;
+  opacity: 0.9;
+  text-align: center;
+  padding: 25px;
+
+
+  &.is_offline {
+    bottom: 0;
+  }
+
+  .connection_message {
+    color: white;
+    font-weight: 100;
+    font-size: 20px;
+  }
+}
+
+
+///////////////////BASE STYLE FOR TABLET////////////////////////
 
 .tablet-ui {
   height: calc(100% - 20px);
@@ -45,6 +74,10 @@ body {
           height: 100%;
         }
       }
+    }
+
+    .connection_status {
+      left: 0;
     }
   }
 }

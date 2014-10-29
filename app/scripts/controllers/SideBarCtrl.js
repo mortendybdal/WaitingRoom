@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('NavigationCtrl', function ($scope, $rootScope, $location, $modal, $timeout, Auth) {
+    .controller('SideBarCtrl', function ($scope, $rootScope, $location, $modal, $timeout, Auth) {
         $scope.auth = Auth;
         $scope.showContentTree = function () {
             $scope.show_content_tree = !$scope.show_content_tree;
