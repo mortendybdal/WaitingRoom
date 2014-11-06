@@ -2,11 +2,7 @@
 
 angular.module('waitingRoomApp')
     .controller('TabletQuestionCtrl', function ($scope, $rootScope, $routeParams, $location, $timeout) {
-        $rootScope.tablet_ui = true;
 
-
-        console.log("TabletQuestionCtrl");
-        //Test to se if patient has selected a scheme
 
         function findNextInOrder () {
 
@@ -27,7 +23,7 @@ angular.module('waitingRoomApp')
             });
 
             if(!next_question) {
-                $location.path('/tablet/finish');
+                $location.path('/tablet/thankyou');
 
             } else {
                 $location.path('tablet/question/' + next_question._id + '/next');
@@ -118,6 +114,12 @@ angular.module('waitingRoomApp')
         }
 
         function init() {
+            $rootScope.tablet_ui = true;
+
+            if (!$rootScope.response.doctor) {
+                $location.path('tablet')
+            }
+
             if($routeParams.id) {
                 if ($rootScope.response.questions) {
                     setSlideDirection($rootScope.response.questions);

@@ -1,0 +1,145 @@
+.scheme-builder__menu {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 320px;
+  background: white;
+  height: 100%;
+  z-index: 200;
+  padding: 20px;
+  border-right: 1px solid $border-grey;
+
+  .scheme-builder__create-scheme {
+    @include transition-duration(0.3s);
+    @include transition-timing-function(ease-in);
+
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    border: 1px solid $blue;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 200;
+    color: $blue;
+    outline: none;
+  }
+}
+
+.content-tree--container {
+  &.angular-ui-tree-drag {
+    .content-tree__item{
+      .content-tree__item-link {
+
+        &:hover {
+          span {
+            @include transform(scale(1.0));
+
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+
+
+  &.angular-ui-tree-nodes {
+    padding: 0;
+  }
+}
+
+
+.content-tree {
+  margin-top: 50px;
+}
+
+
+.content-tree__item {
+  padding: 5px 0 0 10px;
+
+  span {
+    font-size: 8px;
+    margin-right: 5px;
+    vertical-align: top;
+    line-height: 18px;
+    color: $blue;
+    cursor: pointer;
+    font-weight: 200;
+
+    &:first-child{
+      &:hover {
+        color: darken($blue, 30%);
+      }
+    }
+  }
+
+
+  .content-tree__item-icon {
+    font-size: 15px;
+
+    &:before {
+      vertical-align: top;
+      line-height: 22px;
+    }
+  }
+
+  .content-tree__item-link {
+    @include calc("width", "100% - 34px");
+
+    display: inline-block;
+    position: relative;
+
+    &:hover {
+      span {
+        @include transform(scale(1.0));
+
+        visibility: visible;
+
+      }
+    }
+
+    a {
+      @include transition-duration(0.3s);
+      @include transition-timing-function(ease-in);
+
+      color: $blue;
+      font-size: 12px;
+      font-weight: 200;
+      width: calc(100% - 40px);
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: bottom;
+      line-height: 22px;
+    }
+
+    .trash {
+      @include transform(scale(0.0));
+      @include transition(all 0.5s);
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 12px;
+      line-height: 24px;
+      visibility: none;
+
+      &:hover {
+        color: darken($blue, 20%);
+      }
+
+      &:active {
+        @include transform(scale(1.7));
+
+        color: darken($blue, 40%);
+      }
+
+    }
+
+    .sort {
+      @extend .trash;
+      right: 20px;
+    }
+  }
+
+}

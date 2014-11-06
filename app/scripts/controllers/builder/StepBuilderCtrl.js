@@ -2,6 +2,7 @@
 
 angular.module('waitingRoomApp')
     .controller('StepBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, step) {
+        $rootScope.current_url = 'builder';
 
         if (step) {
             $scope.step = step;

@@ -1,169 +1,123 @@
-.page-slide-in-right {
-  &.ng-enter {
-    z-index: 9999;
-    -webkit-animation: slideInRight 0.3s both ease-in;
-    -moz-animation: slideInRight 0.3s both ease-in;
-    animation: slideInRight 0.3s both ease-in;
+.tablet-page {
+  position: relative;
+  top: 60px;
+  height: calc(100% - 60px);
+  padding: 0 40px;
+
+  @include breakpoint(xs) {
+    top: 45px;
+    height: calc(100% - 45px);
   }
 
-  &.ng-leave {
-    z-index: 8888;
-    -webkit-animation: slideOutLeft 0.3s both ease-in;
-    -moz-animation: slideOutLeft 0.3s both ease-in;
-    animation: slideOutLeft 0.3s both ease-in;
-  }
 
-  &.revert {
-    &.ng-leave {
-      z-index: 8888;
-      -webkit-animation: slideOutRight 0.3s both ease-in;
-      -moz-animation: slideOutRight 0.3s both ease-in;
-      animation: slideOutRight 0.3s both ease-in;
+  .tablet__header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    font-size: 35px;
+    text-align: center;
+    font-weight: 100;
+    padding: 5px 20px;
+    line-height: 40px;
+    height: 90px;
+    overflow: hidden;
+
+    @include breakpoint(xs) {
+      font-size: 20px;
+      height: 70px;
+      line-height: 30px;
     }
   }
-}
 
-.page-slide-in-left {
-  &.ng-enter {
-    z-index: 9999;
-    -webkit-animation: slideInLeft 0.3s both ease-in;
-    -moz-animation: slideInLeft 0.3s both ease-in;
-    animation: slideInLeft 0.3s both ease-in;
-  }
+  .tablet__content {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    bottom: 90px;
+    width: 100%;
 
-  &.ng-leave {
-    z-index: 8888;
-    -webkit-animation: slideOutRight 0.3s both ease-in;
-    -moz-animation: slideOutRight 0.3s both ease-in;
-    animation: slideOutRight 0.3s both ease-in;
-  }
+    @include breakpoint(xs) {
+      top: 70px;
+      bottom: 70px;
+    }
 
-  &.revert {
-    &.ng-leave {
-      z-index: 8888;
-      -webkit-animation: slideOutLeft 0.3s both ease-in;
-      -moz-animation: slideOutLeft 0.3s both ease-in;
-      animation: slideOutLeft 0.35s both ease-in;
+    .tablet__content--inner {
+      height: calc(100% - 20px);
+      position: relative;
+      margin: 0 auto;
+      max-width: 750px;
+      overflow: auto;
+      padding: 10px;
+      border: 1px solid $border-tablet;
+
+      @include breakpoint(xs) {
+        height: 100%;
+      }
     }
   }
-}
 
-.page-slide-up {
-  &.ng-enter {
-    z-index: 9999;
-    -webkit-animation: slideInUp 0.3s both ease-in;
-    -moz-animation: slideInUp 0.3s both ease-in;
-    animation: slideInUp 0.3s both ease-in;
-  }
+  .tablet__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background-color: $nav-background;
 
-  &.ng-leave {
-    z-index: 8888;
-    -webkit-animation: scaleDown 0.3s both ease-in;
-    -moz-animation: scaleDown 0.3s both ease-in;
-    animation: scaleDown 0.3s both ease-in;
-  }
-}
+    @include breakpoint(xs) {
+      height: 70px;
+    }
 
-.page-slide-down {
-  &.ng-enter {
-    z-index: 9999;
-    -webkit-animation: slideInDown 0.3s both ease-in;
-    -moz-animation: slideInDown 0.3s both ease-in;
-    animation: slideInDown 0.3s both ease-in;
-  }
+    .tablet-page__next-button {
+      @include transition-duration(0.5s);
+      @include transition-timing-function(liniar);
 
-  &.ng-leave {
-    z-index: 8888;
-    -webkit-animation: scaleDown 0.3s both ease-in;
-    -moz-animation: scaleDown 0.3s both ease-in;
-    animation: scaleDown 0.3s both ease-in;
-  }
-}
+      padding: 5px;
+      width: 60px;
+      height: 60px;
+      font-size: 16px;
+      z-index: 2000;
+      font-size: 16px;
+      border: 2px solid $border-grey;
+      color: $border-grey;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      text-align: center;
+      border-radius: 35px;
+      margin: 15px;
+      cursor: pointer;
 
-.tablet__header {
-  font-size: 35px;
-  text-align: center;
-  margin: 60px 20px 20px 20px;
-  font-weight: 100;
-}
 
-//==================Animaions========================
-//Slide up
-@keyframes slideInUp {
-  from {
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
+      span {
+        vertical-align: middle;
+        line-height: 48px;
+        font-size: 30px;
+      }
 
-@keyframes slideOutUp {
-  to {
-    transform: translate3d(0, -100%, 0);
-  }
-}
+      &:active {
+        background-color: $light-blue;
+        border-color: $dark-blue;
+        color: $dark-blue;
+      }
 
-//Slide down
-@keyframes slideInDown {
-  from {
-    transform: translate3d(0, -100%, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
+      @include breakpoint(xs) {
+        width: 50px;
+        height: 50px;
+        padding: 0px;
+        margin: 10px;
 
-@keyframes slideOutDown {
-  to {
-    transform: translate3d(0, 100%, 0);
-  }
-}
+        span {
+          font-size: 20px;
+        }
+      }
+    }
 
-//scale down
-@keyframes scaleDown {
-  from {
-    transform: scale3d(1.0, 1.0, 1);
-  }
-  to {
-    transform: scale3d(0.7, 0.7, 1);
-  }
-}
+    .tablet-page__previous-button {
+      @extend .tablet-page__next-button;
 
-//Slide left
-
-@keyframes slideInRight {
-  from {
-    transform: translate3d(100%, 0, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translate3d(-100%, 0, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes slideOutLeft {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-@keyframes slideOutRight {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(100%, 0, 0);
+      left: 0;
+    }
   }
 }

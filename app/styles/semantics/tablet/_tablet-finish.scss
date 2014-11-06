@@ -1,40 +1,31 @@
-.tablet-finish {
-  .tablet__content {
-    @include calc('width', '100% - 40px');
-
+.tablet-thankyou {
+  .tablet__content--sending {
+    top: calc(50% - 115px);
     position: relative;
-    margin: 0 auto;
 
-    .tablet-finish__send-to-doctor {
-      padding: 10px;
-      border: 1px solid black;
+    .sending-answers {
       font-size: 25px;
       font-weight: 100;
       text-align: center;
-      cursor: pointer;
 
-      .tablet-finish__icon {
-        margin-right: 10px;
-      }
-
-      &:active {
-        color: $blue;
-        border-color: $blue;
+      span:first-child {
+        margin: 10px;
       }
     }
-  }
-}
 
-.tablet-thankyou {
-  .tablet__content {
-    @include calc('width', '100% - 40px');
-
-    position: relative;
-    margin: 0 auto;
-
-    .tablet-thankyou__message {
+    .sending-answers-icon{
+      text-align: center;
       font-size: 35px;
+      margin-top: 30px;
+    }
+  }
+
+  .tablet__content--resetting {
+    .tablet-thankyou__message {
+      font-size: 25px;
       font-weight: 100;
+      line-height: 40px;
+      padding: 20px;
       text-align: center;
     }
   }

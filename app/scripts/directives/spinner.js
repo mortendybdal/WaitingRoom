@@ -10,7 +10,7 @@ angular.module('waitingRoomApp')
             },
             link: function (scope) {
                 scope.$watch('active', function (value) {
-                    console.log("Is active", value);
+                    //console.log("Is active", value);
                 });
             }
         };

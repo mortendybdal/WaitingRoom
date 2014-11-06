@@ -3,6 +3,7 @@
 angular.module('waitingRoomApp')
     .controller('FrontpageCtrl', function ($scope, $rootScope, $interval, Restangular, patients, $window, $filter) {
         var orderBy = $filter('orderBy');
+        $rootScope.current_url = 'home';
         $scope.patients = patients;
         $scope.order_by = '';
         $scope.reverse = true;

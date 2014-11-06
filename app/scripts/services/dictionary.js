@@ -273,7 +273,7 @@ angular.module('waitingRoomApp')
             {
                 key: 'NAVIGATION_Members',
                 values: [
-                    { value: 'Klinikadministration', language: 'da'},
+                    { value: 'Bruger', language: 'da'},
                     { value: 'Members', language: 'en'}
                 ]
             },
@@ -294,7 +294,7 @@ angular.module('waitingRoomApp')
             {
                 key: 'NAVIGATION_SchemeaBuilder',
                 values: [
-                    { value: 'Skemaopbygning', language: 'da'},
+                    { value: 'Skemaopbygger', language: 'da'},
                     { value: 'Scheme Builder', language: 'en'}
                 ]
             },

@@ -2,8 +2,23 @@
 
 angular.module('waitingRoomApp')
     .controller('TabletSchemeListCtrl', function ($scope, $rootScope, $location, $routeParams) {
-        console.log("TabletSchemeListCtrl INIT");
-        $rootScope.tablet_ui = true;
+        function init() {
+            $rootScope.tablet_ui = true;
+
+            console.log($rootScope.response.doctor);
+
+            if (!$rootScope.response.doctor) {
+                $location.path('tablet')
+            }
+
+            if($routeParams.direction === "next") {
+                $scope.page_class = 'page-slide-in-right';
+            }
+
+            if($routeParams.direction === "previous") {
+                $scope.page_class = 'page-slide-in-left';
+            }
+        }
 
         function rearrageQuestions (scheme) {
             var questions = _.sortBy(_.find(scheme.steps, {SortOrder: 0}).questions, 'SortOrder'),
@@ -32,20 +47,13 @@ angular.module('waitingRoomApp')
             $rootScope.response.scheme = scheme._id;
 
             var first_question = _.find($rootScope.response.questions, {SortOrder: 0});
-
-
             $location.path('tablet/question/' + first_question._id + '/next')
         }
 
-        function init() {
-            if($routeParams.direction === "next") {
-                $scope.page_class = 'page-slide-in-right';
-            }
-
-            if($routeParams.direction === "previous") {
-                $scope.page_class = 'page-slide-in-left';
-            }
-        }
+        $scope.backSlide = function () {
+            $scope.page_class = 'page-slide-in-right revert';
+            $location.path('tablet/doctor/previous');
+        };
 
         init();
     });

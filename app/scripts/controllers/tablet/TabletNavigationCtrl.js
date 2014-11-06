@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('TabletNavigationCtrl', function ($scope, $location, $rootScope, Auth) {
+    .controller('TabletNavigationCtrl', function ($scope, $location, $rootScope) {
         $scope.tablet_navigation_expanded = false;
 
         function resetResponse () {

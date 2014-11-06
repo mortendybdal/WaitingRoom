@@ -1,0 +1,75 @@
+.tablet-intro {
+  .tablet__intro-lead {
+    font-size: 25px;
+    font-weight: 100;
+    line-height: 40px;
+    margin-bottom: 100px;
+    padding: 20px;
+
+    @include breakpoint(xs) {
+      font-size: 20px;
+      line-height: 35px;
+      margin-bottom: 60px;
+    }
+  }
+
+  .tablet__intro-signeture {
+    font-size: 20px;
+    text-align: center;
+    font-style: italic;
+    font-weight: 100;
+
+    @include breakpoint(xs) {
+      font-size: 15px;
+    }
+  }
+
+  .tablet-page__next-button-start {
+    @include transition-duration(0.5s);
+    @include transition-timing-function(liniar);
+
+    padding: 5px;
+    width: 140px;
+    height: 60px;
+    font-size: 16px;
+    z-index: 2000;
+    font-size: 16px;
+    font-weight: 100;
+    border: 2px solid $border-grey;
+    color: $border-grey;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    border-radius: 35px;
+    margin: 15px;
+    cursor: pointer;
+
+    span {
+      vertical-align: middle;
+      line-height: 48px;
+      font-size: 30px;
+
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+
+    &:active {
+      background-color: $light-blue;
+      border-color: $dark-blue;
+      color: $dark-blue;
+    }
+
+    @include breakpoint(xs) {
+      width: 100px;
+      height: 50px;
+      padding: 0px;
+      margin: 10px;
+
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+}

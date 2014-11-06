@@ -1,6 +1,4 @@
 .sidebar {
-  @include box-shadow(3px 0 5px rgba(black, 0.2));
-
   position: fixed;
   left: 0;
   top: 0;
@@ -8,27 +6,64 @@
   width: 200px;
   background-color: $nav-background;
   z-index: 300;
+
+  &.active {
+    @include box-shadow(3px 0 5px rgba(black, 0.2));
+  }
+}
+
+.sidebar__logo {
+  display: inline-block;
+  width: 200px;
+  height: 70px;
+
+  background-color: #34be9c;
+  text-align: center;
+
+  span {
+    color: white;
+    font-weight: 100;
+    font-size: 30px;
+    line-height: 70px;
+  }
 }
 
 .sidebar__profil {
-  padding: 40px 12px 150px 12px;
-  border-bottom: 1px solid $nav-divider-shadow;
-}
+  padding: 30px 5px 30px 30px;
+  border-top: 1px solid #101d26;
+  border-bottom: 1px solid #101d26;
+  background-color: $nav-user-background;
 
-.sidebar__profil-circle {
-  width: 46px;
-  height: 46px;
-  border-radius: 23px;
-  background: white;
-  text-align: center;
-  overflow: hidden;
+  .sidebar__profil-circle {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    background: white;
+    text-align: center;
+    overflow: hidden;
+    margin-right: 10px;
+    border: 3px solid #223641;
 
-  span {
-    line-height: 57px;
-    font-size: 45px;
-    color: $icon-dark-blue;
+    span {
+      line-height: 57px;
+      font-size: 45px;
+      color: $icon-dark-blue;
+    }
   }
+
+  .sidebar__profil-name {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 50px;
+    color: white;
+    font-size: 12px;
+    font-weight: 100;
+  }
+
 }
+
+
 
 .sidebar__menu {
   list-style-type: none;
@@ -36,17 +71,34 @@
   margin: 0px;
 
   .sidebar__menu-item {
-    @include box-shadow(inset 0px -1px 1px $nav-divider);
+    @include box-shadow(inset 0px -1px 0px $nav-divider);
 
     cursor: pointer;
     height: 70px;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid $nav-divider-shadow;
     background-color: $nav-button-background;
     display: block;
+    padding-left: 30px;
 
     &:hover {
+      @include box-shadow(inset 5px -0px 0px $red);
+      text-decoration: none;
+      background-color: $nav-background-hover;
+
       span, i {
+        font-weight: 200;
+        color: white;
+      }
+    }
+
+    &.active {
+      @include box-shadow(inset 5px -0px 0px $red);
+      text-decoration: none;
+      background-color: $nav-background-hover;
+
+      span, i {
+        font-weight: 200;
         color: white;
       }
     }
@@ -54,15 +106,38 @@
     span {
       @include transition-duration(0.2s);
       @include transition-timing-function(ease-in);
-      line-height: 70px;
-      font-size: 25px;
+      font-size: 20px;
       color: $icon-dark-blue;
       pointer-events: none;
+      font-weight: 200;
 
       &.ion-android-friends {
-        font-size: 30px;
+        font-size: 25px;
+
+        &:before {
+          width: 20px
+        }
+      }
+      
+      &.sidebar__menu-item--icon {
+        width: 20px;
+
+        &:before {
+          line-height: 67px;
+          vertical-align: top;
+
+        }
+      }
+
+      &.sidebar__menu-item--text {
+        font-size: 14px;
+        margin-left: 10px;
+        line-height: 70px;
+        vertical-align: top;
       }
     }
+
+
 
     i {
       @include transition-duration(0.2s);
@@ -73,158 +148,4 @@
       pointer-events: none;
     }
   }
-}
-
-.scheme-builder__menu {
-  @include box-shadow(3px 0 5px rgba(black, 0.2));
-  @include transition-duration(0.3s);
-  @include transition-timing-function(ease-in);
-
-  position: fixed;
-  top: 0;
-  left: -270px;
-  width: 320px;
-  background: white;
-  height: 100%;
-  z-index: 200;
-  padding: 20px;
-
-  &.active {
-    left: 70px;
-  }
-
-  .scheme-builder__create-scheme {
-    @include transition-duration(0.3s);
-    @include transition-timing-function(ease-in);
-
-    width: 100%;
-    border: none;
-    background-color: transparent;
-    border: 1px solid $blue;
-    padding: 10px;
-    font-size: 12px;
-    font-weight: 200;
-    color: $blue;
-    outline: none;
-  }
-}
-
-.content-tree--container {
-  &.angular-ui-tree-drag {
-    .content-tree__item{
-      .content-tree__item-link {
-
-        &:hover {
-          span {
-            @include transform(scale(1.0));
-
-            visibility: visible;
-
-          }
-        }
-      }
-    }
-  }
-
-
-  &.angular-ui-tree-nodes {
-    padding: 0;
-  }
-}
-
-
-.content-tree {
-  margin-top: 50px;
-}
-
-
-.content-tree__item {
-  padding: 5px 0 0 10px;
-
-  span {
-    font-size: 8px;
-    margin-right: 5px;
-    vertical-align: top;
-    line-height: 18px;
-    color: $blue;
-    cursor: pointer;
-    font-weight: 200;
-
-    &:first-child{
-      &:hover {
-        color: darken($blue, 30%);
-      }
-    }
-  }
-
-
-  .content-tree__item-icon {
-    font-size: 15px;
-
-    &:before {
-      vertical-align: top;
-      line-height: 22px;
-    }
-  }
-
-  .content-tree__item-link {
-    @include calc("width", "100% - 34px");
-
-    display: inline-block;
-    position: relative;
-
-    &:hover {
-      span {
-        @include transform(scale(1.0));
-
-        visibility: visible;
-
-      }
-    }
-
-    a {
-      @include transition-duration(0.3s);
-      @include transition-timing-function(ease-in);
-
-      color: $blue;
-      font-size: 12px;
-      font-weight: 200;
-      width: calc(100% - 40px);
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      vertical-align: bottom;
-      line-height: 22px;
-    }
-
-    .trash {
-      @include transform(scale(0.0));
-      @include transition(all 0.5s);
-
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 12px;
-      line-height: 24px;
-      visibility: none;
-
-      &:hover {
-        color: darken($blue, 20%);
-      }
-
-      &:active {
-        @include transform(scale(1.7));
-
-        color: darken($blue, 40%);
-      }
-
-    }
-
-    .sort {
-      @extend .trash;
-      right: 20px;
-    }
-  }
-
 }

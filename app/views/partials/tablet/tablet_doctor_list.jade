@@ -1,15 +1,14 @@
-.tablet-doctor-list
+.tablet-page.tablet-doctor-list
     .tablet__header Vælg din læge
 
     .tablet__content
-        .doctor-list
-            span.arrow.up-arrow.ion-chevron-up(ng-show="t.doctors.length > 7")
-            span.arrow.down-arrow.ion-chevron-down(ng-show="t.doctors.length > 7")
-            .doctor-list--wrapper(ng-class="{is_scrollable: t.doctors.length > 7}")
-                spinner(active="tablet_is_loading")
 
-                .doctor-item(ng-repeat="doctor in t.doctors", ng-click="selectDoctor(doctor)", ng-show="!tablet_is_loading")
-                    .doctor-item__profile-image
-                        span.glyphicon.glyphicon-user
-                    .doctor-item__profile-name {{doctor.name}}
+        .tablet__content--inner
+            spinner(active="tablet_is_loading")
+            .doctor-item(ng-repeat="doctor in t.doctors", ng-click="selectDoctor(doctor)", ng-show="!tablet_is_loading")
+                .doctor-item__profile-image
+                    span.glyphicon.glyphicon-user
+                .doctor-item__profile-name {{doctor.name}}
     .tablet__footer
+        .tablet-page__previous-button(ng-click="backSlide()")
+            span.ion-chevron-left

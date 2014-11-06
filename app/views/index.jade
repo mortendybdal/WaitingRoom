@@ -4,116 +4,117 @@ doctype html
 // [if IE 8]>         <html class="no-js lt-ie9"> <![endif]
 // [if gt IE 8]><!
 html.no-js
-  //<![endif]
-  head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
-    base(href="/")
-    title Predok
-    meta(name="description", content="")
-    meta(name="viewport", content="width=device-width")
-    // Place favicon.ico and apple-touch-icon.png in the root directory
-    <!-- build:css(app) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
-    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
-    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
-    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-    <link rel="stylesheet" href="bower_components/ionicons/css/ionicons.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  body(ng-app="waitingRoomApp", ng-class="{'tablet-ui':tablet_ui}", ng-cloak)
-    //[if lt IE 7]>
-      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-      <![endif]
-    //[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
-      <![endif]
+    //<![endif]
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        base(href="/")
+        title Predok
+        meta(name="description", content="")
+        meta(name="viewport", content="width=device-width")
+        // Place favicon.ico and apple-touch-icon.png in the root directory
+        <!-- build:css(app) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+        <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+        <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
+        <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+        <link rel="stylesheet" href="bower_components/ionicons/css/ionicons.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css({.tmp,app}) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+    body(ng-app="waitingRoomApp", ng-class="{'tablet-ui':tablet_ui}", ng-cloak)
+        //[if lt IE 7]>
+          <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+          <![endif]
+        //[if lt IE 9]>
+          <script src="bower_components/es5-shim/es5-shim.js"></script>
+          <script src="bower_components/json3/lib/json3.min.js"></script>
+          <![endif]
 
-    .page(ng-controller="MainCtrl")
-      //ng-include(src="'partials/navigation'", ng-show="!tablet_ui")
-      ng-include(src="'partials/sidebar'", ng-show="!tablet_ui")
-      ng-include(src="'partials/tablet/tablet_navigation'", ng-show="tablet_ui")
+        .page(ng-controller="MainCtrl", ng-class="{'show': !tablet_ui && is_logged_in}")
+            ng-include(src="'partials/topbar'", ng-show="!tablet_ui && is_logged_in")
+            ng-include(src="'partials/sidebar'", ng-show="!tablet_ui && is_logged_in")
+            ng-include(src="'partials/tablet/tablet_navigation'", ng-show="tablet_ui && is_logged_in")
 
-      .content
-        .content-view(ng-view, ng-class="{'tablet-ui':tablet_ui}", class="{{page_class}}")
+            .content(ng-class="{'navigation-builder-visible': show_content_tree}")
+                ng-include(src="'partials/builder/navigation-builder'", ng-show="!tablet_ui && is_logged_in")
+                .content-view(ng-view, ng-class="{'tablet-ui':tablet_ui}", class="{{page_class}}")
 
-      .connection_status(ng-class="{'is_offline': !online}")
-        span.connection_message {{d.GENERAL_TabletIsOffline}}
+            .connection_status(ng-class="{'is_offline': !online}")
+                span.connection_message {{d.GENERAL_TabletIsOffline}}
 
-    // Google Analytics: change UA-XXXXX-X to be your site's ID.
-    script.
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src='//www.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
+        // Google Analytics: change UA-XXXXX-X to be your site's ID.
+        script.
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
 
-    <!-- build:js(app) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/ngAnimate-animate.css/animate.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-    <script src="bower_components/zeroclipboard/ZeroClipboard.js"></script>
-    <script src="bower_components/ng-clip/dest/ng-clip.min.js"></script>
-    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-    <script src="bower_components/restangular/dist/restangular.js"></script>
-    <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
-    <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
-    <script src="bower_components/webcam-directive/app/scripts/webcam.js"></script>
-    <!-- endbower -->
-    <script src="bower_components/moment/lang/da.js"></script>
-    <!-- endbuild -->
+        <!-- build:js(app) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/ngAnimate-animate.css/animate.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+        <script src="bower_components/zeroclipboard/ZeroClipboard.js"></script>
+        <script src="bower_components/ng-clip/dest/ng-clip.min.js"></script>
+        <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+        <script src="bower_components/restangular/dist/restangular.js"></script>
+        <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+        <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+        <script src="bower_components/webcam-directive/app/scripts/webcam.js"></script>
+        <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <!-- endbower -->
+        <script src="bower_components/moment/lang/da.js"></script>
+        <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/MainCtrl.js"></script>
-    <script src="scripts/controllers/FrontpageCtrl.js"></script>
-    <script src="scripts/controllers/PatientCtrl.js"></script>
-    <script src="scripts/controllers/TabletCtrl.js"></script>
-    <script src="scripts/controllers/LoginCtrl.js"></script>
-    <script src="scripts/controllers/SignupCtrl.js"></script>
-    <script src="scripts/controllers/SideBarCtrl.js"></script>
-    <script src="scripts/controllers/SettingsCtrl.js"></script>
-    <script src="scripts/controllers/builder/SchemeBuilderCtrl.js"></script>
-    <script src="scripts/controllers/builder/StepBuilderCtrl.js"></script>
-    <script src="scripts/controllers/builder/QuestionBuilderCtrl.js"></script>
-    <script src="scripts/controllers/builder/NavigationBuilderCtrl.js"></script>
-    <script src="scripts/controllers/customers/ClinicsCtrl.js"></script>
-    <script src="scripts/controllers/customers/DoctorsCtrl.js"></script>
-    <script src="scripts/controllers/tablet/TabletQuestionCtrl.js"></script>
-    <script src="scripts/controllers/tablet/TabletSchemeListCtrl.js"></script>
-    <script src="scripts/controllers/tablet/TabletDoctorListCtrl.js"></script>
-    <script src="scripts/controllers/tablet/TabletFinishCtrl.js"></script>
-    <script src="scripts/controllers/tablet/TabletThankYouCtrl.js"></script>
-    <script src="scripts/controllers/tablet/TabletNavigationCtrl.js"></script>
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/MainCtrl.js"></script>
+        <script src="scripts/controllers/FrontpageCtrl.js"></script>
+        <script src="scripts/controllers/PatientCtrl.js"></script>
+        <script src="scripts/controllers/LoginCtrl.js"></script>
+        <script src="scripts/controllers/SignupCtrl.js"></script>
+        <script src="scripts/controllers/SideBarCtrl.js"></script>
+        <script src="scripts/controllers/TopBarCtrl.js"></script>
+        <script src="scripts/controllers/SettingsCtrl.js"></script>
+        <script src="scripts/controllers/builder/SchemeBuilderCtrl.js"></script>
+        <script src="scripts/controllers/builder/StepBuilderCtrl.js"></script>
+        <script src="scripts/controllers/builder/QuestionBuilderCtrl.js"></script>
+        <script src="scripts/controllers/builder/NavigationBuilderCtrl.js"></script>
+        <script src="scripts/controllers/customers/ClinicsCtrl.js"></script>
+        <script src="scripts/controllers/customers/DoctorsCtrl.js"></script>
+        <script src="scripts/controllers/tablet/TabletQuestionCtrl.js"></script>
+        <script src="scripts/controllers/tablet/TabletSchemeListCtrl.js"></script>
+        <script src="scripts/controllers/tablet/TabletDoctorListCtrl.js"></script>
+        <script src="scripts/controllers/tablet/TabletFinishCtrl.js"></script>
+        <script src="scripts/controllers/tablet/TabletIntroCtrl.js"></script>
+        <script src="scripts/controllers/tablet/TabletThankYouCtrl.js"></script>
+        <script src="scripts/controllers/tablet/TabletNavigationCtrl.js"></script>
 
-    <script src="scripts/directives/offClick.js"></script>
-    <script src="scripts/directives/focusMe.js"></script>
-    <script src="scripts/directives/contentEditable.js"></script>
-    <script src="scripts/directives/spinner.js"></script>
+        <script src="scripts/directives/offClick.js"></script>
+        <script src="scripts/directives/focusMe.js"></script>
+        <script src="scripts/directives/contentEditable.js"></script>
+        <script src="scripts/directives/spinner.js"></script>
 
-    <script src="scripts/services/ModalService.js"></script>
-    <script src="scripts/services/auth.js"></script>
-    <script src="scripts/services/session.js"></script>
-    <script src="scripts/services/user.js"></script>
-    <script src="scripts/services/dictionary.js"></script>
-
-    <script src="scripts/directives/mongooseError.js"></script>
+        <script src="scripts/services/ModalService.js"></script>
+        <script src="scripts/services/auth.js"></script>
+        <script src="scripts/services/session.js"></script>
+        <script src="scripts/services/user.js"></script>
+        <script src="scripts/services/dictionary.js"></script>
 
 
-    <!-- endbuild -->
+        <!-- endbuild -->
     

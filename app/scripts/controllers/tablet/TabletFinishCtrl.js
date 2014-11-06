@@ -9,10 +9,6 @@ angular.module('waitingRoomApp')
         $rootScope.tablet_ui = true;
         $scope.page_class = 'page-slide-up';
 
-        if (!$rootScope.response.doctor.name) {
-            $location.path('tablet');
-        }
-
         function createAnswers (patient_id) {
             var answers = [];
 

@@ -1,236 +1,160 @@
 .tablet-question {
-  .tablet__content {
-    @include calc('width', '100% - 40px');
 
+  ///////////////SINGLE TEXT/////////////////
+  .single-text {
     position: relative;
-    margin: 0 auto;
+    top: calc(50% - 50px);
+
+    input {
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease-in);
+
+      width: 100%;
+      margin: 0 auto;
+      padding: 10px 20px;
+      background-color: transparent;
+      font-size: 25px;
+      color: $nav-button-background;
+      font-weight: 100 !important;
+      border: none;
+      outline: none;
 
 
-    .single-text {
-      input {
-        @include transition-duration(0.2s);
-        @include transition-timing-function(ease-in);
+      @include breakpoint(xs) {
+        font-size: 20px;
+      }
 
-        width: 100%;
-        margin: 0 auto;
-        padding: 10px 20px;
-        background-color: transparent;
-        font-size: 25px;
-        color: $nav-button-background;
-        font-weight: 100 !important;
-        border: none;
-        outline: none;
+      @include placeholder {
+        color: lighten($nav-button-background, 30%);
+        font-weight: 100;
+      }
 
+      &:focus + .single-text__border {
+        border-bottom: 1px solid $blue;
+        border-left: 1px solid $blue;
+        border-right: 1px solid $blue;
+      }
+
+      &:focus {
+        color: $blue;
         @include placeholder {
-          color: lighten($nav-button-background, 30%);
-          font-weight: 100;
-        }
-
-        &:focus + .single-text__border {
-          border-bottom: 1px solid $blue;
-          border-left: 1px solid $blue;
-          border-right: 1px solid $blue;
-        }
-
-        &:focus {
           color: $blue;
-          @include placeholder {
-            color: $blue;
-          }
         }
-
-        &.ng-invalid-number {
-          color: $red;
-
-          & + .single-text__border {
-            border-color: $red;
-          }
-        }
-
       }
 
-      .single-text__border {
-        @include transition-duration(0.2s);
-        @include transition-timing-function(ease-in);
+      &.ng-invalid-number {
+        color: $red;
 
-        position: absolute;
-        height: 20px;
-        width: 100%;
-        bottom: 0;
-        left: 0;
-        border-bottom: 1px solid $nav-button-background;
-        border-left: 1px solid $nav-button-background;
-        border-right: 1px solid $nav-button-background;
-
-
+        & + .single-text__border {
+          border-color: $red;
+        }
       }
-
 
     }
 
+    .single-text__border {
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease-in);
 
-
-    .multi-text {
-      textarea {
-        width: 100%;
-        border: none;
-        background-color: transparent;
-        font-size: 25px;
-        color: $nav-button-background;
-        font-weight: 100 !important;
-        outline: none;
-        padding: 10px 20px 10px 20px;
-        resize: none;
-
-        @include placeholder {
-          color: lighten($nav-button-background, 30%);
-          font-weight: 100;
-        }
-
-        &:focus {
-          color: $blue;
-
-          @include placeholder {
-            color: $blue;
-          }
-        }
-      }
-
-      .multi-text__border-left {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 20px;
-        height: 100%;
-        border-bottom: 1px solid $nav-button-background;
-        border-left: 1px solid $nav-button-background;
-        border-top: 1px solid $nav-button-background;
-      }
-
-      .multi-text__border-right {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 20px;
-        height: 100%;
-        border-bottom: 1px solid $nav-button-background;
-        border-right: 1px solid $nav-button-background;
-        border-top: 1px solid $nav-button-background;
-      }
-    }
-
-    .list-picker {
-      position: relative;
-
-      span {
-        position: absolute;
-        right: -20px;
-        color: darken($light-grey, 30%);
-
-        &.up-arrow {
-          top: 0;
-        }
-
-        &.down-arrow {
-          bottom: 0;
-        }
-
-      }
-
-      .radio-list--wrapper {
-        height: 540px;
-        overflow: auto;
-
-        &.is_scrollable {
-          padding: 10px;
-          border: 1px solid $light-grey;
-        }
-      }
-
-
-      .tablet-page__answer-option--inner {
-        box-sizing: content-box;
-        border: 1px solid $nav-button-background;
-        padding: 10px;
-        display: block;
-        margin: 1px 1px 10px 1px;
-        font-size: 25px;
-        color: $nav-button-background;
-        font-weight: 100 !important;
-        text-align: center;
-
-        &.active {
-          border-color: $dark-blue;
-          background-color: $light-blue;
-          color: $dark-blue;
-        }
-      }
-
-      li button:before {
-        color: white;
-        font-size: 10px;
-      }
+      position: absolute;
+      height: 20px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid $nav-background;
+      border-left: 1px solid $nav-background;
+      border-right: 1px solid $nav-background;
     }
   }
 
-  .tablet__footer {
-    .tablet-page__next-button {
-      @include transition-duration(0.5s);
-      @include transition-timing-function(liniar);
+  ///////////////MULTI TEXT/////////////////
+  .multi-text {
+    top: calc(50% - 105px);
+    position: relative;
 
-      padding: 10px;
-      width: 70px;
-      height: 70px;
-      font-size: 16px;
-      z-index: 2000;
-      font-size: 16px;
-      border: 1px solid $nav-button-background;
+    textarea {
+      width: 100%;
+      border: none;
+      background-color: transparent;
+      font-size: 25px;
       color: $nav-button-background;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      text-align: center;
-      border-radius: 35px;
-      margin-bottom: 40px;
+      font-weight: 100 !important;
+      outline: none;
+      padding: 10px 20px 10px 20px;
+      resize: none;
 
-      span {
-        vertical-align: middle;
-        line-height: 48px;
-        font-size: 30px;
+      @include breakpoint(xs) {
+        font-size: 20px;
       }
 
-      &:active {
-        background-color: lighten($nav-button-background, 20%);
+      @include placeholder {
+        color: lighten($nav-button-background, 30%);
+        font-weight: 100;
+      }
+
+      &:focus {
+        color: $blue;
+
+        @include placeholder {
+          color: $blue;
+        }
       }
     }
 
-    .tablet-page__previous-button {
-      @include transition-duration(0.5s);
-      @include transition-timing-function(liniar);
-
-      padding: 10px;
-      width: 70px;
-      height: 70px;
-      font-size: 16px;
-      border: 1px solid $nav-button-background;
-      z-index: 2000;
-      color: $nav-button-background;
+    .multi-text__border-left {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
+      width: 20px;
+      height: 100%;
+      border-bottom: 1px solid $nav-background;
+      border-left: 1px solid $nav-background;
+      border-top: 1px solid $nav-background;
+    }
+
+    .multi-text__border-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 100%;
+      border-bottom: 1px solid $nav-background;
+      border-right: 1px solid $nav-background;
+      border-top: 1px solid $nav-background;
+    }
+  }
+
+  ///////////////LIST PICKER/////////////////
+  .list-picker {
+    position: relative;
+
+
+    .tablet-page__answer-option {
+      box-sizing: content-box;
+      border: 1px solid $border-tablet;
+      padding: 10px;
+      display: block;
+      margin: 1px 1px 10px 1px;
+      font-size: 25px;
+      color: $nav-button-background;
+      font-weight: 100 !important;
       text-align: center;
-      border-radius: 35px;
-      margin-bottom: 40px;
 
-      span {
-        vertical-align: middle;
-        line-height: 48px;
-        font-size: 30px;
+      @include breakpoint(xs) {
+        font-size: 20px;
       }
 
-      &:active {
-        background-color: lighten($nav-button-background, 20%);
+
+      &.active {
+        border-color: $dark-blue;
+        background-color: $light-blue;
+        color: $dark-blue;
       }
+    }
+
+    li button:before {
+      color: white;
+      font-size: 10px;
     }
   }
 }

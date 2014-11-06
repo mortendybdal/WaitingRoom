@@ -2,6 +2,8 @@
 
 angular.module('waitingRoomApp')
   .controller('DoctorsCtrl', function ($scope, $rootScope, $routeParams, $modal, clinic, users, Restangular) {
+        $rootScope.current_url = 'member';
+
         function init() {
             $scope.roles = ["Editor", "User", "Tablet"];
             $scope.clinic = clinic;

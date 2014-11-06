@@ -2,6 +2,7 @@
 
 angular.module('waitingRoomApp')
     .controller('SchemeBuilderCtrl', function ($scope, $rootScope, $modal, scheme) {
+        $rootScope.current_url = 'builder';
 
         if (scheme) {
             $scope.scheme = scheme;

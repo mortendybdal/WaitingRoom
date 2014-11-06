@@ -1,40 +1,37 @@
-.tablet-question
+.tablet-page.tablet-question
     .tablet__header {{question.QuestionText}}
 
     .tablet__content
-        // ==> Single-Text
-        .single-text(ng-if="question.Type.Value === 'single-text'", ng-keypress="onKeyPressed($event)")
-            input(ng-model="question.Answer", placeholder="{{d.TABLET_EnterText}}")
-            .single-text__border
+        .tablet__content--inner
+            // ==> Single-Text
+            .single-text(ng-if="question.Type.Value === 'single-text'", ng-keypress="onKeyPressed($event)")
+                input(ng-model="question.Answer", placeholder="{{d.TABLET_EnterText}}")
+                .single-text__border
 
-        // ==> Single-Text
-        .single-text(ng-if="question.Type.Value === 'numeric'", ng-keypress="onKeyPressed($event)")
-            input(type="number", ng-model="question.Answer", placeholder="{{d.TABLET_EnterNumber}}", focus-me="set_focus")
-            .single-text__border
+            // ==> Single-Text
+            .single-text(ng-if="question.Type.Value === 'numeric'", ng-keypress="onKeyPressed($event)")
+                input(type="number", ng-model="question.Answer", placeholder="{{d.TABLET_EnterNumber}}", focus-me="set_focus")
+                .single-text__border
 
 
-        // ==> Multi-text
-        .tablet-page__answer.multi-text(ng-if="question.Type.Value === 'multi-text'", ng-keypress="onKeyPressed($event)")
-            .tablet-page__answer__inner
-                textarea(ng-model="question.Answer", rows=3, placeholder="{{d.TABLET_EnterText}}", focus-me="set_focus")
-                .multi-text__border-left
-                .multi-text__border-right
+            // ==> Multi-text
+            .tablet-page__answer.multi-text(ng-if="question.Type.Value === 'multi-text'", ng-keypress="onKeyPressed($event)")
+                .tablet-page__answer__inner
+                    textarea(ng-model="question.Answer", rows=3, placeholder="{{d.TABLET_EnterText}}", focus-me="set_focus")
+                    .multi-text__border-left
+                    .multi-text__border-right
 
-        // ==> Radio-List
-        .list-picker(ng-if="question.Type.Value === 'radio-list'")
-            span.up-arrow.ion-chevron-up(ng-show="question.Options.length > 7")
-            span.down-arrow.ion-chevron-down(ng-show="question.Options.length > 7")
-            .radio-list--wrapper(ng-class="{is_scrollable: question.Options.length > 7}")
-                .tablet-page__answer-option(ng-repeat="option in question.Options")
-                    .tablet-page__answer-option--inner(ng-click="question.Answer = option.Key; nextSlide(question)", ng-class="{active: question.Answer === option.Key}") {{option.Value}}
+            // ==> Radio-List
+            .list-picker(ng-if="question.Type.Value === 'radio-list'")
+                    .tablet-page__answer-option(ng-repeat="option in question.Options",
+                                                ng-click="question.Answer = option.Key; nextSlide(question)",
+                                                ng-class="{active: question.Answer === option.Key}") {{option.Value}}
 
-        // ==> Select-List
-        .list-picker(ng-if="question.Type.Value === 'select-list'")
-            span.up-arrow.ion-chevron-up(ng-show="question.Options.length > 7")
-            span.down-arrow.ion-chevron-down(ng-show="question.Options.length > 7")
-            .radio-list--wrapper(ng-class="{is_scrollable: question.Options.length > 7}")
-                .tablet-page__answer-option(ng-repeat="option in question.Options")
-                    .tablet-page__answer-option--inner(ng-click="addToSelectList(option.Key)", ng-class="{active: existInSelectList(option.Key)}") {{option.Value}}
+            // ==> Select-List
+            .list-picker(ng-if="question.Type.Value === 'select-list'")
+                    .tablet-page__answer-option(ng-repeat="option in question.Options",
+                                                ng-click="addToSelectList(option.Key)",
+                                                ng-class="{active: existInSelectList(option.Key)}") {{option.Value}}
 
 
 

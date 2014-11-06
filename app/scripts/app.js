@@ -13,9 +13,10 @@ angular.module('waitingRoomApp', [
         'ui.tree',
         'ui.bootstrap',
         'angular-loading-bar',
-        'webcam'
+        'webcam',
+        'LocalStorageModule'
     ])
-    .config(function ($routeProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider) {
+    .config(function ($routeProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider, localStorageServiceProvider) {
 
         //================================================
         // Define all the routes
@@ -144,9 +145,18 @@ angular.module('waitingRoomApp', [
                 }
 
             })
-            .when('/tablet', {
+            .when('/tablet/doctor/:direction', {
                 templateUrl: 'partials/tablet/tablet_doctor_list',
                 controller: 'TabletDoctorListCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
+            })
+            .when('/tablet', {
+                templateUrl: 'partials/tablet/tablet_intro',
+                controller: 'TabletIntroCtrl',
                 resolve: {
                     loggedin: function (Auth) {
                         return Auth.isLoggedIn(['Tablet']);
@@ -171,6 +181,7 @@ angular.module('waitingRoomApp', [
                     }
                 }
             })
+
             .otherwise({
                 redirectTo: '/'
             });
@@ -192,8 +203,15 @@ angular.module('waitingRoomApp', [
                 }
             };
         }]);
+
+        //================================================
+        // Configuration for local storage
+        //================================================
+        localStorageServiceProvider.setPrefix('predok');
     })
     .run(function ($rootScope, $location, $window, Auth, Restangular) {
+
+
         //================================================
         // Listen for coneection status
         //================================================

@@ -2,13 +2,6 @@
 
 angular.module('waitingRoomApp')
     .controller('NavigationBuilderCtrl', function ($scope, $rootScope, $modal, Restangular, Auth) {
-        //Authenticate - Only editors and admins are allowed to build new schemes
-        /*if (!Auth.roleHasAccess(['Editor', 'Admin'])) {
-            console.log("Is returned", $rootScope.currentUser)
-            return;
-        }
-        */
-
         $scope.baseSchemes = Restangular.all("schemes");
         $scope.expanded_items = [];
 

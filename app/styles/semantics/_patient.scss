@@ -61,25 +61,24 @@
   position: absolute;
   top: 0;
   right: 0;
-  background-color: transparent;
+  background-color: $green;
   border: 1px solid $green;
-  color: $green;
+  color: white;
   margin: 30px;
   padding: 18px 30px;
   outline: none;
+  font-weight: 200;
 
   span:first-child {
     margin-right: 5px;
   }
 
   &:hover {
-    border-color: darken($green, 20%);
-    color: darken($green, 20%);
+    background-color: lighten($green, 10%);
   }
 
   &:active {
-    border-color: darken($green, 40%);
-    color: darken($green, 40%);
+    background-color: darken($green, 5%);
   }
 }
 
@@ -100,8 +99,8 @@
   padding: 9px 9px 8px 9px;
   text-align: center;
   position: relative;
-  background-color: lighten($blue, 40%);
-  color: lighten($blue, 20%);;
+  background-color: lighten($blue, 20%);
+  color: white;
   cursor: pointer;
 
   &:after {
@@ -116,32 +115,46 @@
     border-bottom: none;
     border-left: none;
     z-index: 100;
-    background-color: lighten($blue, 40%);
+    background-color: lighten($blue, 20%);
   }
 
   &.done {
-    background-color: lighten($blue, 20%);
-    color: white;
-
-    &:after {
-      background-color: lighten($blue, 20%);
-    }
-  }
-
-  &.active {
     background-color: $blue;
-    color: white;
 
     &:after {
       background-color: $blue;
     }
+
+    &:hover {
+      background-color: ligthen($blue, 2%);
+
+      &:after {
+        background-color: ligthen($blue, 2%);
+      }
+    }
+  }
+
+  &.active {
+    background-color: darken($blue, 10%);
+
+    &:after {
+      background-color: darken($blue, 10%);
+    }
+
+    &:hover {
+      background-color: darken($blue, 5%);
+
+      &:after {
+        background-color: darken($blue, 5%);
+      }
+    }
   }
 
   &:hover {
-    background-color: lighten($blue, 30%);
+    background-color: lighten($blue, 22%);
 
     &:after {
-      background-color: lighten($blue, 30%);
+      background-color: lighten($blue, 22%);
     }
   }
 }

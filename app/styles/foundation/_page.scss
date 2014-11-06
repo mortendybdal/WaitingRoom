@@ -7,19 +7,38 @@ body {
   background-color: $main-background;
 }
 
+.page {
+  &.show {
+    z-index: 8888;
+    -webkit-animation: fadeIn 1s both ease-in;
+    -moz-animation: fadeIn 1s both ease-in;
+    animation: fadeIn 1s both ease-in;
+  }
+}
+
 .content {
-  position: relative;
-  padding: 20px 20px 20px 20px;
-  display: inline-block;
-  width: calc(100% - 200px);
-  left: 200px;
+  @include transition-duration(0.2s);
+  @include transition-timing-function(ease-in);
+
+  transform: translate3d(0, 0, 0);
+  position: fixed;
+  display: block;
+  top: 70px;
+  left: -120px;
+  width: calc(100% + 120px);
+  height: calc(100% - 70px);
+
+  &.navigation-builder-visible {
+    transform: translate3d(320px, 0, 0);
+  }
 
   .content-view {
     position: absolute;
-    display: block;
-    left: 20px;
-    right: 20px;
-    top: 20px;
+    height: 100%;
+    width: calc(100% - 320px);
+    left: 320px;
+    padding: 20px;
+    overflow: auto;
   }
 }
 
@@ -27,17 +46,15 @@ body {
   @include transition-duration(0.3s);
   @include transition-timing-function(ease-in);
 
-
   background: $red;
   position: fixed;
-  width: 100%;
+  width: calc(100% - 200px);
+  left: 200px;
   height: 75px;
   bottom: -80px;
-  left: 70px;
   opacity: 0.9;
   text-align: center;
   padding: 25px;
-
 
   &.is_offline {
     bottom: 0;
@@ -50,25 +67,32 @@ body {
   }
 }
 
-
 ///////////////////BASE STYLE FOR TABLET////////////////////////
 
 .tablet-ui {
-  height: calc(100% - 20px);
+  height: 100%;
 
   .page {
     height: 100%;
 
     .content {
+      position: relative;
       display: block;
       padding: 0;
+      top: 0;
       left: 0;
       height: 100%;
       width: 100%;
+      overflow: hidden;
 
       .content-view {
         height: 100%;
         background-color: $main-background;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        width: 100%;
+        padding: 0;
 
         .tablet {
           height: 100%;
@@ -78,6 +102,7 @@ body {
 
     .connection_status {
       left: 0;
+      width: 100%;
     }
   }
 }

@@ -1,22 +1,25 @@
 nav(ng-controller="SideBarCtrl", ng-show="is_logged_in")
-    .sidebar
+    .sidebar(ng-class="{active: show_content_tree}")
+        .sidebar__logo
+            span {{d.GENERAL_CompanyName}}
         .sidebar__profil
             .sidebar__profil-circle
                 span.glyphicon.glyphicon-user
+            .sidebar__profil-name {{currentUser.name}}
 
         .sidebar__menu
-            a.sidebar__menu-item(ng-href="/", title="{{d.NAVIGATION_Home}}")
-                span.glyphicon.glyphicon-home
-            a.sidebar__menu-item(ng-href="/customers", title="{{d.NAVIGATION_Members}}", ng-show="auth.roleHasAccess(['Admin'])")
-                span.ion-android-friends
-            .sidebar__menu-item.navigation__menu-item--builder(ng-click="showContentTree()", title="{{d.NAVIGATION_SchemeaBuilder}}", ng-show="auth.roleHasAccess(['Editor', 'Admin'])")
-                span.glyphicon.glyphicon-list-alt
-            a.sidebar__menu-item(ng-href="/settings", title="{{d.NAVIGATION_Settings}}")
-                span.glyphicon.glyphicon-cog
-            a.sidebar__menu-item(ng-click="logout()", title="{{d.NAVIGATION_Logout}}")
-                span.glyphicon.glyphicon-off
-
-    ng-include(src="'partials/builder/navigation-builder'")
+            a.sidebar__menu-item(ng-href="/", title="{{d.NAVIGATION_Home}}", ng-class="{active: current_url === 'home'}")
+                span.sidebar__menu-item--icon.glyphicon.glyphicon-home
+                span.sidebar__menu-item--text {{d.NAVIGATION_Home}}
+            a.sidebar__menu-item(ng-href="/customers", title="{{d.NAVIGATION_Members}}", ng-show="auth.roleHasAccess(['Admin'])", ng-class="{active: current_url === 'member'}")
+                span.sidebar__menu-item--icon.ion-android-friends
+                span.sidebar__menu-item--text {{d.NAVIGATION_Members}}
+            .sidebar__menu-item.navigation__menu-item--builder(ng-click="showContentTree()", title="{{d.NAVIGATION_SchemeaBuilder}}", ng-show="auth.roleHasAccess(['Editor', 'Admin'])", ng-class="{active: current_url === 'builder'}")
+                span.sidebar__menu-item--icon.glyphicon.glyphicon-list-alt
+                span.sidebar__menu-item--text {{d.NAVIGATION_SchemeaBuilder}}
+            a.sidebar__menu-item(ng-href="/settings", title="{{d.NAVIGATION_Settings}}", ng-class="{active: current_url === 'settings'}")
+                span.sidebar__menu-item--icon.glyphicon.glyphicon-cog
+                span.sidebar__menu-item--text {{d.NAVIGATION_Settings}}
 
 
 

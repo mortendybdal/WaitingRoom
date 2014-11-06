@@ -2,6 +2,7 @@
 
 angular.module('waitingRoomApp')
     .controller('ClinicsCtrl', function ($scope, $rootScope, $modal, clinics, users, Restangular) {
+        $rootScope.current_url = 'member';
         $scope.roles = ["Admin"];
         $scope.clinics = clinics;
         $scope.admins = _.where(users, {role: 'Admin'});

@@ -1,4 +1,4 @@
-.scheme-builder__menu(ng-controller="NavigationBuilderCtrl", ng-class="{active: show_content_tree}", off-click='hideContentTree()', off-click-filter='.navigation__menu-item--builder, .modal')
+.scheme-builder__menu(ng-controller="NavigationBuilderCtrl", off-click='hideContentTree()', off-click-filter='.navigation__menu-item--builder, .modal')
     button.scheme-builder__create-scheme(ng-click="openModal('Scheme', d.GENERAL_Scheme, null)") {{d.NAVIGATION_CreateScheme}}
 
     .content-tree(ui-tree="content_tree", data-empty-place-holder-enabled="false")

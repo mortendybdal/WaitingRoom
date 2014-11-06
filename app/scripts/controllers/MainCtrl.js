@@ -3,9 +3,9 @@
 angular.module('waitingRoomApp')
    .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary, Restangular, Auth) {
         $scope.baseSchemes = Restangular.all("schemes");
-            $rootScope.response = {
-            doctor: {},
-            questions: {},
+        $rootScope.response = {
+            doctor: undefined,
+            questions: undefined,
             scheme: null,
             patient: null
         };
@@ -21,4 +21,12 @@ angular.module('waitingRoomApp')
                 });
             }
         });
+
+        $scope.showContentTree = function () {
+            $scope.show_content_tree = !$scope.show_content_tree;
+        };
+
+        $scope.hideContentTree = function () {
+            $scope.show_content_tree = false;
+        };
    });

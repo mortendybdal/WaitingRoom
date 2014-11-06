@@ -2,6 +2,7 @@
 
 angular.module('waitingRoomApp')
     .controller('QuestionBuilderCtrl', function ($scope, $rootScope, $routeParams, $modal, $location, Restangular, question) {
+        $rootScope.current_url = 'builder';
         $scope.options = [
             { Label: 'Single Text', Value: "single-text" },
             { Label: 'Multi Text', Value: "multi-text" },

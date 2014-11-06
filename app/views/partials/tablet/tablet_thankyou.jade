@@ -1,6 +1,19 @@
-.tablet-thankyou
-    .tablet__header {{d.TABLET_AnswerHasBeenSend}}
+.tablet-page.tablet-thankyou
+    .tablet__header(ng-show="is_loading") {{d.TABLET_ThankYou}}
+    .tablet__header(ng-hide="is_loading") {{d.TABLET_AnswerHasBeenSend}}
 
     .tablet__content
-        .tablet-thankyou__message {{d.TABLET_ThankYou}}
-        .tablet-thankyou__message {{d.TABLET_TabletReset}} {{reset_clock}} {{d.TABLET_Sec}}
+        .tablet__content--inner
+            .tablet__content--sending(ng-show="is_loading")
+                .sending-answers(ng-click="sendAnswersToDoctor()")
+                    span.ion-ios7-email
+                    span {{d.TABLET_SendYouAnswerTo}} {{response.doctor.name}}
+
+                .sending-answers-icon
+                    span.ion-loading-c
+
+            .tablet__content--resetting(ng-hide="is_loading")
+                .tablet-thankyou__message {{d.TABLET_ThankYou}}
+                .tablet-thankyou__message {{d.TABLET_TabletReset}} {{reset_clock}} {{d.TABLET_Sec}}
+
+    .tablet__footer
