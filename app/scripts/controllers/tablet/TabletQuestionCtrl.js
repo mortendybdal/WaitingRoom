@@ -1,28 +1,53 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('TabletQuestionCtrl', function ($scope, $rootScope, $routeParams, $location, $timeout) {
+    .controller('TabletQuestionCtrl', function ($scope, $rootScope, $routeParams, $location, $timeout, Restangular) {
 
+        function init() {
+            if (!$rootScope.tablet_user.doctor && !$rootScope.tablet_user.id && $rootScope.tablet_user.questions) {
+                $location.path('tablet')
+            }
 
-        function findNextInOrder () {
+            if ($routeParams.id) {
+                setSlideDirection($rootScope.tablet_user.questions);
 
-            var next_question = _.find($rootScope.response.questions, function (q) {
+                setCurrentQuestion($rootScope.tablet_user.questions);
+
+                $timeout(function () {
+                    $scope.set_focus = true;
+                }, 800);
+            }
+        }
+
+        function saveOrUpdateQuestion() {
+            var answer = {};
+            answer.AnswerText = $scope.question.Answer;
+            answer.Question_id = $scope.question._id;
+            answer.Patient_id = $rootScope.tablet_user.id;
+            Restangular.one("answers").put(answer);
+            console.log(answer);
+        }
+
+        function findNextInOrder() {
+            saveOrUpdateQuestion();
+
+            var next_question = _.find($rootScope.tablet_user.questions, function (q) {
                 if (q.SortOrder > $scope.question.SortOrder) {
-                    if(q.ParentQuestion) {
+                    if (q.ParentQuestion) {
                         if (q.CorrectAnswer) {
-                            var parent_question = _.find($rootScope.response.questions, {_id: q.ParentQuestion});
+                            var parent_question = _.find($rootScope.tablet_user.questions, {_id: q.ParentQuestion});
 
-                            if(q.CorrectAnswer.Key === parent_question.Answer) {
+                            if (q.CorrectAnswer.Key === parent_question.Answer) {
                                 return true;
                             }
                         }
-                    }else {
+                    } else {
                         return true;
                     }
                 }
             });
 
-            if(!next_question) {
+            if (!next_question) {
                 $location.path('/tablet/thankyou');
 
             } else {
@@ -30,26 +55,26 @@ angular.module('waitingRoomApp')
             }
         }
 
-        function findPreviousInOrder () {
-            var questions_clone =  _.clone($rootScope.response.questions).reverse();
+        function findPreviousInOrder() {
+            var questions_clone = _.clone($rootScope.tablet_user.questions).reverse();
 
             var previous_question = _.find(questions_clone, function (q) {
                 if (q.SortOrder < $scope.question.SortOrder) {
-                    if(q.ParentQuestion) {
+                    if (q.ParentQuestion) {
                         if (q.CorrectAnswer) {
-                            var parent_question = _.find($rootScope.response.questions, {_id: q.ParentQuestion});
+                            var parent_question = _.find($rootScope.tablet_user.questions, {_id: q.ParentQuestion});
 
-                            if(q.CorrectAnswer.Key === parent_question.Answer) {
+                            if (q.CorrectAnswer.Key === parent_question.Answer) {
                                 return true;
                             }
                         }
-                    }else {
+                    } else {
                         return true;
                     }
                 }
             });
 
-            if(!previous_question) {
+            if (!previous_question) {
                 $location.path('tablet/schemes/previous');
             } else {
                 $location.path('tablet/question/' + previous_question._id + '/previous');
@@ -59,17 +84,17 @@ angular.module('waitingRoomApp')
         function setCurrentQuestion(questions) {
             $scope.question = _.find(questions, {_id: $routeParams.id});
 
-            if(!$scope.question) {
+            if (!$scope.question) {
                 $location.path('tablet');
             }
         }
 
         function setSlideDirection() {
-            if($routeParams.direction === "next") {
+            if ($routeParams.direction === "next") {
                 $scope.page_class = 'page-slide-in-right';
             }
 
-            if($routeParams.direction === "previous") {
+            if ($routeParams.direction === "previous") {
                 $scope.page_class = 'page-slide-in-left';
             }
         }
@@ -86,7 +111,7 @@ angular.module('waitingRoomApp')
         };
 
         $scope.onKeyPressed = function ($event) {
-            if($event.keyCode === 13) {
+            if ($event.keyCode === 13) {
                 findNextInOrder();
             }
         }
@@ -94,8 +119,10 @@ angular.module('waitingRoomApp')
         $scope.addToSelectList = function (answer) {
             var answer_array = $scope.question.Answer.split("|");
 
-            if(_.contains(answer_array, answer)) {
-                _.remove(answer_array, function(a) { return a === answer; });
+            if (_.contains(answer_array, answer)) {
+                _.remove(answer_array, function (a) {
+                    return a === answer;
+                });
             } else {
                 answer_array.push(answer);
             }
@@ -108,32 +135,12 @@ angular.module('waitingRoomApp')
 
             if ($scope.question.Answer === undefined) {
                 $scope.question.Answer = ""
-            };
+            }
+            ;
 
             return _.contains($scope.question.Answer.split("|"), answer);
         }
 
-        function init() {
-            $rootScope.tablet_ui = true;
-
-            if (!$rootScope.response.doctor) {
-                $location.path('tablet')
-            }
-
-            if($routeParams.id) {
-                if ($rootScope.response.questions) {
-                    setSlideDirection($rootScope.response.questions);
-
-                    setCurrentQuestion($rootScope.response.questions);
-
-                    $timeout(function () {
-                        $scope.set_focus = true;
-                    }, 800);
-                } else {
-                    $location.path('tablet');
-                }
-            }
-        }
 
         init();
     });

@@ -26,7 +26,7 @@ html.no-js
         <!-- build:css({.tmp,app}) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-    body(ng-app="waitingRoomApp", ng-class="{'tablet-ui':tablet_ui}", ng-cloak)
+    body(ng-app="waitingRoomApp", ng-class="{'tablet-ui':ui_type === 'tablet', 'dashboard-ui':ui_type === 'dashboard'}", ng-cloak)
         //[if lt IE 7]>
           <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
           <![endif]
@@ -35,14 +35,14 @@ html.no-js
           <script src="bower_components/json3/lib/json3.min.js"></script>
           <![endif]
 
-        .page(ng-controller="MainCtrl", ng-class="{'show': !tablet_ui && is_logged_in}")
-            ng-include(src="'partials/topbar'", ng-show="!tablet_ui && is_logged_in")
-            ng-include(src="'partials/sidebar'", ng-show="!tablet_ui && is_logged_in")
-            ng-include(src="'partials/tablet/tablet_navigation'", ng-show="tablet_ui && is_logged_in")
+        .page(ng-controller="MainCtrl", ng-class="{'show': ui_type !== ''}")
+            ng-include(src="'partials/topbar'", ng-show="ui_type === 'dashboard'")
+            ng-include(src="'partials/sidebar'", ng-show="ui_type === 'dashboard'")
+            ng-include(src="'partials/tablet/tablet_navigation'", ng-show="ui_type === 'tablet'")
 
             .content(ng-class="{'navigation-builder-visible': show_content_tree}")
-                ng-include(src="'partials/builder/navigation-builder'", ng-show="!tablet_ui && is_logged_in")
-                .content-view(ng-view, ng-class="{'tablet-ui':tablet_ui}", class="{{page_class}}")
+                ng-include(src="'partials/builder/navigation-builder'", ng-show="ui_type === 'dashboard'")
+                .content-view(ng-view, class="{{page_class}}")
 
             .connection_status(ng-class="{'is_offline': !online}")
                 span.connection_message {{d.GENERAL_TabletIsOffline}}
@@ -97,6 +97,7 @@ html.no-js
         <script src="scripts/controllers/customers/ClinicsCtrl.js"></script>
         <script src="scripts/controllers/customers/DoctorsCtrl.js"></script>
         <script src="scripts/controllers/tablet/TabletQuestionCtrl.js"></script>
+        <script src="scripts/controllers/tablet/TabletAppointmentTimeCtrl.js"></script>
         <script src="scripts/controllers/tablet/TabletSchemeListCtrl.js"></script>
         <script src="scripts/controllers/tablet/TabletDoctorListCtrl.js"></script>
         <script src="scripts/controllers/tablet/TabletFinishCtrl.js"></script>

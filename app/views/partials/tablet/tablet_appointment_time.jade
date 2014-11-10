@@ -1,0 +1,29 @@
+.tablet-page.tablet-appointment-time
+    .tablet__header Hvornår har du en lægekonsultation?
+
+    .tablet__content
+
+        .tablet__content--inner
+            .appointment-time-picker
+                .appointment-time-picker__hour
+                    .appointment-time-picker__button.label-add(ng-click="addHour()")
+                        span.ion-ios7-plus-empty
+                    .label-time {{hour}}
+                    .appointment-time-picker__button.label-remove(ng-click="removeHour()")
+                        span.ion-ios7-minus-empty
+                .appointment-time-picker__minute
+                    .appointment-time-picker__button.label-add(ng-click="addMinutes()")
+                        span.ion-ios7-plus-empty
+                    .label-time {{minute}}
+                    .appointment-time-picker__button.label-remove(ng-click="removeMinutes()")
+                        span.ion-ios7-minus-empty
+                span.colon :
+
+
+
+
+    .tablet__footer
+        .tablet-page__next-button(ng-click="nextSlide()")
+            span.ion-chevron-right
+        .tablet-page__previous-button(ng-click="backSlide()")
+            span.ion-chevron-left

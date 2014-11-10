@@ -1,26 +1,26 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('TabletSchemeListCtrl', function ($scope, $rootScope, $location, $routeParams) {
+    .controller('TabletSchemeListCtrl', function ($scope, $rootScope, $location, $routeParams, Restangular) {
+        $scope.basePatients = Restangular.all("patients");
+
         function init() {
-            $rootScope.tablet_ui = true;
-
-            console.log($rootScope.response.doctor);
-
-            if (!$rootScope.response.doctor) {
-                $location.path('tablet')
+            if (!$rootScope.tablet_user.time && !$rootScope.tablet_user.doctor) {
+                //Reset tablet user and redirect to frontpage
+                $rootScope.resetTabletUser();
+                $location.path('tablet');
             }
 
-            if($routeParams.direction === "next") {
+            if ($routeParams.direction === "next") {
                 $scope.page_class = 'page-slide-in-right';
             }
 
-            if($routeParams.direction === "previous") {
+            if ($routeParams.direction === "previous") {
                 $scope.page_class = 'page-slide-in-left';
             }
         }
 
-        function rearrageQuestions (scheme) {
+        function rearrageQuestions(scheme) {
             var questions = _.sortBy(_.find(scheme.steps, {SortOrder: 0}).questions, 'SortOrder'),
                 rearranged_questions = [],
                 index = 0;
@@ -40,19 +40,47 @@ angular.module('waitingRoomApp')
             return rearranged_questions;
         }
 
+        function savePatient() {
+            var patient = {
+                Doctor: $rootScope.tablet_user.doctor._id,
+                Status: "Started",
+                TimeOfAppointment: new Date($rootScope.tablet_user.time),
+                Schemes: []
+            };
+
+            patient.Schemes.push($rootScope.tablet_user.scheme);
+
+            if($rootScope.tablet_user.id) {
+                patient._id = $rootScope.tablet_user.id;
+            }
+
+            $scope.basePatients.post(patient).then(function (patient) {
+                $rootScope.tablet_user.id = patient._id;
+                //Redirect to firt question
+                var first_question = _.find($rootScope.tablet_user.questions, {SortOrder: 0});
+                $location.path('tablet/question/' + first_question._id + '/next')
+            }, function () {
+                //Reset tablet user and redirect to frontpage
+                $rootScope.resetTabletUser();
+                $location.path('tablet');
+            });
+        }
+
         $scope.selectScheme = function (scheme) {
             $scope.page_class = 'page-slide-in-left revert';
             var cloned_scheme = _.cloneDeep(scheme);
-            $rootScope.response.questions = rearrageQuestions(cloned_scheme);
-            $rootScope.response.scheme = scheme._id;
+            $rootScope.tablet_user.questions = rearrageQuestions(cloned_scheme);
+            $rootScope.tablet_user.scheme = scheme._id;
 
-            var first_question = _.find($rootScope.response.questions, {SortOrder: 0});
-            $location.path('tablet/question/' + first_question._id + '/next')
+            //Saves patient
+            savePatient();
+
+
         }
 
         $scope.backSlide = function () {
             $scope.page_class = 'page-slide-in-right revert';
-            $location.path('tablet/doctor/previous');
+            $location.path('tablet/appointment-time/previous');
         };
 
         init();

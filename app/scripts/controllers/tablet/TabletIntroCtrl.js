@@ -8,7 +8,6 @@ angular.module('waitingRoomApp')
         };
 
         function init () {
-            $rootScope.tablet_ui = true;
             $scope.page_class = 'page-fade-in';
         }
 

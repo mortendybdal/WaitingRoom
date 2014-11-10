@@ -1,0 +1,62 @@
+.tablet-appointment-time {
+  .appointment-time-picker {
+    top: calc(50% - 170px);
+
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 100;
+    position: relative;
+
+    @include breakpoint(xs) {
+      top: calc(50% - 130px);
+      font-size: 20px;
+    }
+
+    .appointment-time-picker__hour {
+      display: inline-block;
+      width: calc(50% - 5px);
+      margin-right: 5px;
+      top: calc(50% - 170px);
+    }
+
+    .appointment-time-picker__minute {
+      display: inline-block;
+      width: calc(50% - 5px);
+      margin-left: 5px;
+    }
+
+    .appointment-time-picker__button {
+      @include transition-duration(0.3s);
+      @include transition-timing-function(liniar);
+
+      border: 1px solid $border-tablet;
+      cursor: pointer;
+
+      @include breakpoint(xs) {
+        padding: 10px 0;
+      }
+
+      &:active {
+        background-color: $light-blue;
+        border-color: $dark-blue;
+        color: $dark-blue;
+      }
+    }
+
+    .label-time {
+      padding: 20px 0px;
+    }
+
+    .colon {
+      position: absolute;
+      left: 96px;
+      top: 62px;
+
+      @include breakpoint(xs) {
+        top: 48px;
+      }
+    }
+  }
+}

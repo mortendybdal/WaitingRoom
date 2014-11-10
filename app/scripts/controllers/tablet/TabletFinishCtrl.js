@@ -6,7 +6,6 @@ angular.module('waitingRoomApp')
         $scope.baseAnswers = Restangular.all("answers");
 
         $scope.is_loading = false;
-        $rootScope.tablet_ui = true;
         $scope.page_class = 'page-slide-up';
 
         function createAnswers (patient_id) {

@@ -126,6 +126,15 @@ angular.module('waitingRoomApp', [
                 templateUrl: 'partials/login',
                 controller: 'LoginCtrl'
             })
+            .when('/tablet/appointment-time/:direction', {
+                templateUrl: 'partials/tablet/tablet_appointment_time',
+                controller: 'TabletAppointmentTimeCtrl',
+                resolve: {
+                    loggedin: function (Auth) {
+                        return Auth.isLoggedIn(['Tablet']);
+                    }
+                }
+            })
             .when('/tablet/question/:id/:direction', {
                 templateUrl: 'partials/tablet/tablet_question',
                 controller: 'TabletQuestionCtrl',

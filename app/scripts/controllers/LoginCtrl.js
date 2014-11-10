@@ -4,6 +4,7 @@ angular.module('waitingRoomApp')
     .controller('LoginCtrl', function ($scope, $rootScope, $timeout, Auth, $location) {
         $scope.user = {};
         $scope.errors = {};
+        $rootScope.ui_type = "";
 
         $scope.login = function (form) {
             $scope.submitted = true;
