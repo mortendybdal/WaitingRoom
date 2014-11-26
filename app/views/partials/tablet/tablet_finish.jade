@@ -1,8 +1,0 @@
-.tablet-finish
-    .tablet__header {{d.TABLET_ThankYou}}
-
-    .tablet__content
-        .tablet-finish__send-to-doctor(ng-click="sendAnswersToDoctor()")
-            span.tablet-finish__icon(ng-class="{'ion-ios7-email': !is_loading, 'ion-loading-c': is_loading}")
-            span {{d.TABLET_SendYouAnswerTo}}
-            span {{response.doctor.name}}

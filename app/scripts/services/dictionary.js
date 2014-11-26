@@ -369,6 +369,13 @@ angular.module('waitingRoomApp')
                 ]
             },
             {
+                key: 'FRONTPAGE_Status',
+                values: [
+                    { value: 'Status', language: 'da'},
+                    { value: 'Status', language: 'en'}
+                ]
+            },
+            {
                 key: 'QuestionBuilder_AddSubQuestion',
                 values: [
                     { value: 'Opret underspørgsmål', language: 'da'},

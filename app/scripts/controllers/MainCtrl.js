@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-   .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary, Restangular, Auth) {
+   .controller('MainCtrl', function ($scope, $rootScope, $timeout, Dictionary, Restangular, Auth, PollerService) {
         $scope.baseSchemes = Restangular.all("schemes");
 
 
@@ -23,11 +23,24 @@ angular.module('waitingRoomApp')
 
             if (Auth.roleHasAccess(['User', 'Editor', 'Admin'])) {
                 $rootScope.ui_type = 'dashboard';
+                $rootScope.pollService = PollerService;
+
+                //Set listener
+                $rootScope.$watch('pollService.patients()', function (newVal) {
+                    if (_.size(newVal) > 0) {
+                        $rootScope.patients = newVal;
+                        console.log($rootScope.patients);
+                    }
+                }, true);
+
+                //Start poll
+                $rootScope.pollService.init();
             }
         });
 
         $scope.showContentTree = function () {
             $scope.show_content_tree = !$scope.show_content_tree;
+
         };
 
         $scope.hideContentTree = function () {
@@ -35,14 +48,8 @@ angular.module('waitingRoomApp')
         };
 
         $rootScope.resetTabletUser = function (){
-            $rootScope.tablet_user = {
-                doctor: undefined,
-                questions: undefined,
-                scheme: undefined,
-                patient: undefined,
-                time: undefined,
-                id: undefined
-            };
+            $rootScope.tablet_user = undefined;
+            $rootScope.tablet_questions = undefined;
         }
 
         $rootScope.$watch('tablet_user', function (new_val) {

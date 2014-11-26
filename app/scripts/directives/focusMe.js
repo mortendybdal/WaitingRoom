@@ -6,7 +6,6 @@ angular.module('waitingRoomApp')
             link: function (scope, element, attrs) {
                 var model = $parse(attrs.focusMe);
                 scope.$watch(model, function (value) {
-                    console.log(value);
                     if (value === true) {
                         $timeout(function () {
                             element[0].focus();

@@ -7,14 +7,15 @@ angular.module('waitingRoomApp')
 
 
         function init() {
-            if (!$rootScope.tablet_user.doctor) {
+            if (!$rootScope.tablet_user) {
                 //Reset tablet user and redirect to frontpage
                 $rootScope.resetTabletUser();
                 $location.path('tablet');
+                return;
             }
 
-            if($rootScope.tablet_user.time) {
-                timestamp = moment($rootScope.tablet_user.time);
+            if($rootScope.tablet_user.TimeOfAppointment) {
+                timestamp = moment($rootScope.tablet_user.TimeOfAppointment);
             } else {
                 timestamp.minute(Math.ceil(timestamp.minutes() / minut_interval) * minut_interval);
             }
@@ -56,7 +57,8 @@ angular.module('waitingRoomApp')
         };
 
         $scope.nextSlide = function () {
-            $rootScope.tablet_user.time = timestamp.format();
+            $rootScope.tablet_user.TimeOfAppointment = timestamp.format();
+            $rootScope.tablet_user.save();
             $scope.page_class = 'page-slide-in-right';
             $location.path('/tablet/schemes/next');
         };

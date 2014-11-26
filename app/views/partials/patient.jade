@@ -38,32 +38,51 @@
                             .patient-soap__item--question {{soap_item.QuestionText}}
 
                             // ==> Single-Text
-                            .patient-soap__item--answer(editable-text="soap_item.Answer",
+                            a.patient-soap__item--answer(href="*",
+                                                        e-id="select-{{$id}}",
+                                                        focus-me="$index === 0",
+                                                        onhide="setFocusOnNextElementOnHide($id)",
+                                                        editable-text="soap_item.Answer",
                                                         buttons="no",
                                                         blur="submit",
                                                         placeholder="Text",
                                                         onaftersave="saveAnswer(soap_item)",
                                                         ng-if="soap_item.Type.Value === 'single-text' || soap_item.Type.Value === 'numeric'") {{soap_item.Answer || d.PATIENT_Empty}}
 
-                            // ==> Radio-List
-                            .patient-soap__item--answer(editable-radiolist="soap_item.Answer",
-                                                        e-ng-options="o.Key as o.Value for o in soap_item.Options"
-                                                        buttons="no",
-                                                        onaftersave="saveAnswer(soap_item)",
-                                                        ng-if="soap_item.Type.Value === 'radio-list'") {{findOptionByKey(soap_item.Answer, soap_item.Options) || d.PATIENT_Empty}}
-
                             // ==> Multi-text
-                            .patient-soap__item--answer(editable-textarea="soap_item.Answer",
+                            a.patient-soap__item--answer(href="*",
+                            e-id="select-{{$id}}",
+                                                        focus-me="$index === 0",
+                            onhide="setFocusOnNextElementOnHide($id)",
+                                                        editable-textarea="soap_item.Answer",
                                                         e-rows="7",
                                                         e-cols="40"
                                                         buttons="no",
                                                         blur="submit",
                                                         onaftersave="saveAnswer(soap_item)",
                                                         ng-if="soap_item.Type.Value === 'multi-text'")
-                                pre {{soap_item.Answer || d.PATIENT_Empty}}
+                                                          pre {{soap_item.Answer || d.PATIENT_Empty}}
+
+                            // ==> Radio-List
+                            a.patient-soap__item--answer(href="*",
+                                                        e-id="select-{{$id}}",
+                                                        onshow="setFocusOnFirstOption($id, soap_item)",
+                                                        focus-me="$index === 0",
+                                                        editable-radiolist="soap_item.Answer",
+                                                        e-ng-options="o.Key as o.Value for o in soap_item.Options"
+                                                        buttons="no",
+                                                        onaftersave="saveAnswer(soap_item)",
+                                                        ng-if="soap_item.Type.Value === 'radio-list'") {{findOptionByKey(soap_item.Answer, soap_item.Options) || d.PATIENT_Empty}}
+
+
 
                             // ==> Select-List
-                            .patient-soap__item--answer(editable-select="soap_item.Answer",
+                            a.patient-soap__item--answer(href="*",
+                                                        focus-me="$index === 0",
+                                                        onhide="setFocusOnNextElementOnHide($id)",
+                                                        e-id="select-{{$id}}",
+                                                        onshow="setFocusOnFirstOption($id)",
+                                                        editable-select="soap_item.Answer",
                                                         e-multiple,
                                                         e-ng-options="o.Key as o.Value for o in soap_item.Options"
                                                         buttons="yes",
@@ -75,32 +94,48 @@
                                 .patient-soap__item--question {{sub_soap_item.QuestionText}}
 
                                 // ==> Single-Text
-                                .patient-soap__item--answer(editable-text="sub_soap_item.Answer",
+                                a.patient-soap__item--answer(href="*",
+                                                        e-id="select-{{$id}}",
+                                                        onhide="setFocusOnNextElementOnHide($id)",
+                                                        editable-text="sub_soap_item.Answer",
                                                         buttons="no",
                                                         blur="submit",
                                                         placeholder="Text",
                                                         onaftersave="saveAnswer(sub_soap_item)",
                                                         ng-if="sub_soap_item.Type.Value === 'single-text' || sub_soap_item.Type.Value === 'numeric'") {{sub_soap_item.Answer || d.PATIENT_Empty}}
 
-                                // ==> Radio-List
-                                .patient-soap__item--answer(editable-radiolist="sub_soap_item.Answer",
-                                                        e-ng-options="o.Key as o.Value for o in sub_soap_item.Options"
-                                                        buttons="no",
-                                                        onaftersave="saveAnswer(sub_soap_item)",
-                                                        ng-if="sub_soap_item.Type.Value === 'radio-list'") {{findOptionByKey(sub_soap_item.Answer, sub_soap_item.Options) || d.PATIENT_Empty}}
-
                                 // ==> Multi-text
-                                .patient-soap__item--answer(editable-textarea="sub_soap_item.Answer",
+                                a.patient-soap__item--answer(href="*",
+                                                        e-id="select-{{$id}}",
+                                                        onhide="setFocusOnNextElementOnHide($id)",
+                                                        onshow="setFocusOnFirstOption($id)",
+                                                        editable-textarea="sub_soap_item.Answer",
                                                         e-rows="7",
                                                         e-cols="40"
                                                         buttons="no",
                                                         blur="submit",
                                                         onaftersave="saveAnswer(sub_soap_item)",
                                                         ng-if="sub_soap_item.Type.Value === 'multi-text'")
-                                                            pre {{sub_soap_item.Answer || d.PATIENT_Empty}}
+                                                          pre {{sub_soap_item.Answer || d.PATIENT_Empty}}
+
+                                // ==> Radio-List
+                                a.patient-soap__item--answer(href="*",
+                                                        e-id="select-{{$index}}",
+                                                        onshow="setFocusOnFirstOption($index)",
+                                                        editable-radiolist="sub_soap_item.Answer",
+                                                        e-ng-options="o.Key as o.Value for o in sub_soap_item.Options"
+                                                        buttons="no",
+                                                        onaftersave="saveAnswer(sub_soap_item)",
+                                                        ng-if="sub_soap_item.Type.Value === 'radio-list'") {{findOptionByKey(sub_soap_item.Answer, sub_soap_item.Options) || d.PATIENT_Empty}}
+
+
 
                                 // ==> Select-List
-                                .patient-soap__item--answer(editable-select="sub_soap_item.Answer",
+                                a.patient-soap__item--answer(href="*",
+                                                        e-id="select-{{$id}}",
+                                                        onhide="setFocusOnNextElementOnHide($id)",
+                                                        onshow="setFocusOnFirstOption($id)",
+                                                        editable-select="sub_soap_item.Answer",
                                                         e-multiple,
                                                         e-ng-options="o.Key as o.Value for o in sub_soap_item.Options"
                                                         buttons="yes",
@@ -109,8 +144,8 @@
 
 
                     .patient-soap__navigation
-                        button.patient-soap__navigation-back(ng-click="backStep()", ng-hide="current_step.SortOrder === 0") {{d.PATIENT_Back}}
-                        button.patient-soap__navigation-next(ng-click="nextStep()", ng-hide="current_step.SortOrder === steps.length - 1") {{d.PATIENT_Next}}
+                        button.patient-soap__navigation-back(type="button", ng-click="backStep()", ng-hide="current_step.SortOrder === 0") {{d.PATIENT_Back}}
+                        button.patient-soap__navigation-next(type="button", ng-click="nextStep()", ng-hide="current_step.SortOrder === steps.length - 1") {{d.PATIENT_Next}}
 
     /////////////////////JOURNAL WIDGET///////////////////////
     .patient-journal__widget

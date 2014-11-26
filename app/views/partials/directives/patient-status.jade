@@ -1,0 +1,10 @@
+.patient-status
+    .patient-status__circle.started(ng-if="status === 'Started'")
+        span.patient-status__bounce1
+        span.patient-status__bounce2
+
+    .patient-status__circle.submitted(ng-if="status === 'Submitted'")
+        span.patient-status__icon.ion-edit
+
+    .patient-status__circle.completed(ng-if="status === 'Completed'")
+        span.patient-status__icon.ion-checkmark

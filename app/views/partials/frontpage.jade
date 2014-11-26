@@ -3,30 +3,28 @@
     .user-list__widget
         .user-list__header
             .user-item__row.lable.lable-icon
-            .user-item__row.lable.lable-scheme(ng-click="reverse=!reverse;order('SchemeTitle', reverse)")
+            .user-item__row.lable.lable-scheme(ng-click="order('SchemeTitle', reverse)")
                 span {{d.FRONTPAGE_Scheme}}
-                span(ng-class="{'ion-chevron-down': reverse && order_by === 'SchemeTitle', 'ion-chevron-up': !reverse && order_by === 'SchemeTitle'}")
+                span(ng-class="{'ion-chevron-down': order_by === 'SchemeTitle'}")
 
-            // .user-item__row.lable.lable-appointment(ng-click="reverse=!reverse;order('TimeOfAppointment', reverse)")
-            //    span {{d.FRONTPAGE_TimeForAppointment}}
-            //    span(ng-class="{'ion-chevron-down': reverse && order_by === 'TimeOfAppointment', 'ion-chevron-up': !reverse && order_by === 'TimeOfAppointment'}")
-            .user-item__row.lable.lable-submitted(ng-click="reverse=!reverse;order('Submitted', reverse)")
+             .user-item__row.lable.lable-appointment(ng-click="order('TimeOfAppointment', reverse)")
+                span {{d.FRONTPAGE_TimeForAppointment}}
+                span(ng-class="{'ion-chevron-down': order_by === 'TimeOfAppointment'}")
+            .user-item__row.lable.lable-submitted(ng-click="order('Submitted', reverse)")
                 span {{d.FRONTPAGE_Submitted}}
-                span(ng-class="{'ion-chevron-down': reverse && order_by === 'Submitted', 'ion-chevron-up': !reverse && order_by === 'Submitted'}")
+                span(ng-class="{'ion-chevron-down': order_by === 'Submitted'}")
 
-            .user-item__row.lable.lable-status
+            .user-item__row.lable.lable-status(ng-click="order('Status', reverse)")
+                span {{d.FRONTPAGE_Status}}
+                span(ng-class="{'ion-chevron-down': order_by === 'Status'}")
 
         .user-list__content
-            a.user-item(ng-repeat="patient in patients", ng-if="patient.Status !== 'Completed'", ng-href="/patient/{{patient._id}}/scheme/0")
+            a.user-item(ng-repeat="patient in patients track by $index", ng-href="/patient/{{patient._id}}/scheme/0", ng-class="patient.Status")
                 .user-item__row.lable-icon
                     span.glyphicon.glyphicon-time
                 .user-item__row.lable-scheme {{patient.SchemeTitle}}
-                //.user-item__row.lable-appointment {{patient.mTimeForAppointment}}
-                .user-item__row.lable-submitted {{patient.mSubmitted}}
+                .user-item__row.lable-appointment {{timeForAppointment(patient.TimeOfAppointment)}}
+                .user-item__row.lable-submitted {{timeForSubmit(patient.Submitted)}}
+                .user-item__row.lable-status
+                    patient-status(status="patient.Status")
 
-            a.user-item.completed(ng-repeat="patient in patients", ng-if="patient.Status === 'Completed'",ng-href="/patient/{{patient._id}}/scheme/0")
-                .user-item__row.lable-icon
-                    span.glyphicon.glyphicon-time
-                .user-item__row.lable-scheme {{patient.SchemeTitle}}
-                //.user-item__row.lable-appointment {{patient.mTimeForAppointment}}
-                .user-item__row.lable-submitted {{patient.mSubmitted}}

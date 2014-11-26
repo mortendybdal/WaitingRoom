@@ -13,7 +13,7 @@
   float: left;
   border: 1px solid $nav-background;
   text-align: center;
-  
+
   span {
     line-height: 55px;
     font-size: 45px;
@@ -287,10 +287,17 @@
     font-size: 14px;
     padding: 10px;
     outline: none;
+    text-align: center;
+    text-decoration: none;
 
     &:hover {
       background-color: $blue-hover;
       color: $blue;
+    }
+
+    &:focus {
+      border: $nav-button-background 1px solid;
+      color: $nav-button-background;
     }
   }
 

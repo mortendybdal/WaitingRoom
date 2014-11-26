@@ -5,7 +5,7 @@ angular.module('waitingRoomApp')
         $scope.basePatients = Restangular.all("patients");
 
         function init() {
-            if (!$rootScope.tablet_user.time && !$rootScope.tablet_user.doctor) {
+            if (!$rootScope.tablet_user) {
                 //Reset tablet user and redirect to frontpage
                 $rootScope.resetTabletUser();
                 $location.path('tablet');
@@ -41,7 +41,8 @@ angular.module('waitingRoomApp')
         }
 
         function savePatient() {
-            var patient = {
+            $rootScope.tablet_user
+            /*var patient = {
                 Doctor: $rootScope.tablet_user.doctor._id,
                 Status: "Started",
                 TimeOfAppointment: new Date($rootScope.tablet_user.time),
@@ -50,30 +51,44 @@ angular.module('waitingRoomApp')
 
             patient.Schemes.push($rootScope.tablet_user.scheme);
 
-            if($rootScope.tablet_user.id) {
-                patient._id = $rootScope.tablet_user.id;
+            if($rootScope.tablet_user.patient !== undefined) {
+                patient._id = $rootScope.tablet_user.patient._id;
             }
 
             $scope.basePatients.post(patient).then(function (patient) {
-                $rootScope.tablet_user.id = patient._id;
+                $rootScope.tablet_user.patient = patient;
                 //Redirect to firt question
-                var first_question = _.find($rootScope.tablet_user.questions, {SortOrder: 0});
-                $location.path('tablet/question/' + first_question._id + '/next')
+
             }, function () {
                 //Reset tablet user and redirect to frontpage
                 $rootScope.resetTabletUser();
                 $location.path('tablet');
             });
+            */
         }
 
         $scope.selectScheme = function (scheme) {
             $scope.page_class = 'page-slide-in-left revert';
             var cloned_scheme = _.cloneDeep(scheme);
-            $rootScope.tablet_user.questions = rearrageQuestions(cloned_scheme);
-            $rootScope.tablet_user.scheme = scheme._id;
+            $rootScope.tablet_questions = rearrageQuestions(cloned_scheme);
 
-            //Saves patient
-            savePatient();
+            //Temp - untill support of multi schemes
+            $rootScope.tablet_user.Schemes = [];
+            $rootScope.tablet_user.Schemes.push(scheme._id);
+            $rootScope.tablet_user.Status = 'Started';
+            $rootScope.tablet_user.save().then(
+                function () {
+                    //Redirect to first question of scheme
+                    var first_question = _.find($rootScope.tablet_questions, {SortOrder: 0});
+                    $location.path('tablet/question/' + first_question._id + '/next')
+                },
+                function () {
+                    //Reset tablet user and redirect to frontpage
+                    $rootScope.resetTabletUser();
+                    $location.path('tablet');
+                }
+            );
+
 
 
         }

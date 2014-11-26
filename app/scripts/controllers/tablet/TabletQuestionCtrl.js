@@ -4,14 +4,14 @@ angular.module('waitingRoomApp')
     .controller('TabletQuestionCtrl', function ($scope, $rootScope, $routeParams, $location, $timeout, Restangular) {
 
         function init() {
-            if (!$rootScope.tablet_user.doctor && !$rootScope.tablet_user.id && $rootScope.tablet_user.questions) {
+            if (!$rootScope.tablet_user) {
                 $location.path('tablet')
             }
 
             if ($routeParams.id) {
-                setSlideDirection($rootScope.tablet_user.questions);
+                setSlideDirection($rootScope.tablet_questions);
 
-                setCurrentQuestion($rootScope.tablet_user.questions);
+                setCurrentQuestion($rootScope.tablet_questions);
 
                 $timeout(function () {
                     $scope.set_focus = true;
@@ -23,7 +23,7 @@ angular.module('waitingRoomApp')
             var answer = {};
             answer.AnswerText = $scope.question.Answer;
             answer.Question_id = $scope.question._id;
-            answer.Patient_id = $rootScope.tablet_user.id;
+            answer.Patient_id = $rootScope.tablet_user._id;
             Restangular.one("answers").put(answer);
             console.log(answer);
         }
@@ -31,11 +31,11 @@ angular.module('waitingRoomApp')
         function findNextInOrder() {
             saveOrUpdateQuestion();
 
-            var next_question = _.find($rootScope.tablet_user.questions, function (q) {
+            var next_question = _.find($rootScope.tablet_questions, function (q) {
                 if (q.SortOrder > $scope.question.SortOrder) {
                     if (q.ParentQuestion) {
                         if (q.CorrectAnswer) {
-                            var parent_question = _.find($rootScope.tablet_user.questions, {_id: q.ParentQuestion});
+                            var parent_question = _.find($rootScope.tablet_questions, {_id: q.ParentQuestion});
 
                             if (q.CorrectAnswer.Key === parent_question.Answer) {
                                 return true;
@@ -56,13 +56,13 @@ angular.module('waitingRoomApp')
         }
 
         function findPreviousInOrder() {
-            var questions_clone = _.clone($rootScope.tablet_user.questions).reverse();
+            var questions_clone = _.clone($rootScope.tablet_questions).reverse();
 
             var previous_question = _.find(questions_clone, function (q) {
                 if (q.SortOrder < $scope.question.SortOrder) {
                     if (q.ParentQuestion) {
                         if (q.CorrectAnswer) {
-                            var parent_question = _.find($rootScope.tablet_user.questions, {_id: q.ParentQuestion});
+                            var parent_question = _.find($rootScope.tablet_questions, {_id: q.ParentQuestion});
 
                             if (q.CorrectAnswer.Key === parent_question.Answer) {
                                 return true;
@@ -136,7 +136,6 @@ angular.module('waitingRoomApp')
             if ($scope.question.Answer === undefined) {
                 $scope.question.Answer = ""
             }
-            ;
 
             return _.contains($scope.question.Answer.split("|"), answer);
         }

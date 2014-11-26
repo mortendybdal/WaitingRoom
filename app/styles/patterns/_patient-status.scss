@@ -1,0 +1,77 @@
+.patient-status {
+  position: relative;
+
+  .patient-status__circle {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 25px;
+    left: 12px;
+    top: -14px;
+
+    &.started {
+      background-color: started;
+    }
+
+    &.submitted {
+      background-color: $green;
+    }
+
+    &.completed {
+      background-color: $icon-dark-blue;
+    }
+
+    .patient-status__icon {
+      position: absolute;
+      top: 2px;
+      left: -4px;
+      font-size: 12px;
+      color: white;
+    }
+
+    .patient-status__bounce1 {
+      width: 22px;
+      height: 22px;
+      border-radius: 15px;
+      background-color: $yellow;
+      opacity: 0.6;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+
+      -webkit-animation: bounce 3.0s infinite ease-in-out;
+      animation: bounce 3.0s infinite ease-in-out;
+    }
+
+    .patient-status__bounce2 {
+      width: 22px;
+      height: 22px;
+      border-radius: 15px;
+      background-color: darken($yellow, 10%);
+      opacity: 0.6;
+      position: absolute;
+      top: 0px;
+      left: -10px;
+
+      -webkit-animation: bounce 3.0s infinite ease-in-out;
+      animation: bounce 3.0s infinite ease-in-out;
+      -webkit-animation-delay: -1.5s;
+      animation-delay: -1.5s;
+    }
+  }
+}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+    }
+}

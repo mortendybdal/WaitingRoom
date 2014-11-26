@@ -9,8 +9,8 @@
   font-size: 14px;
   font-weight: 200;
   display: inline-block;
-  color: $blue;
-  
+  color: $nav-button-background;
+
   span:last-child {
     margin-left: 10px;
   }
@@ -34,28 +34,34 @@
   }
 
   &.lable-scheme {
-    @include calc("width", "50% - 50px");
+    @include calc("width", "50% - 150px");
   }
 
-  /*
   &.lable-appointment {
-    width: 30%;
+    width: 25%;
   }
-  */
 
   &.lable-submitted {
-    @include calc("width", "50% - 50px");
+    width: 25%;
   }
 
   &.lable-status {
-    width: 50px;
-    color: $green;
+    position: relative;
+    width: 100px;
+
+    .completed-icon {
+      position: absolute;
+      top: -16px;
+      left: 0;
+      font-size: 18px;
+      color: $green;
+    }
   }
 }
 
 .user-list__header {
   padding: 15px 0 15px 0;
-  border-bottom: 1px solid $blue;
+  border-bottom: 1px solid $nav-button-background;
 }
 
 .user-item {
@@ -63,7 +69,7 @@
   @include transition-timing-function(ease-in);
 
   padding: 13px 0 13px 0;
-  border-bottom: 1px dotted $blue;
+  border-bottom: 1px dotted $nav-button-background;
   cursor: pointer;
   display: block;
   position: relative;
@@ -76,7 +82,15 @@
     font-weight: 200;
   }
 
-  &.completed {
-    background-color: #F6F7FA;
+  &.Started {
+    border-left: 10px solid $yellow;
+  }
+
+  &.Submitted {
+    border-left: 10px solid $green;
+  }
+
+  &.Completed {
+    border-left: 10px solid $icon-dark-blue;
   }
 }

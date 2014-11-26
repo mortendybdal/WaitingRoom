@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waitingRoomApp')
-    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, $location, Restangular, patient) {
+    .controller('PatientCtrl', function ($scope, $rootScope, $routeParams, $timeout, $location, $document, Restangular, patient) {
         $scope.is_copying_jounal = false;
         $scope.is_loading_soap_widget = false;
         $scope.baseAnswers = Restangular.all("answers");
@@ -32,6 +32,45 @@ angular.module('waitingRoomApp')
             return window.moment(time).zone('0000').format('HH:mm');
         };
 
+        $scope.setFocusOnFirstOption = function (selector, question) {
+            $timeout(function () {
+                //Try select radio list
+                var inputs = $('#select-' + selector + " input[type='radio']");
+
+                //If is a radio list
+                if (inputs.length !== 0) {
+                    inputs.bind('keydown', function(event) {
+                        if (event.which === 13) {
+
+                            //Reset all radio buttons
+                            _.forEach(inputs, function (input) {
+                              $(input).prop("checked", false);
+                            });
+
+
+                            question.Answer = $(this).val();
+                            $(this).prop("checked", true);
+
+                            //Save question
+                            $scope.saveAnswer(question);
+                        }
+                    });
+                } //Try select select list
+                else {
+                  inputs = $('#select-' + selector);
+                }
+                inputs[0].focus();
+            }, 100);
+        };
+
+    $scope.setFocusOnNextElementOnHide = function (selector) {
+
+        var current_soap_question = $('a[e-id="select-' + selector + '"]'),
+            soap_question = $('.patient-soap__item--answer'),
+            next_index = soap_question.index(current_soap_question) + 1;
+
+        soap_question[next_index].focus();
+    };
 
         function getQuestionsByStep(step) {
             return _.sortBy(_.filter($scope.questions, function (q) {
@@ -98,8 +137,6 @@ angular.module('waitingRoomApp')
 
         $scope.saveAnswer = function (question) {
             if (question) {
-
-
                 var answer = {
                     AnswerText: question.Answer,
                     Question_id: question._id,
@@ -133,6 +170,7 @@ angular.module('waitingRoomApp')
         };
 
         $scope.nextStep = function () {
+          console.log("next step");
             var next_step = _.find($scope.steps, {SortOrder: $scope.current_step.SortOrder + 1});
 
             if (next_step) {

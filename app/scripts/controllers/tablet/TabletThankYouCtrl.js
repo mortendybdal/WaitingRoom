@@ -11,9 +11,7 @@ angular.module('waitingRoomApp')
         $scope.page_class = 'page-slide-in-right';
 
         function init() {
-
-
-            if (!$rootScope.tablet_user.id) {
+            if (!$rootScope.tablet_user) {
                 $location.path('tablet');
             }
 
@@ -33,36 +31,16 @@ angular.module('waitingRoomApp')
         }
 
         function submitAnswersToDoctor() {
-            Restangular.one('patients', $rootScope.tablet_user.id).post(['Submitted']).then(function () {
+            console.log(moment().format());
+
+            $rootScope.tablet_user.Submitted = moment().format();
+            $rootScope.tablet_user.Status = 'Submitted';
+            $rootScope.tablet_user.save().then(function () {
                 $timeout(function () {
                     $scope.is_loading = false;
                     startCountDown();
                 }, 2000);
             });
-
-
-            /*if ($rootScope.response.scheme && $rootScope.response.doctor) {
-                $scope.basePatients.post({Doctor: $rootScope.response.doctor._id}).then(function(patient) {
-                    $rootScope.response.patient = patient._id;
-                    patient.Schemes.push($rootScope.response.scheme);
-                    patient.save();
-
-                    var answers = createAnswers(patient._id)
-
-                    if(answers.length > 0) {
-                        $scope.baseAnswers.post(answers).then(function (){
-
-                            $timeout(function () {
-                                $scope.is_loading = false;
-                                startCountDown();
-                            }, 2000);
-
-                        });
-                    }else {
-                        $scope.is_loading = false;
-                    }
-                });
-            }*/
         }
 
         init();

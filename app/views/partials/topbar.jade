@@ -5,4 +5,4 @@
 
     .topbar__notification
         span.ion-ios7-bell-outline
-        span.topbar__notification-number 5
+        span.topbar__notification-number(ng-if="number_of_uncompleted_patients.length !== 0") {{number_of_uncompleted_patients.length }}

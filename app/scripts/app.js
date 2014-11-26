@@ -218,8 +218,8 @@ angular.module('waitingRoomApp', [
         //================================================
         localStorageServiceProvider.setPrefix('predok');
     })
-    .run(function ($rootScope, $location, $window, Auth, Restangular) {
-
+    .run(function ($rootScope, $location, $window, Auth, Restangular, editableOptions) {
+        editableOptions.activate = 'focus';
 
         //================================================
         // Listen for coneection status

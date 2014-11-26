@@ -1,6 +1,6 @@
 ///////////////////RESET EDITABLE/////////////////////
 
-.editable-click {
+a.editable-click {
   border: 1px solid white;
 
   &:hover {
@@ -17,20 +17,41 @@
 
 
 ///////////////////EDITABLE-TEXT/////////////////////
-div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[editable-select] {
+a[editable-text], a[editable-radiolist], a[editable-textarea] pre, a[editable-select] {
   cursor: pointer;
   border: 1px solid white;
-  padding: 10px 0 10px 0;
+  padding: 10px 0 10px 10px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   background-color: transparent;
   color: $editable-answer-blue;
   margin: 0;
+  outline: none;
+  text-decoration: none;
 
   &:hover {
     background-color: $blue-hover;
+    color: $editable-answer-blue;
+  }
+
+  &:focus {
+    border: $nav-button-background 1px solid;
+    color: $nav-button-background;
   }
 }
+
+
+//Special case for textarea
+a[editable-textarea]{
+  outline: none;
+
+  &:focus {
+    border: $nav-button-background 1px solid;
+    color: $nav-button-background;
+  }
+}
+
+
 
 .editable-text {
   width: 50%;
@@ -59,6 +80,11 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
       &:checked + span {
         background-color: $blue;
         color: white;
+      }
+
+      &:focus + span {
+        border: $nav-button-background 1px solid;
+        color: $nav-button-background;
       }
     }
 
@@ -106,6 +132,11 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
     background-color: $blue-hover;
     color: $editable-answer-blue;
     border-radius: 0;
+
+    &:focus {
+      border: $nav-button-background 1px solid;
+      color: $nav-button-background;
+    }
   }
 
   .editable-buttons {
@@ -120,6 +151,7 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
       border: 1px solid $blue;
       color: $blue;
       background-color: transparent;
+      outline: none;
 
       &:first-child {
         margin-right: 10px;
@@ -131,6 +163,11 @@ div[editable-text], div[editable-radiolist], div[editable-textarea] pre, div[edi
 
       &:hover {
         background-color: $blue-hover;
+      }
+
+      &:focus {
+        border: $nav-button-background 1px solid;
+        color: $nav-button-background;
       }
     }
   }
